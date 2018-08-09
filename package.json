@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gulp scripts",
     "start": "node dist/index.js",
-    "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'"
+    "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
+    "lint": "tslint --config tslint.json --project tsconfig.json {src,test}/**/*.{ts,tsx}"
   },
   "keywords": [],
   "author": "MrWakeCZ",

@@ -1,8 +1,8 @@
 image: node:8.9
 
 stages:
-- build
 - test
+- build
 
 cache:
   paths:
@@ -16,8 +16,13 @@ build:
   script:
     - npm run build
 
-test:
+test:general:
   stage: test
   script:
     - npm run test
+
+lint:lint:
+  stage: test
+  script:
+    - npm run lint
 
