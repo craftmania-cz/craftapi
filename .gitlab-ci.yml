@@ -21,7 +21,7 @@ test:general:
   script:
     - npm run test
 
-lint:lint:
+test:lint:
   stage: test
   script:
     - npm run lint

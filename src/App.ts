@@ -26,7 +26,7 @@ class App {
 		// main router
 		let router = express.Router();
 		// placeholder route handler
-		router.get('/', (req, res, next) => {
+		router.get('/', (_req: any, res: any, _next: any) => {
 			res.json({
 				message: 'CS WAKE!'
 			});

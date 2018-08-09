@@ -7,9 +7,14 @@
     "build": "gulp scripts",
     "start": "node dist/index.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
-    "lint": "tslint --config tslint.json --project tsconfig.json {src,test}/**/*.{ts,tsx}"
+    "lint": "tslint -c tslint.json -p tsconfig.json"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "typescript",
+    "api",
+    "craftmania"
+  ],
   "author": "MrWakeCZ",
   "license": "ISC",
   "devDependencies": {
