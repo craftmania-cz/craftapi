@@ -2,8 +2,9 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import PlayerRoutes from "./routes/PlayerRoutes";
 
-// Creates and configures an ExpressJS web server.
+
 class App {
 
 	public express: express.Application;
@@ -23,8 +24,10 @@ class App {
 
 	// API endpoints
 	private routes(): void {
+
 		// main router
 		let router = express.Router();
+
 		// placeholder route handler
 		router.get('/', (_req: any, res: any, _next: any) => {
 			res.json({
@@ -32,6 +35,7 @@ class App {
 			});
 		});
 		this.express.use('/', router);
+		this.express.use('/player', PlayerRoutes)
 	}
 
 }
