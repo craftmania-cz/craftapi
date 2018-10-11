@@ -2,10 +2,14 @@
 import * as http from 'http';
 import * as debug from 'debug';
 import * as log from 'signale';
+import * as dotenv from 'dotenv';
 
 import App from './App';
 
 debug('ts-express:server');
+
+// Load environment variables from .env file, where API keys and passwords are configured
+dotenv.config({ path: ".env" });
 
 const port = process.env.PORT || 3000;
 App.set('port', port);
