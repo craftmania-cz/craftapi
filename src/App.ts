@@ -34,8 +34,8 @@ class App {
 			});
 		});
 		this.express.use('/', router);
-		this.express.use('/player', PlayerRoutes)
-	};
+		this.express.use('/player', PlayerRoutes);
+	}
 
 }
 
