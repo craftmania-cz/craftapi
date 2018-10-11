@@ -11,7 +11,10 @@ debug('ts-express:server');
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env" });
 
+// Load basic environment variables
 const port = process.env.PORT || 3000;
+const stage = process.env.ENV || 'develop';
+
 App.set('port', port);
 
 const logo = () => {
@@ -47,6 +50,11 @@ function onError(error: NodeJS.ErrnoException): void {
 
 function onListening(): void {
 	let addr = server.address();
-	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-	log.success(`Listening on ${bind}`);
+	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr.port}`;
+	log.success(`Listening on port ${bind}`);
+	log.info(`App is running as ${stage.toLocaleUpperCase()} environment`);
+	log.info(`Home url: http://localhost:${bind}`);
+	if (stage !== 'production') {
+		log.note('Press CTRL-C to stop');
+	}
 }
