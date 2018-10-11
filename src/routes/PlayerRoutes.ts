@@ -1,7 +1,7 @@
-import {Router, Request, Response, NextFunction} from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 
 export class PlayerRoutes {
-	router: Router;
+	public router: Router;
 
 	constructor() {
 		this.router = Router();
@@ -16,8 +16,7 @@ export class PlayerRoutes {
 		res.status(200).json({yourName: req.params.name});
 	}
 
-
-	init() {
+	public init() {
 		this.router.get('/', this.getBasic);
 		this.router.get('/:name', this.getName);
 	}

@@ -4,7 +4,6 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
 
-
 class App {
 
 	public express: express.Application;
@@ -36,7 +35,7 @@ class App {
 		});
 		this.express.use('/', router);
 		this.express.use('/player', PlayerRoutes)
-	}
+	};
 
 }
 
