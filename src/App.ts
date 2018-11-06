@@ -3,6 +3,8 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
+import * as path from "path";
+import { Request, Response } from "express";
 
 class App {
 
@@ -23,17 +25,12 @@ class App {
 
 	// API endpoints
 	private routes(): void {
-
-		// main router
-		let router = express.Router();
-
-		// placeholder route handler
-		router.get('/', (_req: any, res: any, _next: any) => {
-			res.json({
-				message: 'CS WAKE!'
-			});
+		// Docs root
+		this.express.use('/', function(_req: Request, res: Response) {
+			res.sendFile(path.join(__dirname + '/index.html'));
 		});
-		this.express.use('/', router);
+
+		// Player testing
 		this.express.use('/player', PlayerRoutes);
 	}
 

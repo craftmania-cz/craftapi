@@ -4,13 +4,15 @@
   "description": "CraftMania.CZ REST API in TypeScript and NodeJS.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && tsc && npm run docs-build",
     "clean": "rm -rf dist/* && touch dist/.gitkeep",
     "start": "node dist/server.js",
-    "watch": "tsc && nodemon dist/server.js",
+    "watch": "nodemon dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "develop": "npm run clean && npm run build && npm run start"
+    "develop": "npm run clean && npm run build && npm run watch",
+    "docs-watch": "aglio --theme-variables slate -i src/public/index.md -s",
+    "docs-build": "aglio --theme-variables slate -i src/public/index.md -o ./dist/index.html"
   },
   "keywords": [
     "node",
@@ -40,6 +42,7 @@
   "dependencies": {
     "@types/dotenv": "^4.0.3",
     "@types/signale": "^1.2.0",
+    "aglio": "^2.3.0",
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
     "debug": "^3.2.6",
