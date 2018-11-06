@@ -1,16 +1,24 @@
-
+'use strict';
+import dotenv = require('dotenv');
 import * as http from 'http';
 import * as debug from 'debug';
+import * as fs from 'fs';
 import * as log from 'signale';
-import * as config from 'config';
+
+if (!fs.existsSync('.env') && fs.existsSync('.env.example')) {
+	log.fatal('You forgot renaming the file .env.example to .env. Exiting now.');
+	process.exit(1);
+}
 
 import App from './App';
 
 debug('ts-express:server');
 
+dotenv.config({ path: ".env" });
+
 // Load basic environment variables
-const port = config.get('port') || 3000;
-const stage = config.get('environment') || 'develop';
+const port = process.env.PORT || 3000;
+const stage = process.env.ENVIRONMENT || 'develop';
 
 App.set('port', port);
 
