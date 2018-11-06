@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API získání veřejných dat hráčů a našich serverů.",
+    "version": "1.0.0",
+    "title": "CraftMania.cz API"
+  },
+  "host": "api.craftmania.cz",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "general",
+      "description": "Základní requesty v našem API"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/version": {
+      "get": {
+        "tags": [
+          "general"
+        ],
+        "summary": "Zobrazení aktivní verze API",
+        "description": "Získání aktivní verze API která aktuálně běží pod api.craftmania.cz",
+        "operationId": "findPetsByStatus",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Version"
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Version": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "example": "1.0.0"
+        }
+      }
+    }
+  }
+}

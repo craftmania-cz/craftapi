@@ -3,8 +3,8 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
-import * as path from "path";
-import { Request, Response } from "express";
+import * as swaggerDocument from '../swagger.json';
+const swaggerUi = require('swagger-ui-express');
 
 class App {
 
@@ -26,9 +26,7 @@ class App {
 	// API endpoints
 	private routes(): void {
 		// Docs root
-		this.express.use('/', function(_req: Request, res: Response) {
-			res.sendFile(path.join(__dirname + '/index.html'));
-		});
+		this.express.use(swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 		// Player testing
 		this.express.use('/player', PlayerRoutes);
