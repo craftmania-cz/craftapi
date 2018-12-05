@@ -51,9 +51,41 @@
         "tags": [
           "Ccomunity"
         ],
-        "summary": "Získání základních dat hráče",
+        "summary": "Získání základních dat hráče podle jména",
         "description": "Požadavek na získání dat hráče z Ccomunity - jméno, uuid, registrace, napojení a nebo i počty CraftCoins.",
         "operationId": "ccomunityFindName",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Úspěšný request",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CcomunityProfile"
+            }
+          },
+          "404": {
+            "description": "Chybějící hodnota jména v URL",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GenericMissingFieldInUrl"
+            }
+          },
+          "500": {
+            "description": "Chyba v napojení na SQL nebo v API."
+          }
+        }
+      }
+    },
+    "/player/uuid/:uuid": {
+      "get": {
+        "tags": [
+          "Ccomunity"
+        ],
+        "summary": "Získání základních dat hráče podle UUID",
+        "description": "Požadavek na získání dat hráče z Ccomunity - jméno, uuid, registrace, napojení a nebo i počty CraftCoins.",
+        "operationId": "ccomunityFindNameByUUID",
         "produces": [
           "application/json"
         ],

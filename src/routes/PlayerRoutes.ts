@@ -16,7 +16,8 @@ export class PlayerRoutes {
 
 	public init() {
 		this.router.get('/', this.getBasic);
-		this.router.get('/:name', Ccomunity.getProfile);
+		this.router.get('/:name', Ccomunity.getProfileByName);
+		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID)
 	}
 }
 
