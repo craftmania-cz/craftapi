@@ -9,7 +9,11 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "general",
+      "name": "Ccomunity",
+      "description": "Requesty k získání dat hráčů"
+    },
+    {
+      "name": "Others",
       "description": "Základní requesty v našem API"
     }
   ],
@@ -20,7 +24,7 @@
     "/version": {
       "get": {
         "tags": [
-          "general"
+          "Others"
         ],
         "summary": "Zobrazení aktivní verze API",
         "description": "Získání aktivní verze API která aktuálně běží pod api.craftmania.cz",
@@ -39,32 +43,40 @@
           "400": {
             "description": "Invalid status value"
           }
-        },
-        "security": [
-          {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+        }
       }
     },
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
+    "/player/:nick": {
+      "get": {
+        "tags": [
+          "Ccomunity"
+        ],
+        "summary": "Získání základních dat hráče",
+        "description": "Požadavek na získání dat hráče z Ccomunity - jméno, uuid, registrace, napojení a nebo i počty CraftCoins.",
+        "operationId": "ccomunityFindName",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Úspěšný request",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/CcomunityProfile"
+            }
+          },
+          "404": {
+            "description": "Chybějící hodnota jména v URL",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/GenericMissingFieldInUrl"
+            }
+          },
+          "500": {
+            "description": "Chyba v napojení na SQL nebo v API."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -74,6 +86,132 @@
         "version": {
           "type": "string",
           "example": "1.0.0"
+        }
+      }
+    },
+    "GenericMissingFieldInUrl": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "object",
+          "example": 404
+        },
+        "error": {
+          "type": "string",
+          "example": "Not found!"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    },
+    "CcomunityProfile": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "object",
+          "example": 200
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            },
+            "discriminator": {
+              "type": "number",
+              "example": 1234
+            },
+            "nick": {
+              "type": "string",
+              "example": "MrPhox"
+            },
+            "uuid": {
+              "type": "string",
+              "example": "8e10440-1132-4808-8d0c-a5ac86bca99c"
+            },
+            "web_group": {
+              "type": "number",
+              "example": 0
+            },
+            "registred": {
+              "type": "number",
+              "example": 1521052284878
+            },
+            "last_online": {
+              "type": "number",
+              "example": 1543794209694
+            },
+            "last_server": {
+              "type": "string",
+              "example": "survival"
+            },
+            "is_online": {
+              "type": "number",
+              "example": 0
+            },
+            "played_time": {
+              "type": "number",
+              "example": 1858
+            },
+            "craftcoins": {
+              "type": "number",
+              "example": 13080
+            },
+            "crafttokens": {
+              "type": "number",
+              "example": 185
+            },
+            "votetokens": {
+              "type": "number",
+              "example": 315
+            },
+            "level": {
+              "type": "number",
+              "example": 1
+            },
+            "experience": {
+              "type": "number",
+              "example": 3023
+            },
+            "karma": {
+              "type": "number",
+              "example": 10
+            },
+            "status": {
+              "type": "string",
+              "example": "Tento hráč nemá nastavený žádný status! :("
+            },
+            "soc_facebook": {
+              "type": "string",
+              "example": "https://facebook.com/MrPhox.233"
+            },
+            "soc_twitter": {
+              "type": "string",
+              "example": "https://twitter.com/MrPhox"
+            },
+            "soc_ytb": {
+              "type": "string",
+              "example": "https://youtuber.com/channel/MrPhox"
+            },
+            "soc_steam": {
+              "type": "string",
+              "example": "https://steampowered.com/u/MrPhox"
+            },
+            "soc_twitch": {
+              "type": "string",
+              "example": "https://twitch.tv/MrPhox"
+            },
+            "soc_web": {
+              "type": "string",
+              "example": "https://craftmania.cz/u/MrPhox.3555"
+            },
+            "mc_version": {
+              "type": "string",
+              "example": "1.13.2"
+            }
+          }
         }
       }
     }
