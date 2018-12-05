@@ -9,6 +9,7 @@ cache:
   - node_modules/
 
 before_script:
+  - npm cache rm --force
   - npm install
 
 build:
