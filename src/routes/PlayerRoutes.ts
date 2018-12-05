@@ -1,4 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import * as Ccomunity from "../controllers/player/ccomunity_profile";
+import * as Res from "../services/response";
 
 export class PlayerRoutes {
 	public router: Router;
@@ -9,16 +11,12 @@ export class PlayerRoutes {
 	}
 
 	public getBasic(_req: Request, res: Response, _next: NextFunction) {
-		res.status(200).json({success: true});
-	}
-
-	public getName(req: Request, res: Response, _next: NextFunction) {
-		res.status(200).json({yourName: req.params.name});
+		res.status(200).json(Res.property_required(res, 'Player name or UUID').json);
 	}
 
 	public init() {
 		this.router.get('/', this.getBasic);
-		this.router.get('/:name', this.getName);
+		this.router.get('/:name', Ccomunity.getProfile);
 	}
 }
 

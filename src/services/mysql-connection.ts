@@ -1,6 +1,7 @@
-import config = require('../../config-rewrapper');
+
 import { Connection, createPool, Pool } from 'mysql';
 import * as log from 'signale';
+require('dotenv').config();
 
 let con: Pool;
 
@@ -19,10 +20,12 @@ namespace Connection {
 		if (con) { return con; }
 		con = createPool({
 			connectionLimit: 10,
-			host: config.mysql.host,
-			user: config.mysql.user,
-			password: config.mysql.password,
-			database: config.mysql.database
+			multipleStatements: true,
+			host: process.env.DB_HOST,
+			user: process.env.DB_USER,
+			password: process.env.DB_PASS,
+			database: process.env.DB_DATABASE,
+			port: 3306
 		});
 
 		con.on('error', (error: any) => {
