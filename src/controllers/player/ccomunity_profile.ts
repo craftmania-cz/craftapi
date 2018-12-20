@@ -18,7 +18,7 @@ namespace Ccomunity {
 				log.warn('Requested player not found!');
 				return Res.not_found(res);
 			}
-			log.success('Ccomunity profile found... serving!')
+			log.success('Ccomunity profile found... serving!');
 			Res.success(res, results);
 		});
 		return;
@@ -37,7 +37,7 @@ namespace Ccomunity {
 				log.warn('Requested player not found!');
 				return Res.not_found(res);
 			}
-			log.success('Ccomunity profile found... serving!')
+			log.success('Ccomunity profile found... serving!');
 			Res.success(res, results);
 		});
 		return;

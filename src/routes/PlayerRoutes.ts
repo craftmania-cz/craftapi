@@ -22,7 +22,7 @@ export class PlayerRoutes {
 		this.router.get('/', this.missingName);
 		this.router.get('/:name', Ccomunity.getProfileByName);
 		this.router.get('/uuid', this.missingUUID); //TODO: Fix, presunout do vlastni route?
-		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID)
+		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID);
 	}
 }
 

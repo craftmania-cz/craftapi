@@ -25,8 +25,6 @@ namespace Res {
 	export function error(res: Response, err: Error) {
 		return res.status(500).json({status: 500, error: err.message , data: []});
 	}
-
-
 }
 
 export = Res;
