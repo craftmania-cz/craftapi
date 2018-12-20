@@ -10,13 +10,18 @@ export class PlayerRoutes {
 		this.init();
 	}
 
-	public getBasic(_req: Request, res: Response, _next: NextFunction) {
-		res.status(200).json(Res.property_required(res, 'Player name or UUID').json);
+	public missingName(_req: Request, res: Response, _next: NextFunction) {
+		res.status(200).json(Res.property_required(res, 'Player name').json);
+	}
+
+	public missingUUID(_req: Request, res: Response, _next: NextFunction) {
+		res.status(200).json(Res.property_required(res, 'Player UUID').json);
 	}
 
 	public init() {
-		this.router.get('/', this.getBasic);
+		this.router.get('/', this.missingName);
 		this.router.get('/:name', Ccomunity.getProfileByName);
+		this.router.get('/uuid', this.missingUUID); //TODO: Fix, presunout do vlastni route?
 		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID)
 	}
 }
