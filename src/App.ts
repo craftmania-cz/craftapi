@@ -3,7 +3,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
-import swaggerDocument from './swagger.json';
+const swaggerDocument = require('../swagger.json');
 const swaggerUi = require('swagger-ui-express');
 import * as exphbs from 'express-handlebars';
 import * as cookieParser from 'cookie-parser';
