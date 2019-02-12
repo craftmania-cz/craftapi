@@ -14,8 +14,7 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "src/**/*.ts",
-    "swagger.json"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"

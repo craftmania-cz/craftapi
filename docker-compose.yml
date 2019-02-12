@@ -2,7 +2,7 @@ version: "3"
 
 services:
   craftapi:
-    image: craftapi:latest
+    image: craftapi:build-2
     #restart: always
     user: root
     container_name: craftapi

@@ -11,7 +11,9 @@
     "watch": "nodemon dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "develop": "npm run clean && npm run build && npm run watch"
+    "develop": "npm run clean && npm run build && npm run watch",
+    "docs-watch": "aglio --theme-template triple -i public/index.md -s",
+    "docs-build": "aglio --theme-template triple -i public/index.md -o ./dist/index.html"
   },
   "keywords": [
     "node",
@@ -43,6 +45,7 @@
     "@types/dotenv": "^4.0.3",
     "@types/express-handlebars": "0.0.30",
     "@types/signale": "^1.2.0",
+    "aglio": "^2.3.0",
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
     "cookie-parser": "^1.4.3",
@@ -56,7 +59,6 @@
     "nodemon": "^1.18.6",
     "npm": "^6.4.1",
     "signale": "^1.3.0",
-    "swagger-ui-express": "^4.0.1",
     "tslint": "^5.11.0"
   }
 }
