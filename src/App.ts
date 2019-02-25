@@ -30,13 +30,14 @@ class App {
 
 	// API endpoints
 	private routes(): void {
+
+		// Player testing
+		this.express.use('/player', PlayerRoutes);
+
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {
 			res.sendFile(path.join(__dirname + '/index.html'));
 		});
-
-		// Player testing
-		this.express.use('/player', PlayerRoutes);
 	}
 
 }
