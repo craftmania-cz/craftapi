@@ -2,7 +2,7 @@ version: "3"
 
 services:
   craftapi:
-    image: craftapi:build-2
+    image: craftapi:latest
     #restart: always
     user: root
     container_name: craftapi
@@ -10,4 +10,4 @@ services:
       - .env:/runnable/.env
     stop_grace_period: 7200s
     ports:
-      - 3001:3001
+      - 3000:3000

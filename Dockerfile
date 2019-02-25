@@ -1,31 +1,12 @@
-FROM node:10
+FROM node:10-alpine
 
 MAINTAINER MrWakeCZ
 
-RUN mkdir -p /api
-
-COPY / /api
+COPY /dist /api
+COPY /node_modules /api/node_modules
 
 WORKDIR /api
 
-RUN npm i npm@latest -g \
-    && yarn add fs-extra \
-    && yarn
-
-RUN yarn run build-ci
-
-RUN ls -a
-
-COPY dist /runnable
-
-COPY node_modules /runnable/node_modules
-
-COPY swagger.json /runnable
-
-WORKDIR /runnable
-
-RUN chmod -R 777 swagger.json
-
-EXPOSE 80 3001
+EXPOSE 80 3000
 
 ENTRYPOINT ["node", "server.js"]
