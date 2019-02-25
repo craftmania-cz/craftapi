@@ -29,8 +29,8 @@ namespace Ccomunity {
 			},
 			"ranked": {
 				"level": playerObject.level,
-				"experiance": playerObject.experience,
-				"total_experiance": null,
+				"experience": playerObject.experience,
+				"total_experience": null,
 			},
 			"votes": {
 				"total": playerObject.total_votes,
