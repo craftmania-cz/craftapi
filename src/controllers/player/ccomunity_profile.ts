@@ -25,7 +25,7 @@ namespace Ccomunity {
 				"crafttokens": playerObject.crafttokens,
 				"votetokens": playerObject.votetokens,
 				"karma": null,
-				"achievment_points": null,
+				"achievement_points": null,
 			},
 			"ranked": {
 				"level": playerObject.level,

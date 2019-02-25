@@ -47,7 +47,7 @@ https://api.craftmania.cz/player/MrWakeCZ
                         "crafttokens": 22,
                         "votetokens": 52,
                         "karma": 0,
-                        "achievment_points": 0
+                        "achievement_points": 0
                     },
                     "ranked": {
                         "level": 3,
@@ -112,7 +112,7 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
                          "crafttokens": 22,
                          "votetokens": 52,
                          "karma": 0,
-                         "achievment_points": 0
+                         "achievement_points": 0
                     },
                     "ranked": {
                          "level": 3,

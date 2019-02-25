@@ -2,7 +2,7 @@ version: "3"
 
 services:
   craftapi:
-    image: craftapi:latest
+    image: git.craftmania.cz:4567/craftmania/craftapi-2:alpine
     #restart: always
     user: root
     container_name: craftapi
