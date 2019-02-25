@@ -7,6 +7,7 @@ import * as exphbs from 'express-handlebars';
 import * as cookieParser from 'cookie-parser';
 import * as path from "path";
 import { Request, Response } from "express";
+import ServerRoutes from "./routes/ServerRoutes";
 
 class App {
 
@@ -31,8 +32,11 @@ class App {
 	// API endpoints
 	private routes(): void {
 
-		// Player testing
+		// Player routes
 		this.express.use('/player', PlayerRoutes);
+
+		// Server routes
+		this.express.use('/server', ServerRoutes);
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {

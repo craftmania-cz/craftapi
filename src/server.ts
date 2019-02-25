@@ -4,13 +4,13 @@ import * as http from 'http';
 import * as debug from 'debug';
 import * as fs from 'fs';
 import * as log from 'signale';
+import App from './App';
+import { callServer } from "./utils/ping";
 
 if (!fs.existsSync('.env') && fs.existsSync('.env.example')) {
 	log.fatal('You forgot renaming the file .env.example to .env. Exiting now.');
 	process.exit(1);
 }
-
-import App from './App';
 
 debug('ts-express:server');
 
@@ -62,4 +62,12 @@ function onListening(): void {
 	if (stage !== 'production') {
 		log.note('Press CTRL-C to stop');
 	}
+
+	setIntervalNoDelay(callServer, 10000);
 }
+
+let setIntervalNoDelay = function(func: any , delay: any) {
+	let task = setInterval(func, delay);
+	func();
+	return task;
+};
