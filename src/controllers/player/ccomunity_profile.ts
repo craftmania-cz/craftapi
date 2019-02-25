@@ -1,10 +1,54 @@
 import { getConnection } from '../../services/mysql-connection';
 import * as Res from "../../services/response";
 import * as log from 'signale';
+import { resolveBoolean } from "../../utils/VariableUtils";
 
 const con = getConnection();
 
 namespace Ccomunity {
+
+	const prepareProfileObject = (playerObject: ccomunity_profile) => {
+		return {
+			"id": playerObject.id,
+			"discriminator": playerObject.discriminator,
+			"nick": playerObject.nick,
+			"uuid": playerObject.uuid,
+			"web_group": playerObject.web_group,
+			"registred": playerObject.registred,
+			"last_online": playerObject.last_online,
+			"last_server": playerObject.last_server,
+			"is_online": resolveBoolean(playerObject.is_online),
+			"played_time": playerObject.played_time,
+			"mc_version": playerObject.mc_version,
+			"economy": {
+				"craftcoins": playerObject.craftcoins,
+				"crafttokens": playerObject.crafttokens,
+				"votetokens": playerObject.votetokens,
+				"karma": null,
+				"achievment_points": null,
+			},
+			"ranked": {
+				"level": playerObject.level,
+				"experiance": playerObject.experience,
+				"total_experiance": null,
+			},
+			"votes": {
+				"total": playerObject.total_votes,
+				"month": playerObject.month_votes,
+				"week": playerObject.week_votes,
+				"last_vote": playerObject.last_vote
+			},
+			"social": {
+				"facebook": playerObject.soc_facebook,
+				"twitter": playerObject.soc_twitter,
+				"twitch": playerObject.soc_twitch,
+				"steam": playerObject.soc_steam,
+				"youtube": playerObject.soc_ytb,
+				"web": playerObject.soc_web
+			}
+		}
+	};
+
 	export async function getProfileByName(req: any, res: any) {
 
 		const player = req.params.name;
@@ -15,11 +59,10 @@ namespace Ccomunity {
 				return Res.error(res, error);
 			}
 			if (!results.length) {
-				log.warn('Requested player not found!');
 				return Res.not_found(res);
 			}
-			log.success('Ccomunity profile found... serving!');
-			Res.success(res, results);
+			let dataObject = results[0] as ccomunity_profile;
+			Res.success(res, prepareProfileObject(dataObject));
 		});
 		return;
 	}
@@ -34,11 +77,10 @@ namespace Ccomunity {
 				return Res.error(res, error);
 			}
 			if (!results.length) {
-				log.warn('Requested player not found!');
 				return Res.not_found(res);
 			}
-			log.success('Ccomunity profile found... serving!');
-			Res.success(res, results);
+			let dataObject = results[0] as ccomunity_profile;
+			Res.success(res, prepareProfileObject(dataObject));
 		});
 		return;
 	}
