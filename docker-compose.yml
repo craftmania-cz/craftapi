@@ -7,7 +7,7 @@ services:
     user: root
     container_name: craftapi
     volumes:
-      - .env:/runnable/.env
+      - .env:/api/.env
     stop_grace_period: 7200s
     ports:
       - 3000:3000
