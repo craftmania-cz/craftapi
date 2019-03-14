@@ -46,7 +46,7 @@ namespace Ccomunity {
 				"youtube": playerObject.soc_ytb,
 				"web": playerObject.soc_web
 			}
-		}
+		};
 	};
 
 	export async function getProfileByName(req: any, res: any) {
