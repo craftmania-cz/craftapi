@@ -7,7 +7,7 @@ const con = getConnection();
 
 namespace Ccomunity {
 
-	const prepareProfileObject = (playerObject: ccomunity_profile) => {
+	const prepareProfileObject = (playerObject: CcomunityProfile) => {
 		return {
 			"id": playerObject.id,
 			"discriminator": playerObject.discriminator,
@@ -61,7 +61,7 @@ namespace Ccomunity {
 			if (!results.length) {
 				return Res.not_found(res);
 			}
-			let dataObject = results[0] as ccomunity_profile;
+			let dataObject = results[0] as CcomunityProfile;
 			Res.success(res, prepareProfileObject(dataObject));
 		});
 		return;
@@ -79,7 +79,7 @@ namespace Ccomunity {
 			if (!results.length) {
 				return Res.not_found(res);
 			}
-			let dataObject = results[0] as ccomunity_profile;
+			let dataObject = results[0] as CcomunityProfile;
 			Res.success(res, prepareProfileObject(dataObject));
 		});
 		return;

@@ -53,6 +53,12 @@ function onError(error: NodeJS.ErrnoException): void {
 	}
 }
 
+let setIntervalNoDelay = function(func: any , delay: any) {
+	let task = setInterval(func, delay);
+	func();
+	return task;
+};
+
 function onListening(): void {
 	let addr = server.address();
 	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr.port}`;
@@ -65,9 +71,3 @@ function onListening(): void {
 
 	setIntervalNoDelay(callServer, 10000);
 }
-
-let setIntervalNoDelay = function(func: any , delay: any) {
-	let task = setInterval(func, delay);
-	func();
-	return task;
-};

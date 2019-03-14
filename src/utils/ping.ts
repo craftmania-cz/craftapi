@@ -29,7 +29,7 @@ const ping = (host: any, port: any, type: any, timeout: any, callback: any, vers
 	if (type === 'PC') {
 		unfurlSRV(host, port, (host: any, port: any) => {
 			pingMinecraftServer(host, port || 25565, timeout, callback, version);
-		})
+		});
 	}
 };
 
@@ -43,4 +43,4 @@ export {
 	ping,
 	callServer,
 	serverObject
-}
+};

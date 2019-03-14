@@ -5,4 +5,4 @@ const resolveBoolean = (value: number) => {
 
 export {
 	resolveBoolean
-}
+};
