@@ -12,7 +12,8 @@ namespace PlayerCount {
 				},
 				"version": null,
 				"favicon": null
-			})
+			});
+			return;
 		}
 		Res.success(res, serverObject);
 	}
