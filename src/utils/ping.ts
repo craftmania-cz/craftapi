@@ -16,12 +16,12 @@ const pingMinecraftServer = (host: any, port: any, timeout: any, callback: any, 
 					online: res.players.online,
 					max: res.players.max
 				},
+				isOnline: true,
 				version: res.version.protocol,
 				latency: getCurrentTimeMs() - startTime,
 				favicon: res.favicon
 			});
 		}
-
 	}, timeout, version);
 };
 

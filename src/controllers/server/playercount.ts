@@ -3,15 +3,14 @@ import { serverObject } from "../../utils/ping";
 
 namespace PlayerCount {
 
-	export async function getProfileByName(_req: any, res: any) {
+	export async function getServerStatus(_req: any, res: any) {
 		if (serverObject === null) {
 			Res.success(res, {
 				"players": {
-					"online": 0,
+					"online": null,
 					"max": null,
 				},
-				"version": null,
-				"favicon": null
+				"isOnline": false
 			});
 			return;
 		}

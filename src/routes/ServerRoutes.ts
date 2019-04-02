@@ -16,7 +16,7 @@ export class ServerRoutes {
 
 	public init() {
 		this.router.get('/', this.missingPropery);
-		this.router.get('/playercount', PlayerCount.getProfileByName);
+		this.router.get('/playercount', PlayerCount.getServerStatus);
 	}
 
 }
