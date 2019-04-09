@@ -1,12 +1,13 @@
 FROM node:10-alpine
 
-MAINTAINER MrWakeCZ
-
-COPY /dist /api
-COPY /node_modules /api/node_modules
+COPY / /api
 
 WORKDIR /api
 
+RUN npm install
+
+RUN npm run build-ci
+
 EXPOSE 80 3000
 
-ENTRYPOINT ["node", "server.js"]
+ENTRYPOINT ["node", "dist/server.js"]
