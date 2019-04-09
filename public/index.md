@@ -70,6 +70,24 @@ https://api.craftmania.cz/player/MrWakeCZ
                     }
                 }
             }
+            
++ Response 404 (application/json)
+
+    + Body
+        {
+            "status": 404,
+            "error": "Not found!",
+            "data": []
+        }
+
++ Response 500 (application/json)
+
+    + Body
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
     
 ## Data podle UUID [/player/{uuid}]
 
@@ -135,6 +153,24 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
                     }
                 }
             }
+            
++ Response 404 (application/json)
+
+    + Body
+        {
+            "status": 404,
+            "error": "Not found!",
+            "data": []
+        }
+
++ Response 500 (application/json)
+
+    + Body
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
             
 # Group Games
 
@@ -219,3 +255,21 @@ https://api.craftmania.cz/server/uniqueplayers
                     "amount": 988233
                 }
             }
+            
++ Response 404 (application/json)
+
+    + Body
+        {
+            "status": 404,
+            "error": "Not found!",
+            "data": []
+        }
+
++ Response 500 (application/json)
+
+    + Body
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
