@@ -4,7 +4,7 @@ COPY / /api
 
 WORKDIR /api
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 RUN npm run build-ci
 
