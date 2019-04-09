@@ -6,8 +6,8 @@ const con = getConnection();
 
 namespace UniquePlayers {
 
-    export async function getAmount(_req: any, res: any) {
-        await con.query('SELECT COUNT(*) AS total FROM player_profile;', (error: any, results: any) => {
+	export async function getAmount(_req: any, res: any) {
+		await con.query('SELECT COUNT(*) AS total FROM player_profile;', (error: any, results: any) => {
 			if (error) {
 				log.error(error);
 				return Res.error(res, error);
@@ -26,10 +26,9 @@ namespace UniquePlayers {
 
 			// Finální výsledek
 			Res.success(res, {"amount": dataObject.total + fakeAmount});
-        });
+		});
 		return;
-    }
-
+	}
 }
 
 export = UniquePlayers;
