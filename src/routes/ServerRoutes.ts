@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
 import * as PlayerCount from "../controllers/server/playercount";
+import * as UniquePlayers from "../controllers/server/uniqueplayers";
 
 export class ServerRoutes {
 	public router: Router;
@@ -17,6 +18,7 @@ export class ServerRoutes {
 	public init() {
 		this.router.get('/', this.missingPropery);
 		this.router.get('/playercount', PlayerCount.getServerStatus);
+		this.router.get('/uniqueplayers', UniquePlayers.getAmount);
 	}
 
 }

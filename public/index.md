@@ -163,3 +163,23 @@ https://api.craftmania.cz/server/playercount
                     "favicon": "xxxxx"
                 }
             }
+            
+## Počet registrovaných hráčů [/server/uniqueplayers]
+
+### Počet registrovaných hráčů [GET]
+Endpoint pro získání celkového počtu hráčů registrovaných od prosince 2013 do dneška.
+
+```no-highlight
+https://api.craftmania.cz/server/uniqueplayers
+```
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "status": 200,
+                "data": {
+                    "amount": 988233
+                }
+            }
