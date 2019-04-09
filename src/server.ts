@@ -1,5 +1,4 @@
 'use strict';
-import dotenv = require('dotenv');
 import * as http from 'http';
 import * as debug from 'debug';
 import * as fs from 'fs';
@@ -7,14 +6,12 @@ import * as log from 'signale';
 import App from './App';
 import { callServer } from "./utils/ping";
 
-if (!fs.existsSync('.env') && fs.existsSync('.env.example')) {
-	log.fatal('You forgot renaming the file .env.example to .env. Exiting now.');
+if (!fs.existsSync('/config/default.json') && fs.existsSync('/config/default.json.example')) {
+	log.fatal('You forgot renaming the file .default.json.example to .default.json. Exiting now.');
 	process.exit(1);
 }
 
 debug('ts-express:server');
-
-dotenv.config({ path: ".env" });
 
 // Load basic environment variables
 const port = process.env.PORT || 3000;

@@ -1,7 +1,7 @@
 
 import { Connection, createPool, Pool } from 'mysql';
 import * as log from 'signale';
-require('dotenv').config();
+import { IConfig } from 'config';
 
 let con: Pool;
 
@@ -14,6 +14,10 @@ function printErrorAndMessage(callback: any, err: any, getconnection: boolean): 
 }
 
 namespace Connection {
+
+	// Config
+	const config: IConfig = require("config");
+
 	export function getConnection(): Pool {
 		// @ts-ignore
 		let self = this;
@@ -21,11 +25,11 @@ namespace Connection {
 		con = createPool({
 			connectionLimit: 10,
 			multipleStatements: true,
-			host: process.env.DB_HOST,
-			user: process.env.DB_USER,
-			password: process.env.DB_PASS,
-			database: process.env.DB_DATABASE,
-			port: 3306
+			host: config.get('mysql.host'),
+			user: config.get('mysql.username'),
+			password: config.get('mysql.password'),
+			database: config.get('mysql.database'),
+			port: config.get('mysql.port')
 		});
 
 		con.on('error', (error: any) => {
