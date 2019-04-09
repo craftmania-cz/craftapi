@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Survival",
+    "description": "Survival je server, na kterém se nachází volný svět s Fly, residencemi, ekonomikou, mobfarmami a jiných možností.",
+    "type": "survival",
+    "web_image": null,
+    "version": "1.12.2"
+  },
+  {
+    "name": "Skyblock",
+    "description": "Skyblock server, je zatím jediný server podobný serveru Survival. Bere si z něj to nejlepší jako jsou pluginy, upravená ekonomika a jiné.",
+    "type": "survival",
+    "web_image": null,
+    "version": "1.12.2"
+  },
+  {
+    "name": "Creative",
+    "description": "Creative server nabízí všem hráčům prakticky volné stavění čehokoliv co si zamanou. Na serveru se také nachází zdarma několik pozemků a také WorldEdit.",
+    "type": "survival",
+    "web_image": null,
+    "version": "1.12.2"
+  },
+  {
+    "name": "Prison",
+    "description": "Prison je jako vězení, dostaneš krumpáč, denní výplatu a jediné co musíš dělat je kopat. Kopat a kopat, dokuď nezčernáš a nestane se z tebe miliardář!",
+    "type": "survival",
+    "web_image": null,
+    "version": null
+  },
+  {
+    "name": "Vanilla",
+    "description": "Vanilla je jediný server, kde nanejdeš žádné velké výhody. Jediný spoleh je tam sám na sebe. Jelikož tento server je bez ochrany a na vlastní pěst!",
+    "type": "survival",
+    "web_image": null,
+    "version": "1.13.2"
+  },
+  {
+    "name": "Vanilla-Skyblock",
+    "description": "Vanilla-Skyblock je server podobný klasické Vanille, ale do stylu Skyblocku.",
+    "type": "survival",
+    "web_image": null,
+    "version": null
+  },
+  {
+    "name": "BedWars",
+    "description": "Teamová minihra založená na přesném hraní a načasování. Kdo totiž nejrychleji zníčí všem postel, vyhrál!",
+    "type": "minigames",
+    "web_image": null,
+    "version": "1.12.2"
+  }
+]

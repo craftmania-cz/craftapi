@@ -135,6 +135,42 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
                     }
                 }
             }
+            
+# Group Games
+
+## Seznam serverů [/games]
+
+### Seznam serverů [GET]
+Endpoint pro získání všech serverů a jejich popisků.
+
+```no-highlight
+https://api.craftmania.cz/games
+```
+
++ Response 200 (application/json)
+
+    + Body
+    
+        {
+            "status": 200,
+            "data": [
+                {
+                    "name": "Survival",
+                    "description": "...",
+                    "type": "survival",
+                    "web_image": "https://....",
+                    "version": "1.12.2"
+                },
+                {
+                    "name": "BedWars",
+                    "description": "...",
+                    "type": "minigames",
+                    "web_image": "https://....",
+                    "version": "1.12.2"
+                }
+                ...
+            ]
+        }
     
 # Group Server
 

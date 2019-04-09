@@ -8,6 +8,7 @@ import * as cookieParser from 'cookie-parser';
 import * as path from "path";
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
+import GameRoutes from "./routes/GameRoutes";
 
 class App {
 
@@ -37,6 +38,9 @@ class App {
 
 		// Server routes
 		this.express.use('/server', ServerRoutes);
+
+		// Game routes
+		this.express.use('/games', GameRoutes);
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {
