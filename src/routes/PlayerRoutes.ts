@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Ccomunity from "../controllers/player/ccomunity_profile";
 import * as Res from "../services/response";
+import * as CcomunityAllPlayers from "../controllers/player/ccomunity_allplayers";
 
 export class PlayerRoutes {
 	public router: Router;
@@ -23,6 +24,7 @@ export class PlayerRoutes {
 		this.router.get('/:name', Ccomunity.getProfileByName);
 		this.router.get('/uuid', this.missingUUID); //TODO: Fix, presunout do vlastni route?
 		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID);
+		this.router.get('/list/players', CcomunityAllPlayers.getAllPlayersWithLevel);
 	}
 }
 
