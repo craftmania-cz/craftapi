@@ -6,6 +6,10 @@ stages:
 - build
 - deploy
 
+# Docker Dind fix (https://gitlab.com/gitlab-org/gitlab-runner/issues/4501#note_194648457)
+variables:
+  DOCKER_TLS_CERTDIR: ""
+
 cache:
   key: "$CI_PROJECT_ID"
   paths:
