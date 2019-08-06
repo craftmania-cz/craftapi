@@ -22,7 +22,7 @@
     "craftmania"
   ],
   "author": "MrWakeCZ",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/chai": "^4.1.6",
