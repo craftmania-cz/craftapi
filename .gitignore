@@ -33,3 +33,5 @@ dist/
 
 config/default\.json
 .vscode
+
+\.idea/
