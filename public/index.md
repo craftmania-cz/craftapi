@@ -27,69 +27,74 @@ https://api.craftmania.cz/player/MrWakeCZ
 + Response 200 (application/json)
     
     + Body
-    
-            {
-                "status": 200,
-                "data": {
-                    "id": 25710,
-                    "discriminator": "0001",
-                    "nick": "MrWakeCZ",
-                    "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
-                    "web_group": 11,
-                    "registred": 1387654320000,
-                    "last_online": 1549764592647,
-                    "last_server": "lobby2",
-                    "is_online": true,
-                    "played_time": 29793,
-                    "mc_version": "1.11.2",
-                    "economy" {
-                        "craftcoins": 18318,
-                        "crafttokens": 22,
-                        "votetokens": 52,
-                        "karma": 0,
-                        "achievement_points": 0
-                    },
-                    "ranked": {
-                        "level": 3,
-                        "experience": 765,
-                        "total_experience": 86532
-                    },
-                    "votes": {
-                        "total": 30,
-                        "month": 4,
-                        "week": 2,
-                        "last_vote": 1549972308250
-                    },
-                    "social": {
-                        "status": "Craftmania je super!",
-                        "facebook": "https://xxxx",
-                        "twitter": "https://xxxx",
-                        "twitch": "https://xxxx",
-                        "steam": null,
-                        "web": null,
-                    }
-                }
-            }
+    ```json
+    {
+          "status": 200,
+          "data": {
+              "id": 25710,
+              "discriminator": "0001",
+              "nick": "MrWakeCZ",
+              "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
+              "web_group": 11,
+              "registred": 1387654320000,
+              "last_online": 1549764592647,
+              "last_server": "lobby2",
+              "is_online": true,
+              "played_time": 29793,
+              "mc_version": "1.11.2",
+              "economy": {
+                  "craftcoins": 18318,
+                  "crafttokens": 22,
+                  "votetokens": 52,
+                  "karma": 0,
+                  "achievement_points": 0
+              },
+              "ranked": {
+                  "level": 3,
+                  "experience": 765,
+                  "total_experience": 86532
+              },
+              "votes": {
+                  "total": 30,
+                  "month": 4,
+                  "week": 2,
+                  "last_vote": 1549972308250
+              },
+              "social": {
+                  "status": "Craftmania je super!",
+                  "facebook": "https://xxxx",
+                  "twitter": "https://xxxx",
+                  "twitch": "https://xxxx",
+                  "steam": null,
+                  "web": null
+              }
+          }
+    }
+    ```
             
 + Response 404 (application/json)
 
     + Body
+        ```json
         {
             "status": 404,
             "error": "Not found!",
             "data": []
         }
+        ```
 
 + Response 500 (application/json)
 
     + Body
+        ```json
         {
             "status": 500,
             "error": "Internal error!",
             "data": []
         }
-    
-## Data podle UUID [/player/{uuid}]
+        ```
+            
+## Data podle UUID [/player/uuid/{uuid}]
 
 ### Data podle UUID [GET]
 Získání všech dat podle zadaného uuid. Příklad:
@@ -110,67 +115,72 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
 + Response 200 (application/json)
     
     + Body
-    
-            {
-                "status": 200,
-                "data": {
-                    "id": 25710,
-                    "discriminator": "0001",
-                    "nick": "MrWakeCZ",
-                    "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
-                    "web_group": 11,
-                    "registred": 1387654320000,
-                    "last_online": 1549764592647,
-                    "last_server": "lobby2",
-                    "is_online": true,
-                    "played_time": 29793,
-                    "mc_version": "1.11.2",
-                    "economy" {
-                         "craftcoins": 18318,
-                         "crafttokens": 22,
-                         "votetokens": 52,
-                         "karma": 0,
-                         "achievement_points": 0
-                    },
-                    "ranked": {
-                         "level": 3,
-                         "experience": 765,
-                         "total_experience": 86532
-                    },
-                    "votes": {
-                         "total": 30,
-                         "month": 4,
-                         "week": 2,
-                         "last_vote": 1549972308250
-                    },
-                    "social": {
-                         "status": "Craftmania je super!",
-                         "facebook": "https://xxxx",
-                         "twitter": "https://xxxx",
-                         "twitch": "https://xxxx",
-                         "steam": null,
-                         "web": null,
-                    }
-                }
-            }
+    ```json
+    {
+          "status": 200,
+          "data": {
+              "id": 25710,
+              "discriminator": "0001",
+              "nick": "MrWakeCZ",
+              "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
+              "web_group": 11,
+              "registred": 1387654320000,
+              "last_online": 1549764592647,
+              "last_server": "lobby2",
+              "is_online": true,
+              "played_time": 29793,
+              "mc_version": "1.11.2",
+              "economy": {
+                  "craftcoins": 18318,
+                  "crafttokens": 22,
+                  "votetokens": 52,
+                  "karma": 0,
+                  "achievement_points": 0
+              },
+              "ranked": {
+                  "level": 3,
+                  "experience": 765,
+                  "total_experience": 86532
+              },
+              "votes": {
+                  "total": 30,
+                  "month": 4,
+                  "week": 2,
+                  "last_vote": 1549972308250
+              },
+              "social": {
+                  "status": "Craftmania je super!",
+                  "facebook": "https://xxxx",
+                  "twitter": "https://xxxx",
+                  "twitch": "https://xxxx",
+                  "steam": null,
+                  "web": null
+              }
+          }
+    }
+    ```
             
 + Response 404 (application/json)
 
     + Body
+        ```json
         {
             "status": 404,
             "error": "Not found!",
             "data": []
         }
+        ```
 
 + Response 500 (application/json)
 
     + Body
+        ```json
         {
             "status": 500,
             "error": "Internal error!",
             "data": []
         }
+        ```
             
 # Group Games
 
@@ -186,7 +196,7 @@ https://api.craftmania.cz/games
 + Response 200 (application/json)
 
     + Body
-    
+        ```json
         {
             "status": 200,
             "data": [
@@ -204,9 +214,9 @@ https://api.craftmania.cz/games
                     "web_image": "https://....",
                     "version": "1.12.2"
                 }
-                ...
             ]
         }
+        ```
     
 # Group Server
 
@@ -222,19 +232,20 @@ https://api.craftmania.cz/server/playercount
 + Response 200 (application/json)
 
     + Body
-    
-            {
-                "status": 200,
-                "data": {
-                    "players": {
-                        "online": 669,
-                        "max": 1000
-                    },
-                    "version": 399,
-                    "latency": 39,
-                    "favicon": "xxxxx"
-                }
-            }
+    ```json
+    {
+        "status": 200,
+        "data": {
+            "players": {
+                "online": 669,
+                "max": 1000
+            },
+            "version": 399,
+            "latency": 39,
+            "favicon": "xxxxx"
+        }
+    }
+    ```
             
 ## Počet registrovaných hráčů [/server/uniqueplayers]
 
@@ -248,28 +259,22 @@ https://api.craftmania.cz/server/uniqueplayers
 + Response 200 (application/json)
 
     + Body
-    
-            {
-                "status": 200,
-                "data": {
-                    "amount": 988233
-                }
-            }
-            
-+ Response 404 (application/json)
-
-    + Body
+        ```json
         {
-            "status": 404,
-            "error": "Not found!",
-            "data": []
+            "status": 200,
+            "data": {
+                "amount": 988233
+            }
         }
+        ```
 
 + Response 500 (application/json)
 
     + Body
+        ```json
         {
             "status": 500,
             "error": "Internal error!",
             "data": []
         }
+        ```
