@@ -1,12 +1,27 @@
 FORMAT: 1A
+HOST: api.craftmania.cz
 
 # CraftMania.cz API
 
+## Informace
 Server API pro získání statistik a jiných dat z serveru bez použití přímého napojené na databáze.
 Vytvořeno v TypeScript & NodeJS.
 
 * Source: https://git.craftmania.cz/craftmania/craftapi-2
 
+## Error chyby
+Code | Info | Description
+--:| ---- | -----------
+400 | Bad Request | Neplatný request
+401 | Unauthorized | Na request je potřeba ID pro přihlášení
+403 | Forbidden | Nedostupné pro public použití
+404 | Not Found | Specifikovaný request nebyl nalezen nebo požadavek
+405 | Method Not Allowed | Použití requestu s neplatnou metodou
+406 | Not Acceptable | Request není ve formátu JSON
+410 | Gone | Neexistující cesta
+429 | Too Many Requests | Zasílání příliš requestů za krátkou dobu
+500 | Internal Server Error | Chyba na serveru
+503 | Service Unavailable | Probíhá údržba nebo request není k dispozici (dočasně)
 
 # Group Ccomunity
 Základní enpoindy pro získání a správu dat z naší databáze hráčů v Ccomunity.
