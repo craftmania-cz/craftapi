@@ -23,14 +23,24 @@ namespace Ccomunity {
 			"economy": {
 				"craftcoins": playerObject.craftcoins,
 				"crafttokens": playerObject.crafttokens,
-				"votetokens": playerObject.votetokens,
-				"karma": null,
-				"achievement_points": null,
+				"votetokens": playerObject.votetokens_2,
+				"karma": playerObject.karma,
+				"achievement_points": playerObject.achievement_points,
 			},
 			"ranked": {
-				"level": playerObject.level,
-				"experience": playerObject.experience,
-				"total_experience": null,
+				"global_level": playerObject.global_level,
+				"survival_level": playerObject.survival_level,
+				"survival_experience": playerObject.survival_experience,
+				"skyblock_level": playerObject.skyblock_level,
+				"skyblock_experience": playerObject.skyblock_experience,
+				"creative_level": playerObject.creative_level,
+				"creative_experience": playerObject.creative_experience,
+				"vanilla_level": playerObject.vanilla_level,
+				"vanilla_experience": playerObject.vanilla_experience,
+				"prison_level": playerObject.prison_level,
+				"prison_experience": playerObject.prison_experience,
+				"skycloud_level": playerObject.skycloud_level,
+				"skycloud_experience": playerObject.skycloud_experience
 			},
 			"votes": {
 				"total": playerObject.total_votes,
@@ -39,12 +49,21 @@ namespace Ccomunity {
 				"last_vote": playerObject.last_vote
 			},
 			"social": {
+				"status": playerObject.status,
 				"facebook": playerObject.soc_facebook,
 				"twitter": playerObject.soc_twitter,
 				"twitch": playerObject.soc_twitch,
 				"steam": playerObject.soc_steam,
 				"youtube": playerObject.soc_ytb,
 				"web": playerObject.soc_web
+			},
+			"discord": {
+				"id": playerObject.discord_user_id
+			},
+			"deprecated": {
+				"votetokens": playerObject.votetokens,
+				"level": playerObject.level,
+				"experience": playerObject.experience
 			}
 		};
 	};

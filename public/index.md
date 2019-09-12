@@ -65,9 +65,19 @@ https://api.craftmania.cz/player/MrWakeCZ
                   "achievement_points": 0
               },
               "ranked": {
-                  "level": 3,
-                  "experience": 765,
-                  "total_experience": 86532
+                  "global_level": 4,
+                  "survival_level": 12,
+                  "survival_experience": 533,
+                  "skyblock_level": 0,
+                  "skyblock_experience": 33,
+                  "creative_level": 15,
+                  "creative_experience": 2002,
+                  "vanilla_level": 10,
+                  "vanilla_experience": 3083,
+                  "prison_level": 30,
+                  "prison_experience": 0,
+                  "skycloud_level": 0,
+                  "skycloud_experience": 0
               },
               "votes": {
                   "total": 30,
@@ -82,6 +92,14 @@ https://api.craftmania.cz/player/MrWakeCZ
                   "twitch": "https://xxxx",
                   "steam": null,
                   "web": null
+              },
+              "discord": {
+                  "id": "76365242422726"
+              },
+              "deprecated": {
+                  "votetokens": 30,
+                  "level": 87,
+                  "experience": 3332
               }
           }
     }
@@ -153,9 +171,19 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
                   "achievement_points": 0
               },
               "ranked": {
-                  "level": 3,
-                  "experience": 765,
-                  "total_experience": 86532
+                  "global_level": 4,
+                  "survival_level": 12,
+                  "survival_experience": 533,
+                  "skyblock_level": 0,
+                  "skyblock_experience": 33,
+                  "creative_level": 15,
+                  "creative_experience": 2002,
+                  "vanilla_level": 10,
+                  "vanilla_experience": 3083,
+                  "prison_level": 30,
+                  "prison_experience": 0,
+                  "skycloud_level": 0,
+                  "skycloud_experience": 0
               },
               "votes": {
                   "total": 30,
@@ -170,6 +198,14 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
                   "twitch": "https://xxxx",
                   "steam": null,
                   "web": null
+              },
+              "discord": {
+                  "id": "76365242422726"
+              },
+              "deprecated": {
+                  "votetokens": 30,
+                  "level": 87,
+                  "experience": 3332
               }
           }
     }
