@@ -196,7 +196,31 @@ UUID může být originální i warez, jelikož server má mixované UUID dle to
             "data": []
         }
         ```
-            
+          
+# Group Economy
+
+## Výpočet levlů [/economy/calclevel/{level}]
+### Výpočet levlů [GET]
+Enpoint pro výpočet experience a počtu exp do dalšího levelu.
+
++ Parameters
+
+    + level: `10` (number, required) - požadovaný počet levlu
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": {
+        "level": 10,
+        "expToNext": 32500,
+        "totalExp": 180000
+      }
+    }
+    ```
+    
+  
 # Group Games
 
 ## Seznam serverů [/games]
@@ -243,6 +267,9 @@ Endpoint pro získání aktuální online počtu hráčů na serveru, počtu por
 ```no-highlight
 https://api.craftmania.cz/server/playercount
 ```
+::: note
+Pokud je server offline, zobrazí se počet online hráčů jako 0 a `isOnline` jako `false`.
+:::
 
 + Response 200 (application/json)
 
@@ -255,6 +282,7 @@ https://api.craftmania.cz/server/playercount
                 "online": 669,
                 "max": 1000
             },
+            "isOnline": true,
             "version": 399,
             "latency": 39,
             "favicon": "xxxxx"

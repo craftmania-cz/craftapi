@@ -9,6 +9,7 @@ import * as path from "path";
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
 import GameRoutes from "./routes/GameRoutes";
+import EconomyRoutes from "./routes/EconomyRoutes";
 
 class App {
 
@@ -41,6 +42,9 @@ class App {
 
 		// Game routes
 		this.express.use('/games', GameRoutes);
+
+		// Economy routes
+		this.express.use('/economy', EconomyRoutes);
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {
