@@ -271,6 +271,7 @@ Endpoint pro získání TOP 50 hráčů, s nejvíc hlasy.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 337
         }
       ]
@@ -304,6 +305,7 @@ Data se zde mažou vždy 1. den v měsíci.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 70
         }
       ]
@@ -337,6 +339,7 @@ Data se zde mažou vždy v pondělí ve 4:00.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 10
         }
       ]
@@ -367,6 +370,7 @@ Endpoint pro získání TOP 50 hráčů, s nejvíce CraftCoins na serveru.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 78572
         }
       ]
@@ -397,6 +401,7 @@ Endpoint pro získání TOP 50 hráčů, s nejvíce CraftTokens na serveru.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 3
         }
       ]
@@ -431,6 +436,7 @@ API zobrazuje pouze VoteTokeny na verzi 1.14
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 70
         }
       ]
@@ -465,6 +471,7 @@ Hodnota je zde v minutách.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 67533
         }
       ]
@@ -501,6 +508,7 @@ Více info: https://wiki.craftmania.cz/levels/achievements.html#hodnoceni-achiev
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 67533
         }
       ]
@@ -535,6 +543,7 @@ Event Pointy nejsou aktivní na serveru.
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "value": 3
         }
       ]
@@ -571,6 +580,7 @@ Více info: https://wiki.craftmania.cz/levels/leveling.html#global-level
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "level": 3
         }
       ]
@@ -601,6 +611,7 @@ Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Survi
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "level": 3,
           "experience": 3943,
           "toNextLevel": 987,
@@ -634,6 +645,7 @@ Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Skybl
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "level": 4,
           "experience": 3227,
           "toNextLevel": 1,
@@ -667,6 +679,7 @@ Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Creat
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "level": 17,
           "experience": 76323,
           "toNextLevel": 8832,
@@ -700,6 +713,7 @@ Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Vanil
         {
           "index": 1,
           "nick": "MrPhox",
+          "uuid": "98e10440-1132-4808-8d0c-a5ac86bca99c",
           "level": 2,
           "experience": 386,
           "toNextLevel": 10,
