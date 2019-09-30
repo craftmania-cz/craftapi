@@ -30,7 +30,6 @@ export class LeaderboardRoutes {
 		this.router.get('/played-time', EconomyTopCoins.getTopPlayedTime);
 		this.router.get('/achievement-points', EconomyTopCoins.getTopAchievementPoints);
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
-
 	}
 }
 

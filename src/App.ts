@@ -11,6 +11,7 @@ import ServerRoutes from "./routes/ServerRoutes";
 import GameRoutes from "./routes/GameRoutes";
 import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
+import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 
 class App {
 
@@ -48,6 +49,7 @@ class App {
 		// Economy routes
 		this.express.use('/economy', EconomyRoutes);
 		this.express.use('/economy/leaderboard', LeaderboardRoutes);
+		this.express.use('/economy/leaderboard/levels', LeaderboardLevelsRoutes)
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {
