@@ -18,7 +18,7 @@
     "description": "Creative server nabízí všem hráčům prakticky volné stavění čehokoliv co si zamanou. Na serveru se také nachází zdarma několik pozemků a také WorldEdit.",
     "type": "survival",
     "web_image": null,
-    "version": "1.12.2"
+    "version": "1.14.4"
   },
   {
     "name": "Prison",
@@ -40,12 +40,5 @@
     "type": "survival",
     "web_image": null,
     "version": null
-  },
-  {
-    "name": "BedWars",
-    "description": "Teamová minihra založená na přesném hraní a načasování. Kdo totiž nejrychleji zníčí všem postel, vyhrál!",
-    "type": "minigames",
-    "web_image": null,
-    "version": "1.12.2"
   }
 ]
