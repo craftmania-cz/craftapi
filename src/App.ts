@@ -27,6 +27,7 @@ class App {
 		this.express.use(bodyParser.json());
 		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
+		// @ts-ignore
 		this.express.engine('handlebars', exphbs({defaultLayout: 'main'}));
 		this.express.set('view engine', 'handlebars');
 	}
