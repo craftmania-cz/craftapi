@@ -255,8 +255,471 @@ Enpoint pro výpočet experience a počtu exp do dalšího levelu.
       }
     }
     ```
+
+# Group Leaderboard
+
+## Hlasující celkem [/economy/leaderboard/total-votes]
+### Hlasující celkem [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíc hlasy.
     
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 337
+        }
+      ]
+    }
+    ```
   
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Hlasující za tento měsíc [/economy/leaderboard/month-votes]
+### Hlasující za tento měsíc [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíc hlasy v tomto měsíci.
+::: note
+Data se zde mažou vždy 1. den v měsíci.
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 70
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## Hlasující za tento týden [/economy/leaderboard/week-votes]
+### Hlasující za tento týden [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíc hlasy v tomto týdnu.
+::: note
+Data se zde mažou vždy v pondělí ve 4:00.
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 10
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## CraftCoins [/economy/leaderboard/craftcoins]
+### CraftCoins [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíce CraftCoins na serveru.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 78572
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## CraftTokens [/economy/leaderboard/crafttokens]
+### CraftTokens [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíce CraftTokens na serveru.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 3
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## VoteTokens [/economy/leaderboard/votetokens]
+### VoteTokens [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíce VoteTokens na serveru.
+
+::: note
+API zobrazuje pouze VoteTokeny na verzi 1.14
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 70
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Played time [/economy/leaderboard/played-time]
+### Played time [GET]
+Endpoint pro získání TOP 50 hráčů, s nejdelším časem hraní na serveru.
+
+::: note
+Hodnota je zde v minutách.
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 67533
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Achievement Points [/economy/leaderboard/achievement-points]
+### Achievement Points [GET]
+Endpoint pro získání TOP 50 hráčů, s největším počtem Achievement Pointů za plnění achievementů.
+
+::: note
+Hodnota achievement points neudává počet splněných achievementů ale celkovou hodnotu achievementů, které hráč splnil.
+
+Více info: https://wiki.craftmania.cz/levels/achievements.html#hodnoceni-achievementu
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 67533
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+    
+## Event Points [/economy/leaderboard/event-points]
+### Event Points [GET]
+Endpoint pro získání TOP 50 hráčů, s nejvíce Event Pointy na serveru.
+
+::: warning
+Event Pointy nejsou aktivní na serveru.
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "value": 3
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Global levels [/economy/leaderboard/levels/global]
+### Global levels [GET]
+Endpoint pro získání TOP 50 hráčů s největším globalním levelem.
+
+::: note
+Globální level je součet server levels.
+
+Více info: https://wiki.craftmania.cz/levels/leveling.html#global-level
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "level": 3
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## Survival levels [/economy/leaderboard/levels/survival]
+### Survival levels [GET]
+Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Survival.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "level": 3,
+          "experience": 3943,
+          "toNextLevel": 987,
+          "percentage": 32.2334
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
+## Skyblock levels [/economy/leaderboard/levels/skyblock]
+### Skyblock levels [GET]
+Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Skyblock.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "level": 4,
+          "experience": 3227,
+          "toNextLevel": 1,
+          "percentage": 99.2334
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Creative levels [/economy/leaderboard/levels/creative]
+### Creative levels [GET]
+Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Creative.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "level": 17,
+          "experience": 76323,
+          "toNextLevel": 8832,
+          "percentage": 75.333
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+      
+## Vanilla levels [/economy/leaderboard/levels/vanilla]
+### Vanilla levels [GET]
+Endpoint pro získání TOP 50 hráčů, s největším levelem na serveru Vanilla.
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "index": 1,
+          "nick": "MrPhox",
+          "level": 2,
+          "experience": 386,
+          "toNextLevel": 10,
+          "percentage": 98.765
+        }
+      ]
+    }
+    ```
+  
++ Response 500 (application/json)
+
+    + Body
+        ```json
+        {
+            "status": 500,
+            "error": "Internal error!",
+            "data": []
+        }
+        ```
+
 # Group Games
 
 ## Seznam serverů [/games]
