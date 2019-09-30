@@ -1,6 +1,6 @@
 {
   "name": "craftapi-2",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "CraftMania.CZ REST API in TypeScript and NodeJS.",
   "main": "index.js",
   "scripts": {
