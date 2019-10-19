@@ -51,7 +51,7 @@ class App {
 		// Economy routes
 		this.express.use('/economy', EconomyRoutes);
 		this.express.use('/economy/leaderboard', LeaderboardRoutes);
-		this.express.use('/economy/leaderboard/levels', LeaderboardLevelsRoutes)
+		this.express.use('/economy/leaderboard/levels', LeaderboardLevelsRoutes);
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {

@@ -7,6 +7,10 @@ const con = getConnection();
 
 namespace EconomyTopLevels {
 
+	const calcPercentage = (first: number, second: number) => {
+		return first / (second / 100);
+	};
+
 	export async function getTopGlobalLevels(_req: any, res: any) {
 		await con.query('SELECT nick, uuid, global_level FROM player_profile ORDER BY global_level DESC LIMIT 50;',
 			(error: any, results: any) => {
@@ -46,6 +50,7 @@ namespace EconomyTopLevels {
 			let finalResults: any = [];
 			results.forEach((player: any, index: number) => {
 				index++;
+				const levelPercentage = calcPercentage(player.creative_experience, LevelUtils.getExpFromLevelToNext(player.creative_level++));
 				finalResults.push({
 					"index": index,
 					"nick": player.nick,
@@ -53,7 +58,7 @@ namespace EconomyTopLevels {
 					"level": player.creative_level,
 					"experience": player.creative_experience,
 					"toNextLevel": LevelUtils.getExpFromLevelToNext(player.creative_level++),
-					"percentage": calcPercentage(player.creative_experience, LevelUtils.getExpFromLevelToNext(player.creative_level++))
+					"percentage": levelPercentage
 				});
 				return;
 			});
@@ -75,6 +80,7 @@ namespace EconomyTopLevels {
 				let finalResults: any = [];
 				results.forEach((player: any, index: number) => {
 					index++;
+					const levelPercentage = calcPercentage(player.survival_experience, LevelUtils.getExpFromLevelToNext(player.survival_level++));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
@@ -82,7 +88,7 @@ namespace EconomyTopLevels {
 						"level": player.survival_level,
 						"experience": player.survival_experience,
 						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.survival_level++),
-						"percentage": calcPercentage(player.survival_experience, LevelUtils.getExpFromLevelToNext(player.survival_level++))
+						"percentage": levelPercentage
 					});
 					return;
 				});
@@ -104,6 +110,7 @@ namespace EconomyTopLevels {
 				let finalResults: any = [];
 				results.forEach((player: any, index: number) => {
 					index++;
+					const levelPercentage = calcPercentage(player.skyblock_experience, LevelUtils.getExpFromLevelToNext(player.skyblock_level++));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
@@ -111,7 +118,7 @@ namespace EconomyTopLevels {
 						"level": player.skyblock_level,
 						"experience": player.skyblock_experience,
 						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skyblock_level++),
-						"percentage": calcPercentage(player.skyblock_experience, LevelUtils.getExpFromLevelToNext(player.skyblock_level++))
+						"percentage": levelPercentage
 					});
 					return;
 				});
@@ -133,6 +140,7 @@ namespace EconomyTopLevels {
 				let finalResults: any = [];
 				results.forEach((player: any, index: number) => {
 					index++;
+					const levelPercentage = calcPercentage(player.vanilla_experience, LevelUtils.getExpFromLevelToNext(player.vanilla_level++));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
@@ -140,7 +148,7 @@ namespace EconomyTopLevels {
 						"level": player.vanilla_level,
 						"experience": player.vanilla_experience,
 						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.vanilla_level++),
-						"percentage": calcPercentage(player.vanilla_experience, LevelUtils.getExpFromLevelToNext(player.vanilla_level++))
+						"percentage": levelPercentage
 					});
 					return;
 				});
@@ -162,6 +170,7 @@ namespace EconomyTopLevels {
 				let finalResults: any = [];
 				results.forEach((player: any, index: number) => {
 					index++;
+					const levelPercentage = calcPercentage(player.skycloud_experience, LevelUtils.getExpFromLevelToNext(player.skycloud_level++));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
@@ -169,7 +178,7 @@ namespace EconomyTopLevels {
 						"level": player.skycloud_level,
 						"experience": player.skycloud_experience,
 						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skycloud_level++),
-						"percentage": calcPercentage(player.skycloud_experience, LevelUtils.getExpFromLevelToNext(player.skycloud_level++))
+						"percentage": levelPercentage
 					});
 					return;
 				});
@@ -177,10 +186,6 @@ namespace EconomyTopLevels {
 			});
 		return;
 	}
-
-	const calcPercentage = (first: number, second: number) => {
-		return first / (second / 100);
-	};
 
 }
 
