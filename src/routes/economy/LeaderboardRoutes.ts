@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../../services/response";
 import EconomyTopVotes from "../../controllers/economy/economy_topVotes";
 import EconomyTopCoins from "../../controllers/economy/economy_playercoins";
+import HalloweenGame from "../../controllers/server/halloween_game";
 
 export class LeaderboardRoutes {
 	public router: Router;
@@ -30,6 +31,9 @@ export class LeaderboardRoutes {
 		this.router.get('/played-time', EconomyTopCoins.getTopPlayedTime);
 		this.router.get('/achievement-points', EconomyTopCoins.getTopAchievementPoints);
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
+
+		// Servers
+		this.router.get('/halloween-players', HalloweenGame.getTopPlayerHalloween);
 	}
 }
 
