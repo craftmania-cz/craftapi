@@ -20,9 +20,9 @@ namespace UniquePlayers {
 			/*
 				Tato hodnota je schválně fake, z důvodu že za dobu pěti let, server prošel různými wipy, změnami v ukládání dat
 				a jiných změn, co celkově ovlivnili výsledek. Tato fake hodnota, je tedy součet všech starých registrací z
-				AuthMe + AutoLogin v období let 2013 - 2018 (srpen).
+				AuthMe + AutoLogin v období let 2013 - 2019 (listopad).
 			 */
-			let fakeAmount = 1047223;
+			let fakeAmount = 1117223;
 
 			// Finální výsledek
 			Res.success(res, {"amount": dataObject.total + fakeAmount});
