@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
 import EconomyCalcLevel from "../controllers/economy/economy_calclevel";
+import Economy from "../controllers/economy/economy";
 
 export class EconomyRoutes {
 	public router: Router;
@@ -20,6 +21,7 @@ export class EconomyRoutes {
 
 	public init() {
 		this.router.get('/', this.missingRoute);
+		this.router.get('/log', Economy.getEconomyLog);
 		this.router.get('/calcLevel/', this.missingLevel);
 		this.router.get('/calcLevel/:level', EconomyCalcLevel.calcLevel);
 	}
