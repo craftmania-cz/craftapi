@@ -867,7 +867,6 @@ Pokud je server offline, zobrazí se počet online hráčů jako 0 a `isOnline` 
     ```
             
 ## Počet registrovaných hráčů [/server/uniqueplayers]
-
 ### Počet registrovaných hráčů [GET]
 Endpoint pro získání celkového počtu hráčů registrovaných od prosince 2013 do dneška.
 
@@ -895,5 +894,28 @@ https://api.craftmania.cz/server/uniqueplayers
             "status": 500,
             "error": "Internal error!",
             "data": []
+        }
+        ```
+
+## Seznam členů v AT [/server/stafflist]
+### Seznam členů v AT [GET]
+Endpoint pro získání seznamu členů AT a jejich ranku.
+
+::: note
+Rank bude po zavedení synchronizace ranků nahrazen textem daného ranku.
+:::
+
++ Response 200 (application/json)
+    + Body
+        ```json
+        {
+            "status": 200,
+            "data": [
+              {
+                "nick": "MrWakeCZ",
+                "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
+                "rank": "12"
+              }
+            ]
         }
         ```
