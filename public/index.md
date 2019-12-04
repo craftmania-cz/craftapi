@@ -255,6 +255,69 @@ Enpoint pro výpočet experience a počtu exp do dalšího levelu.
       }
     }
     ```
+  
+## Log akcí v ekonomice [/economy/log]
+### Log akcí v ekonomice [GET]
+Enpoint pro zobrazení 100 globálních posledních akcí v CraftEconomy.
+
+::: note
+Data v tomto endpointu nejsou dodělány, jelikož nebyl dokončen projekt Player Logs. S verzí 1.15 budou přibývat později více akcí.
+:::
+    
++ Response 200 (application/json)
+    + Body
+    ```json
+    {
+      "status": 200,
+      "data": [
+        {
+          "nick": "MrWakeCZ",
+          "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
+          "action": "ECONOMY_REGISTER",
+          "sender": "server",
+          "server": "lobby",
+          "old_value": "0",
+          "new_value": "0",
+          "date": "1575419164275"
+        }
+      ]
+    }
+    ```
+
+# Group Achievements
+
+## Log achievementů [/achievements/log]
+### Log obdržených achievementů [GET]
+Endpoint pro získání logu 100 posledních obdržených achievementů.
+
+### Vysvětlení
+* `ach_id`: Interní ID achievementů př. `vanilla_first_join`
+* `ach_name`: Zobrazovaný název pro hráče
+* `ach_value`: Hodnota Achievement Points, kterou hráč obdrží při splnění.
+
+::: warning
+#### <i class="fa fa-warning"></i> Varování 
+* `ach_id` je null z důvodu neimplementovaného seznamu achievementů, bude implementováno později.
+:::
+
++ Response 200 (application/json)
+    + Body
+        ```json
+        {
+          "status": 200,
+          "data": [
+            {
+              "nick": "MrWakeCZ",
+              "uuid": "43d05dab-2dbc-418b-9e6f-dc73ab916dbc",
+              "ach_id": null,
+              "ach_name": "První připojení",
+              "ach_value": "10",
+              "server": "vanilla",
+              "date": "1575419164275"
+            }
+          ]
+        }
+        ```
 
 # Group Leaderboard
 

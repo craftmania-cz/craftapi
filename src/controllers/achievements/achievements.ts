@@ -21,9 +21,10 @@ namespace Achievements {
 					finalResults.push({
 						"nick": data.nick,
 						"uuid": data.uuid,
+						"ach_id": null,
 						"ach_name": data.ach_name,
 						"ach_value": data.ach_value,
-						"ach_server": data.ach_server,
+						"server": data.ach_server,
 						"date": data.date
 					});
 					return;
