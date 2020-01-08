@@ -2,6 +2,7 @@ import * as Res from "../../services/response";
 import * as log from "signale";
 import { getConnection } from "../../services/mysql-connection";
 import LevelUtils from "../../utils/LevelUtils";
+import EconomyLevelPlayer from "../../utils/interfaces/EconomyLevelPlayer";
 
 const con = getConnection();
 
@@ -48,16 +49,16 @@ namespace EconomyTopLevels {
 				return Res.not_found(res);
 			}
 			let finalResults: any = [];
-			results.forEach((player: any, index: number) => {
+			results.forEach((player: EconomyLevelPlayer, index: number) => {
 				index++;
-				const levelPercentage = calcPercentage(player.creative_experience, LevelUtils.getExpFromLevelToNext(player.creative_level++));
+				const levelPercentage = calcPercentage(player.creative_experience, LevelUtils.getExpFromLevelToNext(player.creative_level));
 				finalResults.push({
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
 					"level": player.creative_level,
 					"experience": player.creative_experience,
-					"toNextLevel": LevelUtils.getExpFromLevelToNext(player.creative_level++),
+					"toNextLevel": LevelUtils.getExpFromLevelToNext(player.creative_level),
 					"percentage": levelPercentage
 				});
 				return;
@@ -78,16 +79,16 @@ namespace EconomyTopLevels {
 					return Res.not_found(res);
 				}
 				let finalResults: any = [];
-				results.forEach((player: any, index: number) => {
+				results.forEach((player: EconomyLevelPlayer, index: number) => {
 					index++;
-					const levelPercentage = calcPercentage(player.survival_experience, LevelUtils.getExpFromLevelToNext(player.survival_level++));
+					const levelPercentage = calcPercentage(player.survival_experience, LevelUtils.getExpFromLevelToNext(player.survival_level));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
 						"uuid": player.uuid,
 						"level": player.survival_level,
 						"experience": player.survival_experience,
-						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.survival_level++),
+						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.survival_level),
 						"percentage": levelPercentage
 					});
 					return;
@@ -108,16 +109,16 @@ namespace EconomyTopLevels {
 					return Res.not_found(res);
 				}
 				let finalResults: any = [];
-				results.forEach((player: any, index: number) => {
+				results.forEach((player: EconomyLevelPlayer, index: number) => {
 					index++;
-					const levelPercentage = calcPercentage(player.skyblock_experience, LevelUtils.getExpFromLevelToNext(player.skyblock_level++));
+					const levelPercentage = calcPercentage(player.skyblock_experience, LevelUtils.getExpFromLevelToNext(player.skyblock_level));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
 						"uuid": player.uuid,
 						"level": player.skyblock_level,
 						"experience": player.skyblock_experience,
-						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skyblock_level++),
+						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skyblock_level),
 						"percentage": levelPercentage
 					});
 					return;
@@ -138,16 +139,16 @@ namespace EconomyTopLevels {
 					return Res.not_found(res);
 				}
 				let finalResults: any = [];
-				results.forEach((player: any, index: number) => {
+				results.forEach((player: EconomyLevelPlayer, index: number) => {
 					index++;
-					const levelPercentage = calcPercentage(player.vanilla_experience, LevelUtils.getExpFromLevelToNext(player.vanilla_level++));
+					const levelPercentage = calcPercentage(player.vanilla_experience, LevelUtils.getExpFromLevelToNext(player.vanilla_level));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
 						"uuid": player.uuid,
 						"level": player.vanilla_level,
 						"experience": player.vanilla_experience,
-						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.vanilla_level++),
+						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.vanilla_level),
 						"percentage": levelPercentage
 					});
 					return;
@@ -168,16 +169,16 @@ namespace EconomyTopLevels {
 					return Res.not_found(res);
 				}
 				let finalResults: any = [];
-				results.forEach((player: any, index: number) => {
+				results.forEach((player: EconomyLevelPlayer, index: number) => {
 					index++;
-					const levelPercentage = calcPercentage(player.skycloud_experience, LevelUtils.getExpFromLevelToNext(player.skycloud_level++));
+					const levelPercentage = calcPercentage(player.skycloud_experience, LevelUtils.getExpFromLevelToNext(player.skycloud_level));
 					finalResults.push({
 						"index": index,
 						"nick": player.nick,
 						"uuid": player.uuid,
 						"level": player.skycloud_level,
 						"experience": player.skycloud_experience,
-						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skycloud_level++),
+						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.skycloud_level),
 						"percentage": levelPercentage
 					});
 					return;
