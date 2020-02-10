@@ -10,6 +10,12 @@ interface CcomunityProfile {
 	last_server: bigint;
 	is_online: number;
 	played_time: number;
+
+	// VIP
+	groups: any;
+	groups_last_check: number;
+
+	// Economy
 	craftcoins: number;
 	crafttokens: number;
 	votetokens: number;

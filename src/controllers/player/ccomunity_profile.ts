@@ -27,6 +27,10 @@ namespace Ccomunity {
 				"karma": playerObject.karma,
 				"achievement_points": playerObject.achievement_points,
 			},
+			"groups": {
+				"vip": JSON.parse(playerObject.groups),
+				"last_update": playerObject.groups_last_check
+			},
 			"ranked": {
 				"global_level": playerObject.global_level,
 				"survival_level": playerObject.survival_level,
