@@ -7,6 +7,7 @@ import * as exphbs from 'express-handlebars';
 import * as cookieParser from 'cookie-parser';
 import * as path from "path";
 import * as cors from "cors";
+import * as helmet from "helmet";
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
 import GameRoutes from "./routes/GameRoutes";
@@ -31,6 +32,7 @@ class App {
 		this.express.use(bodyParser.json());
 		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
+		this.express.use(helmet());
 		this.express.use(cors({origin: '*'}));
 		// @ts-ignore
 		this.express.engine('handlebars', exphbs({defaultLayout: 'main'}));
