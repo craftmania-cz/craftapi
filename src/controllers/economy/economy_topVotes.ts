@@ -7,7 +7,8 @@ const con = getConnection();
 namespace EconomyTopVotes {
 
 	export async function getTop50Total(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, total_votes FROM player_profile ORDER BY total_votes DESC LIMIT 50;', (error: any, results: any) => {
+		await con.query('SELECT nick, uuid, total_votes, groups FROM player_profile ORDER BY total_votes DESC LIMIT 50;',
+			(error: any, results: any) => {
 			if (error) {
 				log.error(error);
 				return Res.error(res, error);
@@ -22,7 +23,8 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.total_votes
+					"votes": player.total_votes,
+					"groups": JSON.parse(player.groups)
 				});
 				return;
 			});
@@ -32,7 +34,8 @@ namespace EconomyTopVotes {
 	}
 
 	export async function getTop50Month(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, month_votes FROM player_profile ORDER BY month_votes DESC LIMIT 50;', (error: any, results: any) => {
+		await con.query('SELECT nick, uuid, month_votes, groups FROM player_profile ORDER BY month_votes DESC LIMIT 50;',
+			(error: any, results: any) => {
 			if (error) {
 				log.error(error);
 				return Res.error(res, error);
@@ -47,7 +50,8 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.month_votes
+					"votes": player.month_votes,
+					"groups": JSON.parse(player.groups)
 				});
 				return;
 			});
@@ -57,7 +61,8 @@ namespace EconomyTopVotes {
 	}
 
 	export async function getTop50Week(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, week_votes FROM player_profile ORDER BY week_votes DESC LIMIT 50;', (error: any, results: any) => {
+		await con.query('SELECT nick, uuid, week_votes, groups FROM player_profile ORDER BY week_votes DESC LIMIT 50;',
+			(error: any, results: any) => {
 			if (error) {
 				log.error(error);
 				return Res.error(res, error);
@@ -72,7 +77,8 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.week_votes
+					"votes": player.week_votes,
+					"groups": JSON.parse(player.groups)
 				});
 				return;
 			});
