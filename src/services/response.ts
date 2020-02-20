@@ -10,6 +10,10 @@ namespace Res {
 		return res.status(403).json({status: 403, error: 'Forbidden' , data: []});
 	}
 
+	export function forbiddenWithText(res: Response, property: string) {
+		return res.status(403).json({status: 403, error: property , data: []});
+	}
+
 	export function body_missing(res: Response) {
 		return res.status(500).json({status: 500, error: 'Request Body is missing' , data: []});
 	}

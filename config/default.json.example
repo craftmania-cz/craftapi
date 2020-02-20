@@ -1,6 +1,7 @@
 {
     "app": {
-        "envinronment": "development"
+        "envinronment": "development",
+        "token": "secret-token-for-auth"
     },
     "mysql": {
         "host": "0.0.0.0",

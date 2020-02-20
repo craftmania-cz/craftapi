@@ -15,6 +15,7 @@ import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 import AchievementRoutes from "./routes/AchievementRoutes";
+let middleware = require('./utils/authentification/tokenAuth');
 
 class App {
 
@@ -43,7 +44,7 @@ class App {
 	private routes(): void {
 
 		// Player routes
-		this.express.use('/player', PlayerRoutes);
+		this.express.use('/player', middleware.checkToken, PlayerRoutes);
 
 		// Server routes
 		this.express.use('/server', ServerRoutes);
