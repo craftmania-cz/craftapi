@@ -15,6 +15,7 @@ import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 import AchievementRoutes from "./routes/AchievementRoutes";
+import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 
 class App {
 
@@ -55,6 +56,7 @@ class App {
 		this.express.use('/economy', EconomyRoutes);
 		this.express.use('/economy/leaderboard', LeaderboardRoutes);
 		this.express.use('/economy/leaderboard/levels', LeaderboardLevelsRoutes);
+		this.express.use('/economy/leaderboard/mcmmo', LeaderboardMcmmoRoutes);
 
 		// Logs routes
 		this.express.use('/achievements', AchievementRoutes);
