@@ -7,7 +7,7 @@ HOST: api.craftmania.cz
 Server API pro získání statistik a jiných dat z serveru bez použití přímého napojené na databáze.
 Vytvořeno v TypeScript & NodeJS.
 
-* Source: https://git.craftmania.cz/craftmania/craftapi-2
+* Source: https://github.com/craftmania-cz/craftapi
 
 ## Error chyby
 Code | Info | Description
