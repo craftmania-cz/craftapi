@@ -23,7 +23,7 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.total_votes,
+					"value": player.total_votes,
 					"groups": JSON.parse(player.groups)
 				});
 				return;
@@ -50,7 +50,7 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.month_votes,
+					"value": player.month_votes,
 					"groups": JSON.parse(player.groups)
 				});
 				return;
@@ -77,7 +77,7 @@ namespace EconomyTopVotes {
 					"index": index,
 					"nick": player.nick,
 					"uuid": player.uuid,
-					"votes": player.week_votes,
+					"value": player.week_votes,
 					"groups": JSON.parse(player.groups)
 				});
 				return;

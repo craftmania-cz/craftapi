@@ -40,7 +40,7 @@ namespace EconomyTopLevels {
 	}
 
 	export async function getTopCreativeLevels(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, creative_level, creative_experience, groups FROM player_profile ORDER BY creative_level DESC LIMIT 50;',
+		await con.query('SELECT nick, uuid, creative_level, creative_experience, groups FROM player_profile ORDER BY creative_level DESC, creative_experience DESC LIMIT 50;',
 			(error: any, results: any) => {
 			if (error) {
 				log.error(error);
@@ -71,7 +71,7 @@ namespace EconomyTopLevels {
 	}
 
 	export async function getTopSurvivalLevels(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, survival_level, survival_experience, groups FROM player_profile ORDER BY survival_level DESC LIMIT 50;',
+		await con.query('SELECT nick, uuid, survival_level, survival_experience, groups FROM player_profile ORDER BY survival_level DESC, survival_experience DESC LIMIT 50;',
 			(error: any, results: any) => {
 				if (error) {
 					log.error(error);
@@ -102,7 +102,7 @@ namespace EconomyTopLevels {
 	}
 
 	export async function getTopSkyblockLevels(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, skyblock_level, skyblock_experience, groups FROM player_profile ORDER BY skyblock_level DESC LIMIT 50;',
+		await con.query('SELECT nick, uuid, skyblock_level, skyblock_experience, groups FROM player_profile ORDER BY skyblock_level DESC, skyblock_experience DESC LIMIT 50;',
 			(error: any, results: any) => {
 				if (error) {
 					log.error(error);
@@ -133,7 +133,7 @@ namespace EconomyTopLevels {
 	}
 
 	export async function getTopVanillaLevels(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, vanilla_level, vanilla_experience, groups FROM player_profile ORDER BY vanilla_level DESC LIMIT 50;',
+		await con.query('SELECT nick, uuid, vanilla_level, vanilla_experience, groups FROM player_profile ORDER BY vanilla_level DESC, vanilla_experience DESC LIMIT 50;',
 			(error: any, results: any) => {
 				if (error) {
 					log.error(error);
@@ -164,7 +164,7 @@ namespace EconomyTopLevels {
 	}
 
 	export async function getTopSkycloudLevels(_req: any, res: any) {
-		await con.query('SELECT nick, uuid, skycloud_level, skycloud_experience, groups FROM player_profile ORDER BY skycloud_level DESC LIMIT 50;',
+		await con.query('SELECT nick, uuid, skycloud_level, skycloud_experience, groups FROM player_profile ORDER BY skycloud_level DESC, skycloud_experience DESC LIMIT 50;',
 			(error: any, results: any) => {
 				if (error) {
 					log.error(error);
