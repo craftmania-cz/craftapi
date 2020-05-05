@@ -1,7 +1,6 @@
 import * as jwt from "jsonwebtoken";
 import { IConfig } from "config";
 import { NextFunction, Response } from "express";
-import { JsonWebTokenError } from "jsonwebtoken";
 
 const config: IConfig = require("config");
 
@@ -19,7 +18,8 @@ let checkToken = (req: any, res: Response, next: NextFunction) => {
 
 	if (token) {
 		if (typeof token === "string") {
-			jwt.verify(token, config.get('app.token'), (err: JsonWebTokenError, decoded: object | string) => {
+			// @ts-ignore 
+			jwt.verify(token, config.get('app.token'), (err: any, decoded: object | string) => {
 				if (err) {
 					return res.json({
 						success: false,
