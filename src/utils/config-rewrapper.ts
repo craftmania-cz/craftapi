@@ -2,7 +2,8 @@
 export = {
 	app: {
 		port: process.env.PORT,
-		environment: process.env.ENVIRONMENT
+		environment: process.env.ENVIRONMENT,
+		token: process.env.TOKEN
 	},
 	mysql: {
 		host: process.env.DB_HOST,
