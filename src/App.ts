@@ -16,7 +16,8 @@ import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 import AchievementRoutes from "./routes/AchievementRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
-let middleware = require('./utils/authentification/tokenAuth');
+import AccountRoutes from "./routes/AccountRoutes";
+//let middleware = require('./utils/authentification/tokenAuth');
 
 class App {
 
@@ -45,7 +46,8 @@ class App {
 	private routes(): void {
 
 		// Player routes
-		this.express.use('/player', middleware.checkToken, PlayerRoutes);
+		//this.express.use('/player', middleware.checkToken, PlayerRoutes);
+		this.express.use('/player', PlayerRoutes);
 
 		// Server routes
 		this.express.use('/server', ServerRoutes);
@@ -61,6 +63,9 @@ class App {
 
 		// Logs routes
 		this.express.use('/achievements', AchievementRoutes);
+
+		// Internal logins
+		this.express.use('/account', AccountRoutes);
 
 		// Docs root
 		this.express.use('/', function(_req: Request, res: Response) {
