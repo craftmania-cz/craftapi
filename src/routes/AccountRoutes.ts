@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
 import LoginGenerator from "../utils/authentification/LoginGenerator";
+import RegisterGenerator from "../utils/authentification/RegisterGenerator";
 
 export class AccountRoutes {
 	public router: Router;
@@ -17,7 +18,9 @@ export class AccountRoutes {
 	public init() {
 		let loginHandler = new LoginGenerator();
 		this.router.post('/login', loginHandler.login);
-		this.router.post('/register');
+
+		let registerHandler = new RegisterGenerator();
+		this.router.post('/register', registerHandler.register);
 
 	}
 }

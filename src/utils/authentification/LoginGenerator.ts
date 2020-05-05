@@ -62,7 +62,7 @@ class LoginGenerator {
 	}
 }
 
-async function checkExists(name: string): Promise<boolean> {
+export async function checkExists(name: string): Promise<boolean> {
 	return new Promise((resolve: any, reject: any) => {
 		con.query("SELECT nick FROM minigames.at_table WHERE nick = '" + name + "';",
 			(error: any, results: any) => {
