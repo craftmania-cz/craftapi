@@ -17,7 +17,6 @@ import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 import AchievementRoutes from "./routes/AchievementRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
-//let middleware = require('./utils/authentification/tokenAuth');
 
 class App {
 

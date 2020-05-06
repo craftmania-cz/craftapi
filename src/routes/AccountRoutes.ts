@@ -2,6 +2,8 @@ import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
 import LoginGenerator from "../utils/authentification/LoginGenerator";
 import RegisterGenerator from "../utils/authentification/RegisterGenerator";
+import Permissions from "../controllers/account/permissions";
+import TokenAuth from "../utils/authentification/tokenAuth";
 
 export class AccountRoutes {
 	public router: Router;
@@ -21,6 +23,9 @@ export class AccountRoutes {
 
 		let registerHandler = new RegisterGenerator();
 		this.router.post('/register', registerHandler.register);
+
+		let tokenAuth = new TokenAuth();
+		this.router.get('/permissions/:name', tokenAuth.checkToken, Permissions.getAccountPermissions);
 
 	}
 }
