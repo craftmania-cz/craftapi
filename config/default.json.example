@@ -1,7 +1,13 @@
 {
     "app": {
-        "envinronment": "development",
-        "token": "secret-token-for-auth"
+        "port": 3000,
+        "environment": "development",
+        "token": "secret-token-for-auth",
+        "adminKey": "admin-key-for-secret-routes"
+    },
+    "bearerApp": {
+        "enabled": false,
+        "token": "super-secret-token"
     },
     "mysql": {
         "host": "0.0.0.0",

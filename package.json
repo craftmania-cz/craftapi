@@ -41,6 +41,7 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "@bearer/node-agent": "^3.1.0",
     "@types/bcrypt": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.6",
