@@ -5,7 +5,6 @@ import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
 import * as exphbs from 'express-handlebars';
 import * as cookieParser from 'cookie-parser';
-import * as path from "path";
 import * as cors from "cors";
 import * as helmet from "helmet";
 import { Request, Response } from "express";
@@ -66,9 +65,15 @@ class App {
 		// Internal logins
 		this.express.use('/account', AccountRoutes);
 
-		// Docs root
+		// Index route
 		this.express.use('/', function(_req: Request, res: Response) {
-			res.sendFile(path.join(__dirname + '/index.html'));
+			res.json({
+				"status": 200,
+				"data": {
+					"status": 'UP',
+					"documentation": 'https://api-docs.craftmania.cz/'
+				}
+			});
 		});
 	}
 

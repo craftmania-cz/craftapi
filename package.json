@@ -5,15 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && tsc",
-    "build-ci": "tsc && npm run docs-build",
+    "build-ci": "tsc",
     "clean": "rm -rf dist/* && touch dist/.gitkeep",
     "start": "node dist/server.js",
     "watch": "nodemon dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "develop": "npm run clean && npm run build && npm run watch",
-    "docs-watch": "aglio --theme-template triple -i public/index.md -s",
-    "docs-build": "aglio --theme-template triple -i public/index.md -o ./dist/index.html"
+    "develop": "npm run clean && npm run build && npm run watch"
   },
   "keywords": [
     "node",
@@ -51,7 +49,6 @@
     "@types/jsonwebtoken": "^8.3.7",
     "@types/node-schedule": "^1.2.4",
     "@types/signale": "^1.2.1",
-    "aglio": "^2.3.0",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "config": "^2.0.2",
