@@ -11,7 +11,8 @@
     "watch": "nodemon dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "develop": "npm run clean && npm run build && npm run watch"
+    "develop": "npm run clean && npm run build && npm run watch",
+    "changelog": "auto-changelog --template keepachangelog --commit-limit false"
   },
   "keywords": [
     "node",
