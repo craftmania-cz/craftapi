@@ -26,6 +26,7 @@ namespace Ccomunity {
 				"votetokens": playerObject.votetokens_2,
 				"karma": playerObject.karma,
 				"achievement_points": playerObject.achievement_points,
+				"event_points": playerObject.event_points
 			},
 			"groups": {
 				"vip": JSON.parse(playerObject.groups),
