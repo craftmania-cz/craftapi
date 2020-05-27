@@ -39,7 +39,7 @@ class LoginGenerator {
 			const validPassword = await bcrypt.compare(password, encryptedPassword);
 
 			if (validPassword) {
-				let token = jwt.sign({username: username}, config.get('app.token'), { expiresIn: '24h' }); // expires in 24 hours
+				let token = jwt.sign({username: username}, config.get('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
 
 				// return the JWT token for the future API calls
 				res.json({
