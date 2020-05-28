@@ -43,6 +43,7 @@ interface CcomunityProfile {
 
 	karma: number;
 	achievement_points: number;
+	event_points: number;
 
 	total_votes: number;
 	month_votes: number;
