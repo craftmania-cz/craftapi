@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/github/package-json/v/craftmania-cz/craftapi?color=%23222222&style=for-the-badge">
 </p>
 <p align="center">
-    JSON API v TypeScriptu a NodeJS pro získávání statistik a prakticky řízení celého serveru.<br>
+    JSON API v TypeScriptu a <a href="https://nodejs.org/">NodeJS</a> pro získávání statistik a prakticky řízení celého serveru.<br>
   <i>Upozornění: API není vytvořeno pro spuštění kdekoliv. Nebude tedy fungovat jakkoliv a kdekoliv jinde.</i>
 </p
 
