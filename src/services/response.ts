@@ -26,6 +26,10 @@ namespace Res {
 		return res.status(400).json({status: 400, error: 'Property ' + property + ' required', data: []});
 	}
 
+	export function bad_request(res: Response, message: string) {
+		return res.status(400).json({status: 400, error: message, data: []});
+	}
+
 	export function error(res: Response, err: Error) {
 		return res.status(500).json({status: 500, error: err.message , data: []});
 	}

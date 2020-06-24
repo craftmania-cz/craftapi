@@ -16,6 +16,7 @@ import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
 import AchievementRoutes from "./routes/AchievementRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
+import MojangRoutes from "./routes/MojangRoutes";
 
 class App {
 
@@ -61,6 +62,9 @@ class App {
 
 		// Logs routes
 		this.express.use('/achievements', AchievementRoutes);
+
+		// Mojang API
+		this.express.use('/mojang', MojangRoutes);
 
 		// Internal logins
 		this.express.use('/account', AccountRoutes);
