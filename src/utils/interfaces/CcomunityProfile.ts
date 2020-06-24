@@ -20,7 +20,7 @@ interface CcomunityProfile {
 	crafttokens: number;
 	votetokens: number;
 
-	votetokens_2: number; // 1.14 VoteTokens
+	votetokens_2: number; // 1.15+ VoteTokens
 
 	// Old levels (-1.12)
 	level: number;
@@ -40,18 +40,25 @@ interface CcomunityProfile {
 	vanilla_experience: number;
 	skycloud_level: number;
 	skycloud_experience: number;
+	hardcore_vanilla_level: number;
+	hardcore_vanilla_experience: number;
 
+	// Extended economy
 	karma: number;
 	achievement_points: number;
 	event_points: number;
+	bug_points: number;
 
+	// Votes
 	total_votes: number;
 	month_votes: number;
 	week_votes: number;
 	last_vote: bigint;
 
+	// Discord
 	discord_user_id: string;
 
+	// Socials
 	status: string;
 	soc_facebook: string;
 	soc_twitter: string;
@@ -60,4 +67,16 @@ interface CcomunityProfile {
 	soc_twitch: string;
 	soc_web: string;
 	mc_version: string;
+
+	// Bonuses
+	lobby_daily_bonus: number;
+	lobby_vip_bonus: number;
+	lobby_extra_bonus: number;
+
+	// Watch lobby things
+	seen_latest_news: bigint;
+	seen_changelog_time: bigint;
+
+	// Tags
+	tags: any;
 }

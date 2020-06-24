@@ -26,7 +26,8 @@ namespace Ccomunity {
 				"votetokens": playerObject.votetokens_2,
 				"karma": playerObject.karma,
 				"achievement_points": playerObject.achievement_points,
-				"event_points": playerObject.event_points
+				"event_points": playerObject.event_points,
+				"bug_points": playerObject.bug_points
 			},
 			"groups": {
 				"vip": JSON.parse(playerObject.groups),
@@ -45,7 +46,9 @@ namespace Ccomunity {
 				"prison_level": playerObject.prison_level,
 				"prison_experience": playerObject.prison_experience,
 				"skycloud_level": playerObject.skycloud_level,
-				"skycloud_experience": playerObject.skycloud_experience
+				"skycloud_experience": playerObject.skycloud_experience,
+				"hardcore_vanilla_level": playerObject.hardcore_vanilla_level,
+				"hardcore_vanilla_experience": playerObject.hardcore_vanilla_experience
 			},
 			"votes": {
 				"total": playerObject.total_votes,
@@ -64,6 +67,13 @@ namespace Ccomunity {
 			},
 			"discord": {
 				"id": playerObject.discord_user_id
+			},
+			"tags": JSON.parse(playerObject.tags),
+			"lobby": {
+				"daily_basic_reward": resolveBoolean(playerObject.lobby_daily_bonus),
+				"monthly_vip_reward": resolveBoolean(playerObject.lobby_vip_bonus),
+				"seen_latest_news": playerObject.seen_latest_news,
+				"seen_changelog_time": playerObject.seen_changelog_time
 			},
 			"deprecated": {
 				"votetokens": playerObject.votetokens,
