@@ -5,10 +5,6 @@
         "token": "secret-token-for-auth",
         "adminKey": "admin-key-for-secret-routes"
     },
-    "bearerApp": {
-        "enabled": false,
-        "token": "super-secret-token"
-    },
     "mysql": {
         "host": "0.0.0.0",
         "port": 3306,

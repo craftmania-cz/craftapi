@@ -8,7 +8,6 @@ import { callServer } from "./utils/ping";
 import { IConfig } from "config";
 
 const config: IConfig = require("config");
-const Bearer = require('@bearer/node-agent');
 
 if (!fs.existsSync('/config/default.json') && fs.existsSync('/config/default.json.example')) {
 	log.fatal('You forgot renaming the file .default.json.example to .default.json. Exiting now.');
@@ -20,7 +19,6 @@ debug('ts-express:server');
 // Load basic environment variables
 const port = process.env.PORT || config.get('app.port') || 3000;
 const stage = process.env.ENVIRONMENT || config.get('app.environment') || 'development';
-const bearerAppToken = process.env.BEARER_APP_TOKEN || config.get('bearerApp.token') || '';
 
 App.set('port', port);
 
@@ -69,15 +67,6 @@ function onListening(): void {
 	log.info(`Home url: http://localhost:${bind}`);
 	if (stage !== 'production') {
 		log.note('Press CTRL-C to stop');
-	}
-
-	if (config.get("bearerApp.enabled")) {
-		Bearer.init({
-			secretKey: bearerAppToken,
-			stripSensitiveData: true
-		}).then(() => {
-			log.info('BearerApp has been enabled!');
-		});
 	}
 
 	setIntervalNoDelay(callServer, 10000);
