@@ -1,12 +1,12 @@
 
 import * as express from 'express';
-import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import PlayerRoutes from "./routes/PlayerRoutes";
 import * as exphbs from 'express-handlebars';
 import * as cookieParser from 'cookie-parser';
 import * as cors from "cors";
 import * as helmet from "helmet";
+import * as morgan from 'morgan';
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
 import GameRoutes from "./routes/GameRoutes";
@@ -17,6 +17,7 @@ import AchievementRoutes from "./routes/AchievementRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
 import MojangRoutes from "./routes/MojangRoutes";
+import { debugStream, winstonStream } from "./utils/Logger";
 
 class App {
 
@@ -30,11 +31,12 @@ class App {
 
 	// Configure Express middleware.
 	private middleware(): void {
-		this.express.use(logger('dev'));
 		this.express.use(bodyParser.json());
 		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
 		this.express.use(helmet());
+		this.express.use(morgan(':remote-addr -> (:method) :url :status - :response-time ms', debugStream));
+		this.express.use(morgan(':remote-addr -> (:method) :url :status - :response-time ms', winstonStream));
 		this.express.use(cors({origin: '*'}));
 		// @ts-ignore
 		this.express.engine('handlebars', exphbs({defaultLayout: 'main'}));

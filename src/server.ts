@@ -2,15 +2,15 @@
 import * as http from 'http';
 import * as debug from 'debug';
 import * as fs from 'fs';
-import * as log from 'signale';
 import App from './App';
 import { callServer } from "./utils/ping";
 import { IConfig } from "config";
+import { Logger } from "./utils/Logger";
 
 const config: IConfig = require("config");
 
 if (!fs.existsSync('/config/default.json') && fs.existsSync('/config/default.json.example')) {
-	log.fatal('You forgot renaming the file .default.json.example to .default.json. Exiting now.');
+	console.error('You forgot renaming the file .default.json.example to .default.json. Exiting now.');
 	process.exit(1);
 }
 
@@ -22,10 +22,13 @@ const stage = process.env.ENVIRONMENT || config.get('app.environment') || 'devel
 
 App.set('port', port);
 
+// Default logger
+const log = Logger('app:start');
+
 const logo = () => {
-	console.log(' ');
-	console.log('CraftAPI 2.0 starting...');
-	console.log('');
+	log.info(' ');
+	log.info('CraftAPI 2.0 starting...');
+	log.info('');
 };
 
 const server = http.createServer(App);
@@ -62,11 +65,11 @@ let setIntervalNoDelay = function(func: any , delay: any) {
 function onListening(): void {
 	let addr = server.address();
 	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr.port}`;
-	log.success(`Listening on port ${bind}`);
+	log.info(`Listening on port ${bind}`);
 	log.info(`App is running as ${stage.toString().toLocaleLowerCase()} environment`);
 	log.info(`Home url: http://localhost:${bind}`);
 	if (stage !== 'production') {
-		log.note('Press CTRL-C to stop');
+		log.warn('Press CTRL-C to stop');
 	}
 
 	setIntervalNoDelay(callServer, 10000);
