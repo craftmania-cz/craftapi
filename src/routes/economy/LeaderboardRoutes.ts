@@ -3,6 +3,7 @@ import * as Res from "../../services/response";
 import EconomyTopVotes from "../../controllers/economy/economy_topVotes";
 import EconomyTopCoins from "../../controllers/economy/economy_playercoins";
 import HalloweenGame from "../../controllers/server/halloween_game";
+import { BSkyblockTopIslands } from "../../controllers/islands/BSkyblockTops";
 
 export class LeaderboardRoutes {
 	public router: Router;
@@ -31,6 +32,9 @@ export class LeaderboardRoutes {
 		this.router.get('/played-time', EconomyTopCoins.getTopPlayedTime);
 		this.router.get('/achievement-points', EconomyTopCoins.getTopAchievementPoints);
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
+
+		// Skyblocks Islands
+		this.router.get('/skyblock-islands', BSkyblockTopIslands.getSkyblockIslandLeaderboard);
 
 		// Servers
 		this.router.get('/halloween-players', HalloweenGame.getTopPlayerHalloween);

@@ -6,6 +6,7 @@ import App from './App';
 import { callServer } from "./utils/ping";
 import { IConfig } from "config";
 import { Logger } from "./utils/Logger";
+import { generateSkyblockLeaderboard } from "./controllers/islands/BSkyblockTops";
 
 const config: IConfig = require("config");
 
@@ -72,5 +73,6 @@ function onListening(): void {
 		log.warn('Press CTRL-C to stop');
 	}
 
-	setIntervalNoDelay(callServer, 10000);
+	setIntervalNoDelay(callServer, 10000); // 10 vteřin
+	setIntervalNoDelay(generateSkyblockLeaderboard, 60000 * 60); // 1 hodina
 }
