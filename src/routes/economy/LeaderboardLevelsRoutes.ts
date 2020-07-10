@@ -23,6 +23,7 @@ export class LeaderboardLevelsRoutes {
 		this.router.get('/skyblock', EconomyTopLevels.getTopSkyblockLevels);
 		this.router.get('/vanilla', EconomyTopLevels.getTopVanillaLevels);
 		this.router.get('/skycloud', EconomyTopLevels.getTopSkycloudLevels);
+		this.router.get('/hardcore-vanilla', EconomyTopLevels.getTopHardcoreVanillaLevels);
 	}
 
 }

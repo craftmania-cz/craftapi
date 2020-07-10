@@ -194,6 +194,38 @@ namespace EconomyTopLevels {
 		return;
 	}
 
+	export async function getTopHardcoreVanillaLevels(_req: any, res: any) {
+		await con.query('SELECT nick, uuid, hardcore_vanilla_level, hardcore_vanilla_experience, groups FROM player_profile ORDER BY hardcore_vanilla_level DESC, hardcore_vanilla_experience DESC LIMIT 50;',
+			(error: any, results: any) => {
+				if (error) {
+					log.error(error);
+					return Res.error(res, error);
+				}
+				if (!results.length) {
+					return Res.not_found(res);
+				}
+				let finalResults: any = [];
+				results.forEach((player: EconomyLevelPlayer, index: number) => {
+					index++;
+					const levelPercentage = calcPercentage(player.hardcore_vanilla_experience,
+						LevelUtils.getExpFromLevelToNext(player.hardcore_vanilla_level));
+					finalResults.push({
+						"index": index,
+						"nick": player.nick,
+						"uuid": player.uuid,
+						"level": player.hardcore_vanilla_level,
+						"experience": player.hardcore_vanilla_experience,
+						"toNextLevel": LevelUtils.getExpFromLevelToNext(player.hardcore_vanilla_level),
+						"percentage": levelPercentage,
+						"groups": JSON.parse(player.groups)
+					});
+					return;
+				});
+				Res.success(res, finalResults);
+			});
+		return;
+	}
+
 }
 
 export default EconomyTopLevels;
