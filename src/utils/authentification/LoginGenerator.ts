@@ -39,7 +39,11 @@ class LoginGenerator {
 			const validPassword = await bcrypt.compare(password, encryptedPassword);
 
 			if (validPassword) {
-				let token = jwt.sign({username: username}, config.get('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
+				// Fetch permisions
+				const permissions = await fetchUserPermissions(username);
+
+				let token = jwt.sign({username: username, permissions: permissions},
+					config.get('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
 
 				// return the JWT token for the future API calls
 				res.json({
@@ -90,6 +94,22 @@ async function fetchEncryptedPassword(name: string): Promise<string> {
 					reject();
 				}
 				resolve(results[0].craftbox_password);
+			});
+	});
+}
+
+async function fetchUserPermissions(name: string): Promise<any> {
+	return new Promise((resolve: any, reject: any) => {
+		con.query("SELECT craftbox_perms FROM minigames.at_table WHERE nick = '" + name + "';",
+			(error: any, results: any) => {
+				if (error) {
+					log.error(error);
+					reject();
+				}
+				if (!results.length) {
+					reject();
+				}
+				resolve(JSON.parse(results[0].craftbox_perms));
 			});
 	});
 }
