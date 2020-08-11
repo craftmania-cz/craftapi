@@ -56,8 +56,10 @@ const generateSkyblockLeaderboard = async () => {
 			const value = leaderboard.topTen[uuid];
 
 			con.query('SELECT nick FROM minigames.player_profile WHERE uuid = ?', [uuid], (_error: any, results: any) => {
-				//console.log({name: results[0].nick, value: value});
-				skyblockCahe.push({name: results[0].nick, uuid: uuid, value: value});
+				if (results[0] !== undefined) {
+					//console.log({name: results[0].nick, value: value});
+					skyblockCahe.push({name: results[0].nick, uuid: uuid, value: value});
+				}
 			});
 		}
 	});
