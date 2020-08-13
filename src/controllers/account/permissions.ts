@@ -1,12 +1,17 @@
 import * as Res from "../../services/response";
 import * as log from "signale";
 import { getConnection } from "../../services/mysql-connection";
+import TokenAuth from "../../utils/authentification/tokenAuth";
 
 const con = getConnection();
 
 namespace Permissions {
 
 	export async function getAccountPermissions(req: any, res: any) {
+
+		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:ADMIN", "CRAFTBOX:PERMISSIONS"]);
+		if (!perms) { return Res.noPerms(res); }
+
 		const player = req.params.name;
 
 		await con.query('SELECT craftbox_perms FROM minigames.at_table WHERE nick = ?;', [player], (error: any, results: any) => {
