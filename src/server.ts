@@ -7,6 +7,7 @@ import { callServer } from "./utils/ping";
 import { IConfig } from "config";
 import { Logger } from "./utils/Logger";
 import { generateSkyblockLeaderboard } from "./controllers/islands/BSkyblockTops";
+import { SQLManager } from "./managers/SQLManager";
 
 const config: IConfig = require("config");
 
@@ -35,6 +36,11 @@ const logo = () => {
 const server = http.createServer(App);
 server.listen(port);
 logo();
+
+log.info('MySQL connection starting...');
+SQLManager.getInstance();
+log.verbose('MySQL connection completed');
+
 server.on('error', onError);
 server.on('listening', onListening);
 
