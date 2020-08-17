@@ -11,22 +11,21 @@ export class PlayerRoutes {
 		this.init();
 	}
 
-	public missingName(_req: Request, res: Response, _next: NextFunction) {
-		res.status(200).json(Res.property_required(res, 'Player name').json);
-	}
-
-	public missingUUID(_req: Request, res: Response, _next: NextFunction) {
-		res.status(200).json(Res.property_required(res, 'Player UUID').json);
+	public unknownRoute(_req: Request, res: Response, _next: NextFunction) {
+		res.status(200).json(Res.property_required(res, 'Unknown route').json);
 	}
 
 	public init() {
-		this.router.get('/', this.missingName);
-		this.router.get('/:name', Ccomunity.getProfileByName);
-		this.router.get('/uuid', this.missingUUID); //TODO: Fix, presunout do vlastni route?
-		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID);
 
-		this.router.get('/vip/:name', PlayerVipStatus.getVIPByName);
-		this.router.get('/vip/uuid/:uuid', PlayerVipStatus.getVIPByUUID);
+		// Name routes
+		this.router.get('/', this.unknownRoute);
+		this.router.get('/:name', Ccomunity.getProfileByName);
+		this.router.get('/:name/vip', PlayerVipStatus.getVIPByName);
+
+		// UUID routes
+		this.router.get('/uuid', this.unknownRoute);
+		this.router.get('/uuid/:uuid', Ccomunity.getProfileByUUID);
+		this.router.get('/uuid/:uuid/vip', PlayerVipStatus.getVIPByUUID);
 	}
 }
 
