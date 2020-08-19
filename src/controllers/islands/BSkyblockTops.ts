@@ -1,8 +1,7 @@
 import * as Res from "../../services/response";
-import { getConnection } from "../../services/mysql-connection";
 import { Logger } from "../../utils/Logger";
+import { SQLManager } from "../../managers/SQLManager";
 
-const con = getConnection();
 const log = Logger('leaderboard:skyblock');
 
 interface BSkyblockObject {
@@ -36,33 +35,35 @@ namespace BSkyblockTopIslands {
 const generateSkyblockLeaderboard = async () => {
 	log.info("Leaderboard generation started.");
 	skyblockCahe = []; // Reset
-	await con.query('SELECT json FROM skyblock.`world.bentobox.level.objects.TopTenData`', (error: any, results: any) => {
-		if (error) {
+
+	const data = await SQLManager.knex.raw('SELECT json FROM skyblock.`world.bentobox.level.objects.TopTenData`')
+		.on('query-error', (error: any) => {
 			log.error(error);
 			skyblockCahe = [];
 			log.error("Leaderboard generation failed.");
-			return;
-		}
-		if (!results.length) {
-			skyblockCahe = [];
-			log.error("Leaderboard generation failed.");
-			return;
-		}
-		let leaderboard = JSON.parse(results[0].json) as BSkyblockObject;
+		});
+	if (!data.length) {
+		skyblockCahe = [];
+		log.error("Leaderboard generation failed.");
+		return;
+	}
 
-		for (let uuid in leaderboard.topTen) {
-			if (!leaderboard.topTen.hasOwnProperty(uuid)) { continue; }
-			// @ts-ignore
-			const value = leaderboard.topTen[uuid];
+	let leaderboard = JSON.parse(data[0][0].json) as BSkyblockObject;
 
-			con.query('SELECT nick FROM minigames.player_profile WHERE uuid = ?', [uuid], (_error: any, results: any) => {
-				if (results[0] !== undefined) {
-					//console.log({name: results[0].nick, value: value});
-					skyblockCahe.push({name: results[0].nick, uuid: uuid, value: value});
-				}
+	for (let uuid in leaderboard.topTen) {
+		if (!leaderboard.topTen.hasOwnProperty(uuid)) { continue; }
+		// @ts-ignore
+		const value = leaderboard.topTen[uuid];
+
+		const dataProfiles = await SQLManager.knex.select("nick").from("minigames.player_profile").where("uuid", uuid)
+			.on('query-error', (error: any) => {
+				log.error(error);
 			});
+
+		if (dataProfiles[0] !== undefined) {
+			skyblockCahe.push({name: dataProfiles[0].nick, uuid: uuid, value: value});
 		}
-	});
+	}
 
 	log.info("Leaderboard generation completed.");
 };
