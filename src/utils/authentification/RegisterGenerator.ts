@@ -1,9 +1,8 @@
 import { checkExists } from "./LoginGenerator";
 import { IConfig } from "config";
-import { getConnection } from "../../services/mysql-connection";
 import * as log from "signale";
+import { SQLManager } from "../../managers/SQLManager";
 
-const con = getConnection();
 const config: IConfig = require("config");
 const bcrypt = require('bcrypt');
 
@@ -65,14 +64,12 @@ class RegisterGenerator {
 
 async function setupPassword (username: string, password: string): Promise<void> {
 	return new Promise((resolve: any, reject: any) => {
-		con.query("UPDATE minigames.at_table SET craftbox_password = '" + password + "' WHERE nick = '" + username + "';",
-			(error: any, results: any) => {
-				if (error) {
-					log.error(error);
-					reject();
-				}
-				resolve(results);
+		const data = SQLManager.knex("minigames.at_table").update("craftbox_password", password).where("nick", username)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				reject();
 			});
+		resolve(data);
 	});
 }
 

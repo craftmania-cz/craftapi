@@ -1,9 +1,7 @@
 import * as Res from "../../services/response";
 import * as log from "signale";
-import { getConnection } from "../../services/mysql-connection";
 import TokenAuth from "../../utils/authentification/tokenAuth";
-
-const con = getConnection();
+import { SQLManager } from "../../managers/SQLManager";
 
 namespace Permissions {
 
@@ -14,16 +12,16 @@ namespace Permissions {
 
 		const player = req.params.name;
 
-		await con.query('SELECT craftbox_perms FROM minigames.at_table WHERE nick = ?;', [player], (error: any, results: any) => {
-			if (error) {
+		const data = await SQLManager.knex.select("craftbox_perms")
+			.from("minigames.at_table").where("nick", player)
+			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
-			}
-			if (!results.length) {
-				return Res.not_found(res);
-			}
-			Res.success(res, JSON.parse(results[0].craftbox_perms));
-		});
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		Res.success(res, JSON.parse(data[0].craftbox_perms));
 		return;
 	}
 }

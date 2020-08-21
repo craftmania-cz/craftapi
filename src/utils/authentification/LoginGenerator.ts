@@ -1,9 +1,8 @@
 import * as jwt from "jsonwebtoken";
 import { IConfig } from "config";
-import { getConnection } from "../../services/mysql-connection";
 import * as log from "signale";
+import { SQLManager } from "../../managers/SQLManager";
 
-const con = getConnection();
 const config: IConfig = require("config");
 const bcrypt = require('bcrypt');
 
@@ -66,51 +65,45 @@ class LoginGenerator {
 	}
 }
 
-export async function checkExists(name: string): Promise<boolean> {
-	return new Promise((resolve: any, reject: any) => {
-		con.query("SELECT nick FROM minigames.at_table WHERE nick = '" + name + "';",
-			(error: any, results: any) => {
-				if (error) {
-					log.error(error);
-					reject(false);
-				}
-				if (!results.length) {
-					resolve(false);
-				}
-				resolve(true);
+export async function checkExists(name: string): Promise<boolean> { //TODO: Check
+	return new Promise(async (resolve: any, reject: any) => {
+		const data = await SQLManager.knex.select("nick").from("minigames.at_table").where("nick", name)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				reject(false);
 			});
+		if (!data.length) {
+			resolve(false);
+		}
+		resolve(true);
 	});
 }
 
 async function fetchEncryptedPassword(name: string): Promise<string> {
-	return new Promise((resolve: any, reject: any) => {
-		con.query("SELECT craftbox_password FROM minigames.at_table WHERE nick = '" + name + "';",
-			(error: any, results: any) => {
-				if (error) {
-					log.error(error);
-					reject();
-				}
-				if (!results.length) {
-					reject();
-				}
-				resolve(results[0].craftbox_password);
+	return new Promise(async (resolve: any, reject: any) => {
+		const data = await SQLManager.knex.select("craftbox_password").from("minigames.at_table").where("nick", name)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				reject();
 			});
+		if (!data.length) {
+			reject();
+		}
+		resolve(data[0].craftbox_password);
 	});
 }
 
 async function fetchUserPermissions(name: string): Promise<any> {
-	return new Promise((resolve: any, reject: any) => {
-		con.query("SELECT craftbox_perms FROM minigames.at_table WHERE nick = '" + name + "';",
-			(error: any, results: any) => {
-				if (error) {
-					log.error(error);
-					reject();
-				}
-				if (!results.length) {
-					reject();
-				}
-				resolve(JSON.parse(results[0].craftbox_perms));
+	return new Promise(async (resolve: any, reject: any) => {
+		const data = await SQLManager.knex.select("craftbox_perms").from("minigames.at_table").where("nick", name)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				reject();
 			});
+		if (!data.length) {
+			reject();
+		}
+		resolve(JSON.parse(data[0].craftbox_perms));
 	});
 }
 
