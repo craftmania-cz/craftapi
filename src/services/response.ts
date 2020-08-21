@@ -34,6 +34,10 @@ namespace Res {
 		return res.status(500).json({status: 500, success: false, error: err.message , data: []});
 	}
 
+	export function errorWithText(res: Response, err: String) {
+		return res.status(500).json({status: 500, success: false, error: err , data: []});
+	}
+
 	export function noPerms(res: Response) {
 		return res.status(403).json({status: 403, success: false, error: 'You do not have permissions for that!' , data: []});
 	}

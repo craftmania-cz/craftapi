@@ -17,6 +17,7 @@ import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
 import MojangRoutes from "./routes/MojangRoutes";
 import { debugStream, winstonStream } from "./utils/Logger";
+import AdministrativeRoutes from "./routes/AdministrativeRoutes";
 
 class App {
 
@@ -66,6 +67,9 @@ class App {
 
 		// Internal logins
 		this.express.use('/account', AccountRoutes);
+
+		// Administrative routes (primárně pro CraftBox)
+		this.express.use('/admin', AdministrativeRoutes);
 
 		// Index route
 		this.express.use('/', function(_req: Request, res: Response) {
