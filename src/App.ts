@@ -9,7 +9,6 @@ import * as helmet from "helmet";
 import * as morgan from 'morgan';
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
-import GameRoutes from "./routes/GameRoutes";
 import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
@@ -52,9 +51,6 @@ class App {
 
 		// Server routes
 		this.express.use('/server', ServerRoutes);
-
-		// Game routes
-		this.express.use('/games', GameRoutes);
 
 		// Economy routes
 		this.express.use('/economy', EconomyRoutes);
