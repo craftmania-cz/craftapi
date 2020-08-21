@@ -6,8 +6,7 @@ import { SQLManager } from "../../managers/SQLManager";
 namespace Permissions {
 
 	export async function getAccountPermissions(req: any, res: any) {
-
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:ADMIN", "CRAFTBOX:PERMISSIONS"]);
+		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:MANAGER", "CRAFTBOX:GET_PERMISSIONS"]);
 		if (!perms) { return Res.noPerms(res); }
 
 		const player = req.params.name;
