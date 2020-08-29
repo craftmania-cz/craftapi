@@ -8,6 +8,7 @@ import { IConfig } from "config";
 import { Logger } from "./utils/Logger";
 import { generateSkyblockLeaderboard } from "./controllers/islands/BSkyblockTops";
 import { SQLManager } from "./managers/SQLManager";
+import { generateGlobalStats } from "./controllers/server/globalStats";
 
 const config: IConfig = require("config");
 
@@ -81,4 +82,5 @@ function onListening(): void {
 
 	setIntervalNoDelay(callServer, 10000); // 10 vteřin
 	setIntervalNoDelay(generateSkyblockLeaderboard, 60000 * 60); // 1 hodina
+	setIntervalNoDelay(generateGlobalStats, 60000 * 60); // 1 hodina
 }
