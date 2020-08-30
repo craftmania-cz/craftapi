@@ -2,7 +2,6 @@ import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
 import * as PlayerCount from "../controllers/server/playercount";
 import * as RandomRule from "../controllers/server/randomRule";
-import AdminList from "../controllers/server/at_list";
 import { GlobalStats } from "../controllers/server/globalStats";
 
 export class ServerRoutes {
@@ -21,7 +20,6 @@ export class ServerRoutes {
 		this.router.get('/', this.missingPropery);
 		this.router.get('/playercount', PlayerCount.getServerStatus);
 		this.router.get('/randomrule', RandomRule.getRandomRule);
-		this.router.get('/stafflist', AdminList.getAdminList);
 		this.router.get('/statistics', GlobalStats.getGlobalStatistis);
 	}
 
