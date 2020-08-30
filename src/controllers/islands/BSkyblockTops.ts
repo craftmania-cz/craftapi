@@ -36,7 +36,7 @@ const generateSkyblockLeaderboard = async () => {
 	log.info("Leaderboard generation started.");
 	skyblockCahe = []; // Reset
 
-	const data = await SQLManager.knex.raw('SELECT json FROM skyblock.`world.bentobox.level.objects.TopTenData`')
+	const data = await SQLManager.knex.raw('SELECT json FROM skyblock.`TopTenData`')
 		.on('query-error', (error: any) => {
 			log.error(error);
 			skyblockCahe = [];
@@ -49,11 +49,16 @@ const generateSkyblockLeaderboard = async () => {
 	}
 
 	let leaderboard = JSON.parse(data[0][0].json) as BSkyblockObject;
+	let leaderboardIndex = 1;
 
 	for (let uuid in leaderboard.topTen) {
 		if (!leaderboard.topTen.hasOwnProperty(uuid)) { continue; }
 		// @ts-ignore
 		const value = leaderboard.topTen[uuid];
+
+		if (leaderboardIndex > 50) {
+			continue;
+		}
 
 		const dataProfiles = await SQLManager.knex.select("nick").from("minigames.player_profile").where("uuid", uuid)
 			.on('query-error', (error: any) => {
@@ -63,6 +68,7 @@ const generateSkyblockLeaderboard = async () => {
 		if (dataProfiles[0] !== undefined) {
 			skyblockCahe.push({name: dataProfiles[0].nick, uuid: uuid, value: value});
 		}
+		leaderboardIndex++;
 	}
 
 	log.info("Leaderboard generation completed.");
