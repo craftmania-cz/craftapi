@@ -41,7 +41,7 @@ class TokenAuth {
 			return res.status(401).json({
 				status: 401,
 				success: false,
-				message: 'Auth token is not supplied'
+				message: 'Auth token nebyl pokytnut!'
 			});
 		}
 		if (typeof token !== "string" || token.startsWith('Bearer ')) {
@@ -57,7 +57,7 @@ class TokenAuth {
 						return res.status(401).json({
 							status: 401,
 							success: false,
-							message: 'Token is not valid'
+							message: 'Token je neplatný!'
 						});
 					} else {
 						// @ts-ignore
@@ -70,7 +70,7 @@ class TokenAuth {
 			return res.status(401).json({
 				status: 401,
 				success: false,
-				message: 'Auth token is not supplied'
+				message: 'Auth token nebyl pokytnut!'
 			});
 		}
 	}
