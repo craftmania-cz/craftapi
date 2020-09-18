@@ -38,7 +38,9 @@ class TokenAuth {
 	public async checkToken (req: Request, res: Response, next: NextFunction) {
 		let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
 		if (token === undefined) {
-			return res.status(400).json({
+			return res.status(401).json({
+				status: 401,
+				success: false,
 				message: 'Auth token is not supplied'
 			});
 		}
@@ -52,7 +54,8 @@ class TokenAuth {
 				// @ts-ignore
 				jwt.verify(token, config.get('app.token'), (err: any, decoded: object | string) => {
 					if (err) {
-						return res.json({
+						return res.status(401).json({
+							status: 401,
 							success: false,
 							message: 'Token is not valid'
 						});
@@ -64,7 +67,8 @@ class TokenAuth {
 				});
 			}
 		} else {
-			return res.json({
+			return res.status(401).json({
+				status: 401,
 				success: false,
 				message: 'Auth token is not supplied'
 			});
