@@ -14,7 +14,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -38,7 +38,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -62,7 +62,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -86,7 +86,8 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		console.log(data);
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -110,7 +111,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -134,7 +135,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -158,7 +159,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -182,7 +183,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -206,7 +207,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -230,7 +231,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -254,7 +255,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -278,7 +279,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -302,7 +303,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
@@ -326,7 +327,7 @@ namespace Mcmmo_stats {
 			return Res.not_found(res);
 		}
 		let finalResults: any = [];
-		data.forEach((data: any, index: number) => {
+		data[0].forEach((data: any, index: number) => {
 			index++;
 			finalResults.push({
 				"index": index,
