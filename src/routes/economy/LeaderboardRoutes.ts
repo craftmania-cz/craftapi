@@ -3,6 +3,7 @@ import * as Res from "../../services/response";
 import EconomyTopVotes from "../../controllers/economy/economy_topVotes";
 import EconomyTopCoins from "../../controllers/economy/economy_playercoins";
 import { BSkyblockTopIslands } from "../../controllers/islands/BSkyblockTops";
+import HalloweenStats from "../../controllers/player/halloween_stats";
 
 export class LeaderboardRoutes {
 	public router: Router;
@@ -34,6 +35,9 @@ export class LeaderboardRoutes {
 
 		// Skyblocks Islands
 		this.router.get('/skyblock-islands', BSkyblockTopIslands.getSkyblockIslandLeaderboard);
+
+		// Halloween
+		this.router.get('/halloween', HalloweenStats.getLeaderboard);
 	}
 }
 

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import * as Ccomunity from "../controllers/player/ccomunity_profile";
 import * as Res from "../services/response";
 import * as PlayerVipStatus from "../controllers/player/vipstatus_profile";
+import HalloweenStats from "../controllers/player/halloween_stats";
 
 export class PlayerRoutes {
 	public router: Router;
@@ -21,6 +22,7 @@ export class PlayerRoutes {
 		this.router.get('/', this.unknownRoute);
 		this.router.get('/:name', Ccomunity.getProfileByName);
 		this.router.get('/:name/vip', PlayerVipStatus.getVIPByName);
+		this.router.get('/:name/halloween', HalloweenStats.getStatsByName);
 
 		// UUID routes
 		this.router.get('/uuid', this.unknownRoute);
