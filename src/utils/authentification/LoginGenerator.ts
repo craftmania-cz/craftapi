@@ -2,6 +2,7 @@ import * as jwt from "jsonwebtoken";
 import { IConfig } from "config";
 import * as log from "signale";
 import { SQLManager } from "../../managers/SQLManager";
+import RankList from "../RankList";
 
 const config: IConfig = require("config");
 const bcrypt = require('bcrypt');
@@ -39,9 +40,9 @@ class LoginGenerator {
 
 			if (validPassword) {
 				// Fetch permisions
-				const permissions = await fetchUserPermissions(username);
+				const sqlRole = await fetchUserRole(username);
 
-				let token = jwt.sign({username: username, permissions: permissions},
+				let token = jwt.sign({username: username, role: sqlRole},
 					config.get('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
 
 				// return the JWT token for the future API calls
@@ -104,6 +105,22 @@ async function fetchUserPermissions(name: string): Promise<any> {
 			reject();
 		}
 		resolve(JSON.parse(data[0].craftbox_perms));
+	});
+}
+
+async function fetchUserRole(name: string): Promise<string> {
+	return new Promise(async (resolve: any, reject: any) => {
+		const data = await SQLManager.knex.select("rank").from("minigames.at_table").where("nick", name)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				reject();
+			});
+		if (!data.length) {
+			reject();
+		}
+		const rankNumber = data[0].rank;
+		const rankAsString = new RankList(rankNumber).getRankAsRole();
+		resolve(rankAsString);
 	});
 }
 
