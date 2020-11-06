@@ -1,6 +1,5 @@
 import * as Res from "../../services/response";
 import * as log from "signale";
-import TokenAuth from "../../utils/authentification/tokenAuth";
 import { SQLManager } from "../../managers/SQLManager";
 import * as jwt from "jsonwebtoken";
 import { IConfig } from "config";
@@ -10,9 +9,6 @@ const config: IConfig = require("config");
 namespace Permissions {
 
 	export async function getAccountPermissions(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:MANAGER", "CRAFTBOX:GET_PERMISSIONS"]);
-		if (!perms) { return Res.noPerms(res); }
-
 		const player = req.params.name;
 
 		const data = await SQLManager.knex.select("craftbox_perms")

@@ -6,17 +6,17 @@ const config: IConfig = require("config");
 
 interface JWTToken {
 	username: string;
-	permissions: string[];
+	role: string;
 	iat: number;
 	exp: number;
 }
 
 class TokenAuth {
 
-	public static async checkPerms (req: Request, requestedPermissions: string[] = []) {
+	public static async getRoleFromToken (req: Request) {
 		let token = req.headers['x-access-token'] || req.headers['authorization'];
 		if (token === undefined) {
-			return false;
+			return 'unknown';
 		}
 		if (typeof token !== "string" || token.startsWith('Bearer ')) {
 			// Remove Bearer from string
@@ -25,14 +25,13 @@ class TokenAuth {
 		if (token) {
 			if (typeof token === "string") {
 				const jwtToken = jwt.decode(token, config.get('app.token')) as JWTToken;
-				return jwtToken.permissions.some((v: string) => requestedPermissions.indexOf(v) !== -1);
+				return jwtToken.role;
 			} else {
-				return false;
+				return 'unknown';
 			}
 		} else {
-			return false;
+			return 'unknown';
 		}
-
 	}
 
 	public async checkToken (req: Request, res: Response, next: NextFunction) {

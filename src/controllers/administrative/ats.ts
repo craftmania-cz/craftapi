@@ -3,6 +3,10 @@ import * as log from "signale";
 import { SQLManager } from "../../managers/SQLManager";
 import { resolveBoolean } from "../../utils/VariableUtils";
 import TokenAuth from "../../utils/authentification/tokenAuth";
+import { AccessControl } from "accesscontrol";
+import Grants from "../../utils/authentification/Grants";
+
+const ac = new AccessControl(new Grants().getGrants);
 
 namespace Ats {
 
@@ -29,8 +33,11 @@ namespace Ats {
 	}
 
 	export async function getMember(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:GET_ATS_OTHERS"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).read('ats');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const paramMember = req.params.id;
 
@@ -114,8 +121,11 @@ namespace Ats {
 	}
 
 	export async function postNewMember(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:MANAGER", "CRAFTBOX:ATS_CREATE"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).create('ats');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const nick = req.body.nick;
 		const uuid = req.body.uuid;
@@ -143,8 +153,11 @@ namespace Ats {
 	}
 
 	export async function editMemberByNick(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:MANAGER", "CRAFTBOX:ATS_EDIT"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).update('ats');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const nick = req.params.id;
 		if (!isNaN(nick)) {
@@ -196,8 +209,11 @@ namespace Ats {
 	}
 
 	export async function deleteMember(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:MANAGER", "CRAFTBOX:ATS_DELETE"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).delete('ats');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const nick = req.params.id;
 		if (!isNaN(nick)) {

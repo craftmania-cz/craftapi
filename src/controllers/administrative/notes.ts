@@ -2,12 +2,19 @@ import { SQLManager } from "../../managers/SQLManager";
 import * as log from "signale";
 import * as Res from "../../services/response";
 import TokenAuth from "../../utils/authentification/tokenAuth";
+import { AccessControl } from "accesscontrol";
+import Grants from "../../utils/authentification/Grants";
+
+const ac = new AccessControl(new Grants().getGrants);
 
 namespace Notes {
 
 	export async function getAllNotes(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:GET_NOTES"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).read('notes');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const data = await SQLManager.knex.select("*").from("bungeecord.notes_data").orderBy("id", "DESC")
 			.on('query-error', (error: any) => {
@@ -33,8 +40,11 @@ namespace Notes {
 	}
 
 	export async function getNoteById(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:GET_NOTES"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).read('notes');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const paramIdOrPlayer = req.params.id;
 		let data = null;
@@ -74,8 +84,11 @@ namespace Notes {
 	}
 
 	export async function postNewNote(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:ADD_NOTES"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).create('notes');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const player = req.body.player;
 		const note = req.body.note;
@@ -98,8 +111,11 @@ namespace Notes {
 	}
 
 	export async function editNoteById(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:EDIT_NOTES"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).update('notes');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const noteId = req.params.id;
 		if (isNaN(noteId)) {
@@ -126,8 +142,11 @@ namespace Notes {
 	}
 
 	export async function deleteById(req: any, res: any) {
-		const perms = await TokenAuth.checkPerms(req, ["CRAFTBOX:HELPER", "CRAFTBOX:DELETE_NOTES"]);
-		if (!perms) { return Res.noPerms(res); }
+		const role = await TokenAuth.getRoleFromToken(req);
+		const permission = ac.can(role).delete('notes');
+		if (!permission.granted) {
+			return Res.noPerms(res);
+		}
 
 		const noteId = req.params.id;
 
