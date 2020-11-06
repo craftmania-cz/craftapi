@@ -1,26 +1,16 @@
 import * as Res from "../../services/response";
-import * as log from "signale";
-import { SQLManager } from "../../managers/SQLManager";
 import * as jwt from "jsonwebtoken";
 import { IConfig } from "config";
+import { AccessControl } from "accesscontrol";
+import Grants from "../../utils/authentification/Grants";
 
 const config: IConfig = require("config");
+const ac = new AccessControl(new Grants().getGrants);
 
 namespace Permissions {
 
-	export async function getAccountPermissions(req: any, res: any) {
-		const player = req.params.name;
-
-		const data = await SQLManager.knex.select("craftbox_perms")
-			.from("minigames.at_table").where("nick", player)
-			.on('query-error', (error: any) => {
-				log.error(error);
-				return Res.error(res, error);
-			});
-		if (!data.length) {
-			return Res.not_found(res);
-		}
-		Res.success(res, JSON.parse(data[0].craftbox_perms));
+	export async function getPermissions(_req: any, res: any) {
+		Res.success(res, ac.getGrants());
 		return;
 	}
 
