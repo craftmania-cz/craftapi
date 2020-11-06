@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && tsc",
-    "build-ci": "tsc",
+    "build-ci": "tsc -p tsconfig.production.json",
     "clean": "rm -rf dist/* && touch dist/.gitkeep",
     "start": "node dist/server.js",
     "watch": "nodemon dist/server.js",
@@ -40,6 +40,8 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@sentry/node": "^5.27.3",
+    "@sentry/tracing": "^5.27.3",
     "@types/axios": "^0.14.0",
     "@types/bcrypt": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
