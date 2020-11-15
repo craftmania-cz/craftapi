@@ -25,7 +25,7 @@ export class AccountRoutes {
 		this.router.post('/register', registerHandler.register);
 
 		let tokenAuth = new TokenAuth();
-		this.router.get('/permissions', tokenAuth.checkToken, Permissions.getPermissions);
+		this.router.get('/permissions', Permissions.getPermissions);
 
 		this.router.post('/tokenCheck', Permissions.checkIfTokensIsValid);
 
