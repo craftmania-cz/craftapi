@@ -24,6 +24,7 @@ export class LeaderboardLevelsRoutes {
 		this.router.get('/vanilla', EconomyTopLevels.getTopVanillaLevels);
 		this.router.get('/skycloud', EconomyTopLevels.getTopSkycloudLevels);
 		this.router.get('/hardcore-vanilla', EconomyTopLevels.getTopHardcoreVanillaLevels);
+		this.router.get('/prison', EconomyTopLevels.getTopPrisonLevels);
 	}
 
 }

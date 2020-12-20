@@ -13,6 +13,8 @@ interface EconomyLevelPlayer {
 	skycloud_experience: number;
 	hardcore_vanilla_level: number;
 	hardcore_vanilla_experience: number;
+	prison_level: number;
+	prison_experience: number;
 	groups: any;
 }
 

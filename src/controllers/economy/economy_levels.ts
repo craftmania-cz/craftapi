@@ -215,6 +215,37 @@ namespace EconomyTopLevels {
 		return;
 	}
 
+	export async function getTopPrisonLevels(_req: any, res: any) {
+		const data = await SQLManager.knex.select("nick", "uuid",  "prison_level", "prison_experience", "groups")
+			.from("player_profile").orderBy("prison_level", "DESC").orderBy("prison_experience", "DESC").limit(50)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data.forEach((player: EconomyLevelPlayer, index: number) => {
+			index++;
+			const levelPercentage = calcPercentage(player.prison_experience,
+				LevelUtils.getExpFromLevelToNext(player.prison_level));
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"level": player.prison_level,
+				"experience": player.prison_experience,
+				"toNextLevel": LevelUtils.getExpFromLevelToNext(player.prison_level),
+				"percentage": levelPercentage,
+				"groups": JSON.parse(player.groups)
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
 }
 
 export default EconomyTopLevels;
