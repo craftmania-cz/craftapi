@@ -18,6 +18,9 @@ import AccountRoutes from "./routes/AccountRoutes";
 import MojangRoutes from "./routes/MojangRoutes";
 import { debugStream, winstonStream } from "./utils/Logger";
 import AdministrativeRoutes from "./routes/AdministrativeRoutes";
+import { IConfig } from "config";
+
+const config: IConfig = require("config");
 
 class App {
 
@@ -77,6 +80,7 @@ class App {
 				"status": 200,
 				"data": {
 					"status": 'UP',
+					"pod-id": config.get('app.pod-id'),
 					"documentation": 'https://api-docs.craftmania.cz/'
 				}
 			});

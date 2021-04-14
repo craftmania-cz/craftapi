@@ -3,7 +3,8 @@
         "port": 3000,
         "environment": "development",
         "token": "secret-token-for-auth",
-        "adminKey": "admin-key-for-secret-routes"
+        "adminKey": "admin-key-for-secret-routes",
+        "pod-id": "random-pod-id"
     },
     "mysql": {
         "host": "0.0.0.0",
