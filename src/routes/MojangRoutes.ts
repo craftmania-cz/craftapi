@@ -17,10 +17,9 @@ export class MojangRoutes {
 	}
 
 	public init() {
-		let tokenAuth = new TokenAuth();
-		this.router.get('/uuid/:name', tokenAuth.checkToken, Mojang.getPlayerMojangUUID);
-		this.router.get('/namehistory/:uuid', tokenAuth.checkToken, Mojang.getPlayerMojangNameHistory);
-		this.router.get('/profile/:uuid', tokenAuth.checkToken, Mojang.getPlayerMojangProfile);
+		this.router.get('/uuid/:name', Mojang.getPlayerMojangUUID);
+		this.router.get('/namehistory/:uuid', Mojang.getPlayerMojangNameHistory);
+		this.router.get('/profile/:uuid', Mojang.getPlayerMojangProfile);
 	}
 }
 
