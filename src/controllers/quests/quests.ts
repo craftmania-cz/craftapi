@@ -2,9 +2,9 @@ import * as Res from "../../services/response";
 import * as log from "signale";
 import { SQLManager } from "../../managers/SQLManager";
 
-namespace Achievements {
+namespace Quests {
 
-	export async function getAchievementLog(_req: any, res: any) {
+	export async function getQuestLog(_req: any, res: any) {
 		const data = await SQLManager.knex.select("*")
 			.from("minigames.player_achievement_log").orderBy("date", "DESC").limit(100)
 			.on('query-error', (error: any) => {
@@ -19,9 +19,9 @@ namespace Achievements {
 			finalResults.push({
 				"nick": data.nick,
 				"uuid": data.uuid,
-				"ach_id": null,
-				"ach_name": data.ach_name,
-				"ach_value": data.ach_value,
+				"quest_id": null,
+				"quest_name": data.ach_name,
+				"quest_value": data.ach_value,
 				"server": data.ach_server,
 				"date": data.date
 			});
@@ -32,4 +32,4 @@ namespace Achievements {
 	}
 }
 
-export default Achievements;
+export default Quests;

@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
-import Achievements from "../controllers/achievements/achievements";
+import Quests from "../controllers/quests/quests";
 
-export class AchievementRoutes {
+export class QuestRoutes {
 	public router: Router;
 
 	constructor() {
@@ -11,16 +11,16 @@ export class AchievementRoutes {
 	}
 
 	public missingRoute(_req: Request, res: Response, _next: NextFunction) {
-		res.json(Res.property_required(res, 'Achievement route').json);
+		res.json(Res.property_required(res, 'Quest route').json);
 	}
 
 	public init() {
 		this.router.get('/', this.missingRoute);
-		this.router.get('/log', Achievements.getAchievementLog);
+		this.router.get('/log', Quests.getQuestLog);
 	}
 }
 
-const achievementRoutes = new AchievementRoutes();
-achievementRoutes.init();
+const questRoutes = new QuestRoutes();
+questRoutes.init();
 
-export default achievementRoutes.router;
+export default questRoutes.router;
