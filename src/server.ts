@@ -96,6 +96,6 @@ function onListening(): void {
 	}
 
 	setIntervalNoDelay(callServer, 10000); // 10 vteřin
-	setIntervalNoDelay(generateSkyblockLeaderboard, 60000 * 60); // 1 hodina
+	//setIntervalNoDelay(generateSkyblockLeaderboard, 60000 * 60); // 1 hodina
 	setIntervalNoDelay(generateGlobalStats, 60000 * 60); // 1 hodina
 }
