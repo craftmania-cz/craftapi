@@ -4,12 +4,13 @@ interface CcomunityProfile {
 	discriminator: string;
 	nick: string;
 	uuid: string;
-	web_group: number;
 	registred: bigint;
 	last_online: bigint;
 	last_server: bigint;
 	is_online: number;
 	played_time: number;
+	mc_version: string;
+	gender: number;
 
 	// VIP
 	groups: any;
@@ -38,6 +39,10 @@ interface CcomunityProfile {
 	prison_experience: number;
 	vanilla_level: number;
 	vanilla_experience: number;
+	anarchy_level: number;
+	anarchy_experience: number;
+
+	// Old servers
 	skycloud_level: number;
 	skycloud_experience: number;
 	hardcore_vanilla_level: number;
@@ -54,19 +59,15 @@ interface CcomunityProfile {
 	month_votes: number;
 	week_votes: number;
 	last_vote: bigint;
+	vote_pass: number;
 
 	// Discord
 	discord_user_id: string;
+	discord_voice_activity: bigint;
+	discord_text_activity: number;
 
 	// Socials
 	status: string;
-	soc_facebook: string;
-	soc_twitter: string;
-	soc_ytb: string;
-	soc_steam: string;
-	soc_twitch: string;
-	soc_web: string;
-	mc_version: string;
 
 	// Bonuses
 	lobby_daily_bonus: number;

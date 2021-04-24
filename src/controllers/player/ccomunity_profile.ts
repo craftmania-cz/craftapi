@@ -11,19 +11,19 @@ namespace Ccomunity {
 			"discriminator": playerObject.discriminator,
 			"nick": playerObject.nick,
 			"uuid": playerObject.uuid,
-			"web_group": playerObject.web_group,
 			"registred": playerObject.registred,
 			"last_online": playerObject.last_online,
 			"last_server": playerObject.last_server,
 			"is_online": resolveBoolean(playerObject.is_online),
 			"played_time": playerObject.played_time,
 			"mc_version": playerObject.mc_version,
+			"gender": playerObject.gender,
 			"economy": {
 				"craftcoins": playerObject.craftcoins,
 				"crafttokens": playerObject.crafttokens,
 				"votetokens": playerObject.votetokens_2,
 				"karma": playerObject.karma,
-				"achievement_points": playerObject.achievement_points,
+				"quest_points": playerObject.achievement_points,
 				"event_points": playerObject.event_points,
 				"bug_points": playerObject.bug_points
 			},
@@ -43,28 +43,25 @@ namespace Ccomunity {
 				"vanilla_experience": playerObject.vanilla_experience,
 				"prison_level": playerObject.prison_level,
 				"prison_experience": playerObject.prison_experience,
-				"skycloud_level": playerObject.skycloud_level,
-				"skycloud_experience": playerObject.skycloud_experience,
-				"hardcore_vanilla_level": playerObject.hardcore_vanilla_level,
-				"hardcore_vanilla_experience": playerObject.hardcore_vanilla_experience
+				"anarchy_level": playerObject.anarchy_level,
+				"anarchy_experience": playerObject.anarchy_experience,
+				"old_servers_level": playerObject.skycloud_level + playerObject.hardcore_vanilla_level,
+				"old_servers_experience": playerObject.skycloud_experience + playerObject.hardcore_vanilla_experience
 			},
 			"votes": {
 				"total": playerObject.total_votes,
 				"month": playerObject.month_votes,
 				"week": playerObject.week_votes,
-				"last_vote": playerObject.last_vote
+				"last_vote": playerObject.last_vote,
+				"vote_pass": playerObject.vote_pass
 			},
 			"social": {
-				"status": playerObject.status,
-				"facebook": playerObject.soc_facebook,
-				"twitter": playerObject.soc_twitter,
-				"twitch": playerObject.soc_twitch,
-				"steam": playerObject.soc_steam,
-				"youtube": playerObject.soc_ytb,
-				"web": playerObject.soc_web
+				"status": playerObject.status
 			},
 			"discord": {
-				"id": playerObject.discord_user_id
+				"id": playerObject.discord_user_id,
+				"voice_activity": playerObject.discord_voice_activity,
+				"text_activity": playerObject.discord_text_activity
 			},
 			"tags": JSON.parse(playerObject.tags),
 			"lobby": {
