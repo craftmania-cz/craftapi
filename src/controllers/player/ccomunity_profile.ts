@@ -60,7 +60,7 @@ namespace Ccomunity {
 			},
 			"discord": {
 				"id": playerObject.discord_user_id,
-				"voice_activity": playerObject.discord_voice_activity,
+				"voice_activity": +(playerObject.discord_voice_activity / 1000).toFixed(),
 				"text_activity": playerObject.discord_text_activity
 			},
 			"tags": JSON.parse(playerObject.tags),

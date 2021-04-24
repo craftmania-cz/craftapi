@@ -63,7 +63,7 @@ interface CcomunityProfile {
 
 	// Discord
 	discord_user_id: string;
-	discord_voice_activity: bigint;
+	discord_voice_activity: number;
 	discord_text_activity: number;
 
 	// Socials
