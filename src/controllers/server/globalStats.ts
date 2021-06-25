@@ -175,6 +175,16 @@ const generateGlobalStats = async () => {
 	}
 	globalStatsCache.playersWithVIP = parseInt(totalVIPsOnServerData[0][0].total);
 
+	// Fetch originals players
+	const totalOriginalsPlayersData = await SQLManager.knex.raw('SELECT COUNT(*) as total FROM `bungeecord`.autologin_players;')
+		.on('query-error', (error: any) => {
+			log.error(error);
+		});
+	if (!totalOriginalsPlayersData.length) {
+		return;
+	}
+	globalStatsCache.totalMcOriginals = parseInt(totalOriginalsPlayersData[0][0].total);
+
 	log.info("Global stats generation completed.");
 };
 
