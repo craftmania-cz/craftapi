@@ -42,6 +42,11 @@ export class LeaderboardRoutes {
 
 		// Halloween
 		this.router.get('/halloween', HalloweenStats.getLeaderboard);
+
+		// Balance
+		this.router.get('/balance/survival', EconomyTopCoins.getEconomyTopSurvival);
+		this.router.get('/balance/skyblock', EconomyTopCoins.getEconomyTopSkyblock);
+		this.router.get('/balance/prison', EconomyTopCoins.getEconomyTopPrison);
 	}
 }
 

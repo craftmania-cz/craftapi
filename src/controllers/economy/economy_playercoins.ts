@@ -160,6 +160,87 @@ namespace EconomyTopCoins {
 		return;
 	}
 
+	export async function getEconomyTopSkyblock(_req: any, res: any) {
+		const serverId = 'skyblock';
+		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data[0].forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"balance": player.balance,
+				"groups": JSON.parse(player.groups),
+				"last_update": player.last_update
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
+	export async function getEconomyTopSurvival(_req: any, res: any) {
+		const serverId = 'survival';
+		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data[0].forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"balance": player.balance,
+				"groups": JSON.parse(player.groups),
+				"last_update": player.last_update
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
+	export async function getEconomyTopPrison(_req: any, res: any) {
+		const serverId = 'prison';
+		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data[0].forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"balance": player.balance,
+				"groups": JSON.parse(player.groups),
+				"last_update": player.last_update
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
 }
 
 export default EconomyTopCoins;
