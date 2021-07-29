@@ -6,6 +6,8 @@ import { SQLManager } from "../../managers/SQLManager";
 
 namespace EconomyTopLevels {
 
+	//TODO: Refactor jako mcMMO
+
 	const calcPercentage = (first: number, second: number) => {
 		return first / (second / 100);
 	};
@@ -237,6 +239,38 @@ namespace EconomyTopLevels {
 				"level": player.prison_level,
 				"experience": player.prison_experience,
 				"toNextLevel": LevelUtils.getExpFromLevelToNext(player.prison_level),
+				"percentage": levelPercentage,
+				"groups": JSON.parse(player.groups)
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
+	export async function getTopVanilla116Levels(_req: any, res: any) {
+		const data = await SQLManager.knex.select("nick", "uuid",  "vanilla_116_level", "vanilla_116_experience", "groups")
+			.from("player_profile").orderBy("vanilla_116_level", "DESC").orderBy("vanilla_116_experience", "DESC").limit(50)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data.forEach((player: any, index: number) => {
+			index++;
+			const levelPercentage = calcPercentage(player.vanilla_116_experience,
+				LevelUtils.getExpFromLevelToNext(player.vanilla_116_level));
+			// @ts-ignore
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"level": player.vanilla_116_level,
+				"experience": player.vanilla_116_experience,
+				"toNextLevel": LevelUtils.getExpFromLevelToNext(player.vanilla_116_level),
 				"percentage": levelPercentage,
 				"groups": JSON.parse(player.groups)
 			});
