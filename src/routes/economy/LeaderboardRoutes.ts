@@ -47,6 +47,8 @@ export class LeaderboardRoutes {
 		this.router.get('/balance/survival', EconomyTopCoins.getEconomyTopSurvival);
 		this.router.get('/balance/skyblock', EconomyTopCoins.getEconomyTopSkyblock);
 		this.router.get('/balance/prison', EconomyTopCoins.getEconomyTopPrison);
+
+		this.router.get('/dragon-slayer/vanilla', EconomyTopCoins.getVanillaDragonSlayerData);
 	}
 }
 

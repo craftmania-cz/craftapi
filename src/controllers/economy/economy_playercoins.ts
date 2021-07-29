@@ -160,6 +160,34 @@ namespace EconomyTopCoins {
 		return;
 	}
 
+	export async function getVanillaDragonSlayerData(_req: any, res: any) {
+		const data = await SQLManager.knex.raw("SELECT vanilla_dragonslayer_data.nick, vanilla_dragonslayer_data.uuid, vanilla_dragonslayer_data.dragon_kills, vanilla_dragonslayer_data.dragon_assists, vanilla_dragonslayer_data.last_kill, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.vanilla_dragonslayer_data, minigames.player_profile WHERE player_profile.uuid = vanilla_dragonslayer_data.uuid ORDER BY dragon_kills DESC LIMIT 100")
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data[0].forEach((player: any, index: number) => {
+			if (player.dragon_kills >= 1 || player.dragon_assists >= 1) {
+				index++;
+				finalResults.push({
+					"index": index,
+					"nick": player.nick,
+					"uuid": player.uuid,
+					"dragon_kills": player.dragon_kills,
+					"dragon_assists": player.dragon_assists,
+					"last_kill": player.last_kill
+				});
+			}
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
 	export async function getEconomyTopSkyblock(_req: any, res: any) {
 		const serverId = 'skyblock';
 		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
