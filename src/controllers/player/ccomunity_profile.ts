@@ -25,6 +25,7 @@ namespace Ccomunity {
 				"karma": playerObject.karma,
 				"quest_points": playerObject.achievement_points,
 				"event_points": playerObject.event_points,
+				"season_points": playerObject.season_points,
 				"bug_points": playerObject.bug_points
 			},
 			"groups": {

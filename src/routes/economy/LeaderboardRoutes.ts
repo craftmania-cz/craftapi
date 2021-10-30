@@ -33,6 +33,7 @@ export class LeaderboardRoutes {
 		this.router.get('/played-time', EconomyTopCoins.getTopPlayedTime);
 		this.router.get('/achievement-points', EconomyTopCoins.getTopAchievementPoints);
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
+		this.router.get('/season-points', EconomyTopCoins.getTopSeasonPoints);
 
 		// Prison Ranks
 		this.router.get('/prison-ranks', EconomyOthers.getPrisonRankLeaderboard);

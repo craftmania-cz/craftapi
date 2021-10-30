@@ -52,6 +52,7 @@ interface CcomunityProfile {
 	karma: number;
 	achievement_points: number;
 	event_points: number;
+	season_points: number;
 	bug_points: number;
 
 	// Votes
