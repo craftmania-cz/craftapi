@@ -160,6 +160,32 @@ namespace EconomyTopCoins {
 		return;
 	}
 
+	export async function getTopSeasonPoints(_req: any, res: any) {
+		const data = await SQLManager.knex.select("nick", "uuid",  "season_points", "groups")
+			.from("player_profile").orderBy("season_points", "DESC").limit(50)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data.forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"value": player.season_points,
+				"groups": JSON.parse(player.groups)
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
 	export async function getVanillaDragonSlayerData(_req: any, res: any) {
 		const data = await SQLManager.knex.raw("SELECT vanilla_dragonslayer_data.nick, vanilla_dragonslayer_data.uuid, vanilla_dragonslayer_data.dragon_kills, vanilla_dragonslayer_data.dragon_assists, vanilla_dragonslayer_data.last_kill, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.vanilla_dragonslayer_data, minigames.player_profile WHERE player_profile.uuid = vanilla_dragonslayer_data.uuid ORDER BY dragon_kills DESC LIMIT 100")
 			.on('query-error', (error: any) => {
