@@ -59,6 +59,10 @@ namespace HalloweenStats {
 			const sqlData = data[i] as RowPlayerStats;
 			const convertedStats = JSON.parse(sqlData.stats) as HalloweenPlayerStats;
 
+			if (convertedStats.games_played === undefined) {
+				continue;
+			}
+
 			finalArray.push({
 				nick: sqlData.nickname,
 				uuid: sqlData.uuid,
