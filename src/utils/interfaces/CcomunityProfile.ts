@@ -83,9 +83,9 @@ interface CcomunityProfile {
 	lobby_bonus_claimed_extra: number;
 	lobby_bonus_claimed_discord_connect: number;
 	lobby_bonus_claimed_discord_booster: number;
-	lobby_bonus_claimed_discord_voice_actvity_1h: number;
-	lobby_bonus_claimed_discord_voice_actvity_10h: number;
-	lobby_bonus_claimed_discord_voice_actvity_24h: number;
+	lobby_bonus_claimed_discord_voice_activity_1h: number;
+	lobby_bonus_claimed_discord_voice_activity_10h: number;
+	lobby_bonus_claimed_discord_voice_activity_24h: number;
 
 	// Watch lobby things
 	seen_latest_news: bigint;

@@ -82,9 +82,9 @@ namespace Ccomunity {
 						"extra": resolveBoolean(playerObject.lobby_bonus_claimed_extra),
 						"discord_connect": resolveBoolean(playerObject.lobby_bonus_claimed_discord_connect),
 						"discord_booster": resolveBoolean(playerObject.lobby_bonus_claimed_discord_booster),
-						"discord_voice_actvity_1h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_actvity_1h),
-						"discord_voice_actvity_10h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_actvity_10h),
-						"discord_voice_actvity_24h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_actvity_24h),
+						"discord_voice_activity_1h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_1h),
+						"discord_voice_activity_10h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_10h),
+						"discord_voice_activity_24h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_24h),
 					}
 				}
 			},
