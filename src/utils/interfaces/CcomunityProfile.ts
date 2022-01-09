@@ -65,15 +65,28 @@ interface CcomunityProfile {
 	// Discord
 	discord_user_id: string;
 	discord_voice_activity: number;
+	month_discord_voice_activity: number;
 	discord_text_activity: number;
+	discord_booster: number;
 
 	// Socials
 	status: string;
 
 	// Bonuses
-	lobby_daily_bonus: number;
-	lobby_vip_bonus: number;
-	lobby_extra_bonus: number;
+	lobby_bonus_streak: number;
+	lobby_bonus_claimed_daily: number;
+	lobby_bonus_claimed_playtime_1d: number;
+	lobby_bonus_claimed_playtime_7d: number;
+	lobby_bonus_claimed_playtime_14d: number;
+	lobby_bonus_claimed_playtime_30d: number;
+	lobby_bonus_claimed_playtime_halfyear: number;
+	lobby_bonus_claimed_monthly_vip: number;
+	lobby_bonus_claimed_extra: number;
+	lobby_bonus_claimed_discord_connect: number;
+	lobby_bonus_claimed_discord_booster: number;
+	lobby_bonus_claimed_discord_voice_activity_1h: number;
+	lobby_bonus_claimed_discord_voice_activity_10h: number;
+	lobby_bonus_claimed_discord_voice_activity_24h: number;
 
 	// Watch lobby things
 	seen_latest_news: bigint;

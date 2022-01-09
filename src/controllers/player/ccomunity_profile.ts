@@ -62,14 +62,32 @@ namespace Ccomunity {
 			"discord": {
 				"id": playerObject.discord_user_id,
 				"voice_activity": +(playerObject.discord_voice_activity / 1000).toFixed(),
-				"text_activity": playerObject.discord_text_activity
+				"month_voice_activity": +(playerObject.month_discord_voice_activity / 1000).toFixed(),
+				"text_activity": playerObject.discord_text_activity,
+				"booster": resolveBoolean(playerObject.discord_booster)
 			},
 			"tags": JSON.parse(playerObject.tags),
 			"lobby": {
-				"daily_basic_reward": resolveBoolean(playerObject.lobby_daily_bonus),
-				"monthly_vip_reward": resolveBoolean(playerObject.lobby_vip_bonus),
 				"seen_latest_news": playerObject.seen_latest_news,
-				"seen_changelog_time": playerObject.seen_changelog_time
+				"seen_changelog_time": playerObject.seen_changelog_time,
+				"bonus": {
+					"streak": playerObject.lobby_bonus_streak,
+					"claimed": {
+						"daily": resolveBoolean(playerObject.lobby_bonus_claimed_daily),
+						"playtime_1d": resolveBoolean(playerObject.lobby_bonus_claimed_playtime_1d),
+						"playtime_7d": resolveBoolean(playerObject.lobby_bonus_claimed_playtime_7d),
+						"playtime_14d": resolveBoolean(playerObject.lobby_bonus_claimed_playtime_14d),
+						"playtime_30d": resolveBoolean(playerObject.lobby_bonus_claimed_playtime_30d),
+						"playtime_halfyear": resolveBoolean(playerObject.lobby_bonus_claimed_playtime_halfyear),
+						"monthly_vip": resolveBoolean(playerObject.lobby_bonus_claimed_monthly_vip),
+						"extra": resolveBoolean(playerObject.lobby_bonus_claimed_extra),
+						"discord_connect": resolveBoolean(playerObject.lobby_bonus_claimed_discord_connect),
+						"discord_booster": resolveBoolean(playerObject.lobby_bonus_claimed_discord_booster),
+						"discord_voice_activity_1h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_1h),
+						"discord_voice_activity_10h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_10h),
+						"discord_voice_activity_24h": resolveBoolean(playerObject.lobby_bonus_claimed_discord_voice_activity_24h),
+					}
+				}
 			},
 			"deprecated": {
 				"votetokens": playerObject.votetokens,
