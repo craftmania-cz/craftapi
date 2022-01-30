@@ -1,5 +1,6 @@
-import * as Knex from 'knex';
 import { IConfig } from "config";
+import { attachPaginate } from "knex-paginate";
+import { Knex, knex } from "knex";
 
 export class SQLManager {
 	public static knex: Knex;
@@ -16,7 +17,7 @@ export class SQLManager {
 
 	constructor() {
 		const config: IConfig = require("config");
-		SQLManager.knex = Knex({
+		const knexConfig: Knex.Config = {
 			client: 'mysql2',
 			connection: {
 				host: config.get('mysql.host'),
@@ -29,7 +30,11 @@ export class SQLManager {
 				min: 1,
 				max: 10,
 			},
-		});
+		};
+
+		SQLManager.knex = knex(knexConfig);
+
+		attachPaginate();
 		this.setup();
 	}
 
