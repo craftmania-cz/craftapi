@@ -1,4 +1,4 @@
-interface IBanlistLog {
+export interface IBanlistLog {
 	id: number;
 	uuid: string;
 	name: string;
@@ -12,4 +12,12 @@ interface IBanlistLog {
 	removed_by_date: Date;
 	removed_by_name: string | null;
 	removed_by_uuid: string | null;
+}
+
+export interface IPaginateObject {
+	totalItems: number;
+	lastPage: number;
+	currentPage: number;
+	fromItem: number;
+	toItem: number;
 }

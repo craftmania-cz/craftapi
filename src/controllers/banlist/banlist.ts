@@ -1,7 +1,8 @@
 import * as Res from "../../services/response";
 import { SQLManager } from "../../managers/SQLManager";
 import * as log from "signale";
-import { resolveBoolean } from "../../utils/VariableUtils";
+import { convertStringToNumber, resolveBoolean } from "../../utils/VariableUtils";
+import { IBanlistLog, IPaginateObject } from "./IBanlistLog";
 
 namespace Banlist {
 
@@ -58,7 +59,7 @@ namespace Banlist {
 			.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
 			.select(getSelectFields(type))
 			.orderBy('punishment.id', 'desc')
-			.paginate({perPage: 40, currentPage: pageNumber})
+			.paginate({perPage: 40, currentPage: pageNumber, isLengthAware: true})
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
@@ -74,7 +75,15 @@ namespace Banlist {
 			returnArray.push(remapBanlistObject(objectData));
 		}
 
-		Res.success(res, returnArray);
+		const pageObject: IPaginateObject = {
+			totalItems: data.pagination.total,
+			lastPage: data.pagination.lastPage,
+			currentPage: convertStringToNumber(data.pagination.currentPage),
+			fromItem: data.pagination.from,
+			toItem: data.pagination.to,
+		};
+
+		Res.successPaginated(res, pageObject, returnArray);
 	}
 
 	function getSelectFields(type: string): Array<string> {
