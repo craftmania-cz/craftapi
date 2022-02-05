@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import * as Res from "../services/response";
-import Banlist from "../controllers/banlist/banlist";
+import Banlist from "../controllers/banlist/banlistPunishmentList";
+import { BanlistGlobalStats } from "../controllers/banlist/banlistGlobalStats";
 
 export class BanlistRoutes {
 	public router: Router;
@@ -15,7 +16,7 @@ export class BanlistRoutes {
 	}
 
 	public init() {
-		//this.router.get('/stats');
+		this.router.get('/stats', BanlistGlobalStats.getStatistics);
 		this.router.get('/list/:type', Banlist.getGlobalList);
 		this.router.get('/list/:type/:page', Banlist.getGlobalList);
 		//this.router.get('/lookup/:nick/:type/:page');
