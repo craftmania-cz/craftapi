@@ -60,4 +60,3 @@ jobs:
           file: ./Dockerfile
           tags: |
             ghcr.io/craftmania-cz/craftapi:${{ github.run_id }}
-            ghcr.io/craftmania-cz/craftapi:${{ github.ref_name }}
