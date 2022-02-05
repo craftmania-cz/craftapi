@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import { IPaginateObject } from "../controllers/banlist/IBanlistLog";
 
 namespace Res {
 
@@ -20,6 +21,10 @@ namespace Res {
 
 	export function success(res: Response, object: Object) {
 		return res.status(200).json({status: 200, success: true, data: object});
+	}
+
+	export function successPaginated(res: Response, paginateObject: IPaginateObject, object: Object) {
+		return res.status(200).json({status: 200, success: true, page: paginateObject, data: object});
 	}
 
 	export function property_required(res: Response, property: String) {

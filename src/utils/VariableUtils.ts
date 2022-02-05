@@ -1,8 +1,8 @@
 
-const resolveBoolean = (value: number) => {
+export const resolveBoolean = (value: number) => {
 	return value === 1;
 };
 
-export {
-	resolveBoolean
+export const convertStringToNumber = (value: string | number) => {
+	return Number(value);
 };
