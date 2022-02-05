@@ -11,6 +11,7 @@ import { SQLManager } from "./managers/SQLManager";
 import { generateGlobalStats } from "./controllers/server/globalStats";
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
+import { generateBanlistStats } from "./controllers/banlist/banlistGlobalStats";
 
 const config: IConfig = require("config");
 
@@ -79,14 +80,14 @@ function onError(error: NodeJS.ErrnoException): void {
 	}
 }
 
-let setIntervalNoDelay = function(func: any , delay: any) {
+let setIntervalNoDelay = async function(func: any , delay: any) {
 	let task = setInterval(func, delay);
 	func();
 	return task;
 };
 
-function onListening(): void {
-	let addr = server.address();
+async function onListening(): Promise<void> {
+	let addr = await server.address();
 	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr.port}`;
 	log.info(`Listening on port ${bind}`);
 	log.info(`App is running as ${stage.toString().toLocaleLowerCase()} environment`);
@@ -95,7 +96,8 @@ function onListening(): void {
 		log.warn('Press CTRL-C to stop');
 	}
 
-	setIntervalNoDelay(callServer, 10000); // 10 vteřin
+	await setIntervalNoDelay(callServer, 10000); // 10 vteřin
 	//setIntervalNoDelay(generateSkyblockLeaderboard, 60000 * 60); // 1 hodina
-	setIntervalNoDelay(generateGlobalStats, 60000 * 60); // 1 hodina
+	await setIntervalNoDelay(generateGlobalStats, 60000 * 60); // 1 hodina
+	await setIntervalNoDelay(generateBanlistStats, 60000 * 30); // 30 minut
 }
