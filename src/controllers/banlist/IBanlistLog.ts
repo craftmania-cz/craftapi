@@ -1,5 +1,6 @@
 export interface IBanlistLog {
 	id: number;
+	type: string;
 	uuid: string;
 	name: string;
 	reason: string;
