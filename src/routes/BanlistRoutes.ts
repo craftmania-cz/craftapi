@@ -19,7 +19,7 @@ export class BanlistRoutes {
 		this.router.get('/stats', BanlistGlobalStats.getStatistics);
 		this.router.get('/list/:type', Banlist.getGlobalList);
 		this.router.get('/list/:type/:page', Banlist.getGlobalList);
-		//this.router.get('/lookup/:nick/:type/:page');
+		this.router.get('/lookup/:nick/:page', Banlist.getPlayerLookup);
 		//this.router.get('/lookup-at/:nick/:type/:page');
 	}
 }
