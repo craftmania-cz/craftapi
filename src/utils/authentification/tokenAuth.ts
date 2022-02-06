@@ -24,7 +24,7 @@ class TokenAuth {
 		}
 		if (token) {
 			if (typeof token === "string") {
-				const jwtToken = jwt.decode(token, config.get('app.token')) as JWTToken;
+				const jwtToken = jwt.decode(token, config.get('app.token')) as unknown as JWTToken;
 				return jwtToken.role;
 			} else {
 				return 'unknown';
