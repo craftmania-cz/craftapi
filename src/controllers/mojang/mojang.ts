@@ -38,10 +38,17 @@ namespace Mojang {
 			return;
 		}
 		const data = await _simpleGet<UuidResponseModel>('/users/profiles/minecraft/' + player + '?at=' + Date.now());
+		let offlineUUID = crypto.createHash('md5').update('OfflinePlayer:' + player).digest();
+		/* tslint:disable:no-bitwise */
+		offlineUUID[6] &= 0x0f;  /* clear version        */
+		offlineUUID[6] |= 0x30;  /* set to version 3     */
+		offlineUUID[8] &= 0x3f;  /* clear variant        */
+		offlineUUID[8] |= 0x80;  /* set to IETF variant  */
+		/* tslint:enable:no-bitwise */
 		let finalObject = {
 			name: player,
 			original: data.id !== undefined ? data.id : null,
-			offline: crypto.createHash('md5').update('OfflinePlayer:' + player).digest('hex')
+			offline: offlineUUID.toString('hex')
 		};
 		Res.success(res, finalObject);
 	}
