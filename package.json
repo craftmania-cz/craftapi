@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && tsc",
-    "build-ci": "tsc -p tsconfig.production.json",
     "clean": "rm -rf dist/* && touch dist/.gitkeep",
     "start": "node dist/server.js",
     "watch": "nodemon dist/server.js",
