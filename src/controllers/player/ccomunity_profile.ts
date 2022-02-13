@@ -19,14 +19,15 @@ namespace Ccomunity {
 			"mc_version": playerObject.mc_version,
 			"gender": playerObject.gender,
 			"economy": {
-				"craftcoins": playerObject.craftcoins,
-				"crafttokens": playerObject.crafttokens,
-				"votetokens": playerObject.votetokens_2,
-				"karma": playerObject.karma,
+				"craft_coins": playerObject.craft_coins,
+				"craft_tokens": playerObject.craft_tokens,
+				"vote_tokens": playerObject.vote_tokens_2,
+				"karma_points": playerObject.karma_points,
 				"quest_points": playerObject.achievement_points,
 				"event_points": playerObject.event_points,
 				"season_points": playerObject.season_points,
-				"bug_points": playerObject.bug_points
+				"bug_points": playerObject.bug_points,
+				"parkour_points": playerObject.parkour_points,
 			},
 			"groups": {
 				"vip": JSON.parse(playerObject.groups),
@@ -90,7 +91,7 @@ namespace Ccomunity {
 				}
 			},
 			"deprecated": {
-				"votetokens": playerObject.votetokens,
+				"votetokens": playerObject.vote_tokens,
 				"level": playerObject.level,
 				"experience": playerObject.experience
 			}

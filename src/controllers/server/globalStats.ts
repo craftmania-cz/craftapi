@@ -49,7 +49,7 @@ const generateGlobalStats = async () => {
 	};
 
 	// Fetch Total CraftCoins
-	const craftCoinsData = await SQLManager.knex.raw('SELECT SUM(craftcoins) as total FROM minigames.player_profile;')
+	const craftCoinsData = await SQLManager.knex.raw('SELECT SUM(craft_coins) as total FROM minigames.player_profile;')
 		.on('query-error', (error: any) => {
 			log.error(error);
 		});
@@ -59,7 +59,7 @@ const generateGlobalStats = async () => {
 	globalStatsCache.totalCraftCoins = parseInt(craftCoinsData[0][0].total);
 
 	// Fetch Total CraftTokens
-	const craftTokensData = await SQLManager.knex.raw('SELECT SUM(crafttokens) as total FROM minigames.player_profile;')
+	const craftTokensData = await SQLManager.knex.raw('SELECT SUM(craft_tokens) as total FROM minigames.player_profile;')
 		.on('query-error', (error: any) => {
 			log.error(error);
 		});
@@ -69,7 +69,7 @@ const generateGlobalStats = async () => {
 	globalStatsCache.totalCraftTokens = parseInt(craftTokensData[0][0].total);
 
 	// Fetch Total VoteTokens
-	const voteTokensData = await SQLManager.knex.raw('SELECT SUM(votetokens) as total FROM minigames.player_profile;')
+	const voteTokensData = await SQLManager.knex.raw('SELECT SUM(vote_tokens_2) as total FROM minigames.player_profile;')
 		.on('query-error', (error: any) => {
 			log.error(error);
 		});

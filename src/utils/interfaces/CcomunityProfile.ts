@@ -17,11 +17,11 @@ interface CcomunityProfile {
 	groups_last_check: number;
 
 	// Economy
-	craftcoins: number;
-	crafttokens: number;
-	votetokens: number;
+	craft_coins: number;
+	craft_tokens: number;
+	vote_tokens: number;
 
-	votetokens_2: number; // 1.15+ VoteTokens
+	vote_tokens_2: number; // 1.15+ VoteTokens
 
 	// Old levels (-1.12)
 	level: number;
@@ -49,11 +49,12 @@ interface CcomunityProfile {
 	hardcore_vanilla_experience: number;
 
 	// Extended economy
-	karma: number;
+	karma_points: number;
 	achievement_points: number;
 	event_points: number;
 	season_points: number;
 	bug_points: number;
+	parkour_points: number;
 
 	// Votes
 	total_votes: number;
