@@ -8,7 +8,7 @@ deploy:staging:
     - .deploy:staging
   variables:
     ENV_URL: https://staging-api.craftmania.cz/
-    SSH_TASK: 'cd /srv/api_staging && ./deploy-container -a craftapi_staging -v $CI_PIPELINE_IID && exit'
+    SSH_TASK: 'cd /srv/api_staging && bash ./deploy-container.sh -a craftapi_staging -v $CI_PIPELINE_IID && exit'
   when: manual
 
 deploy:production:
@@ -16,5 +16,5 @@ deploy:production:
     - .deploy:production
   variables:
     ENV_URL: https://api.craftmania.cz/
-    SSH_TASK: 'cd /srv/api && ./deploy-container -a craftapi -v $CI_PIPELINE_IID && exit'
+    SSH_TASK: 'cd /srv/api && bash ./deploy-container.sh -a craftapi -v $CI_PIPELINE_IID && exit'
   when: manual
