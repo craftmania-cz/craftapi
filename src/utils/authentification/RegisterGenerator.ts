@@ -4,7 +4,7 @@ import * as log from "signale";
 import { SQLManager } from "../../managers/SQLManager";
 
 const config: IConfig = require("config");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 class RegisterGenerator {
 
