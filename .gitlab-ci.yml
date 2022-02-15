@@ -2,3 +2,19 @@ include:
   - project: 'craftmania/gitlab/gitlab-ci-templates'
     file: '/gitlab-ci-base-ts-docker.yml'
     ref: main
+
+deploy:staging:
+  extends:
+    - .deploy:staging
+  variables:
+    ENV_URL: https://staging-api.craftmania.cz/
+    SSH_TASK: 'cd /srv/api_staging && ./deploy-container -a craftapi_staging -v $CI_PIPELINE_IID && exit'
+  when: manual
+
+deploy:production:
+  extends:
+    - .deploy:production
+  variables:
+    ENV_URL: https://api.craftmania.cz/
+    SSH_TASK: 'cd /srv/api && ./deploy-container -a craftapi -v $CI_PIPELINE_IID && exit'
+  when: manual
