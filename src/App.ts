@@ -12,7 +12,7 @@ import ServerRoutes from "./routes/ServerRoutes";
 import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
-import AchievementRoutes from "./routes/QuestRoutes";
+import QuestRoutes from "./routes/QuestRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
 import MojangRoutes from "./routes/MojangRoutes";
@@ -63,7 +63,7 @@ class App {
 		this.express.use('/economy/leaderboard/mcmmo', LeaderboardMcmmoRoutes);
 
 		// Logs routes
-		this.express.use('/quests', AchievementRoutes);
+		this.express.use('/quests', QuestRoutes);
 
 		// Mojang API
 		this.express.use('/mojang', MojangRoutes);

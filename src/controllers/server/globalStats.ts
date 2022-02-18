@@ -15,7 +15,7 @@ interface GlobalStats {
 	newPlayersPerMonth: number;
 	newPlayersPerWeek: number;
 	totalPlayTime: number;
-	totalCompletedAchievements: number;
+	totalCompletedQuests: number;
 	playersWithVIP: number;
 	totalMcOriginals: number;
 }
@@ -43,7 +43,7 @@ const generateGlobalStats = async () => {
 		newPlayersPerMonth: 0,
 		newPlayersPerWeek: 0,
 		totalPlayTime: 0,
-		totalCompletedAchievements: 0,
+		totalCompletedQuests: 0,
 		playersWithVIP: 0,
 		totalMcOriginals: 0
 	};
@@ -135,15 +135,15 @@ const generateGlobalStats = async () => {
 	let finalNumber = fakeAmount + parseInt(totalUniquePlayers[0][0].total);
 	globalStatsCache.totalPlayers = finalNumber;
 
-	// Fetch total achievements
-	const totalAchievementsData = await SQLManager.knex.raw('SELECT COUNT(id) as total FROM minigames.player_achievement_log;')
+	// Fetch total quests
+	const totalQuestsData = await SQLManager.knex.raw('SELECT COUNT(id) as total FROM minigames.player_achievement_log;')
 		.on('query-error', (error: any) => {
 			log.error(error);
 		});
-	if (!totalAchievementsData.length) {
+	if (!totalQuestsData.length) {
 		return;
 	}
-	globalStatsCache.totalCompletedAchievements = parseInt(totalAchievementsData[0][0].total);
+	globalStatsCache.totalCompletedQuests = parseInt(totalQuestsData[0][0].total);
 
 	// Fetch registered player - 7 days
 	const totalregisteredPlayersData = await SQLManager.knex.raw('SELECT COUNT(*) as total FROM player_profile WHERE registred > UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY) * 1000;')

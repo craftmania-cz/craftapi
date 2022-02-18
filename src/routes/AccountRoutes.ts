@@ -14,7 +14,7 @@ export class AccountRoutes {
 	}
 
 	public missingRoute(_req: Request, res: Response, _next: NextFunction) {
-		res.json(Res.property_required(res, 'Achievement route').json);
+		res.json(Res.property_required(res, 'Quest route').json);
 	}
 
 	public init() {

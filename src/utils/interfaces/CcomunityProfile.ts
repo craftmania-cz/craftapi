@@ -50,7 +50,7 @@ interface CcomunityProfile {
 
 	// Extended economy
 	karma_points: number;
-	achievement_points: number;
+	quest_points: number;
 	event_points: number;
 	season_points: number;
 	bug_points: number;

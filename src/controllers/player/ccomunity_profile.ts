@@ -23,7 +23,7 @@ namespace Ccomunity {
 				"craft_tokens": playerObject.craft_tokens,
 				"vote_tokens": playerObject.vote_tokens_2,
 				"karma_points": playerObject.karma_points,
-				"quest_points": playerObject.achievement_points,
+				"quest_points": playerObject.quest_points,
 				"event_points": playerObject.event_points,
 				"season_points": playerObject.season_points,
 				"bug_points": playerObject.bug_points,
