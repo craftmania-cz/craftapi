@@ -19,6 +19,7 @@ import MojangRoutes from "./routes/MojangRoutes";
 import { debugStream, winstonStream } from "./utils/Logger";
 import AdministrativeRoutes from "./routes/AdministrativeRoutes";
 import { IConfig } from "config";
+import StoreRoutes from './routes/StoreRoutes';
 
 const config: IConfig = require("config");
 
@@ -73,6 +74,9 @@ class App {
 
 		// Administrative routes (primárně pro CraftBox)
 		this.express.use('/admin', AdministrativeRoutes);
+
+		// Store
+		this.express.use('/store', StoreRoutes);
 
 		// Index route
 		this.express.use('/', function(_req: Request, res: Response) {

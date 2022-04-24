@@ -15,5 +15,13 @@
     },
     "sentry":{
         "dsn": "url"
+    },
+    "gopay": {
+        "clientId": "",
+        "clientSecret": "",
+        "accountId": ""
+    },
+    "craftingstore": {
+        "paymentKey": "secret-key"
     }
 }
