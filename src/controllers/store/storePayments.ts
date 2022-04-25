@@ -47,7 +47,6 @@ namespace Payments {
 		const bodyHash = crypto.createHmac('sha256', config.get("craftingstore.paymentKey"))
 			.update(bodyString).digest("hex");
 
-		//TODO: Aktivovat na produkci
 		if (bodyHash !== xSignature) {
 			res.status(400).json({success: false});
 			return;
@@ -64,11 +63,11 @@ namespace Payments {
 			// Gopay object for payment
 			const paymentObject = new GopayPayment()
 			.setPayer(requestData.user.email)
-			.setTarget(config.get("gopay.accountId")) //TODO: Odebrat
-			.setItems([{name: "CraftToken", price: 300}, {name: "Obsidian VIP - Skyblock", price: 1500}]) //TODO: čstky musí být *100
-			.setCurrency("EUR") //TODO: Type
+			.setTarget(config.get("gopay.accountId"))
+			.setItems(requestData.package)
+			.setCurrency(requestData.currency.toLocaleUpperCase())
 			.setOrderNumber(requestData.transactionId)
-			.setOrderDescription("CraftMania Store - ?")
+			.setOrderDescription("CraftMania Store")
 			.setCallbackUrls()
 			.getData();
 

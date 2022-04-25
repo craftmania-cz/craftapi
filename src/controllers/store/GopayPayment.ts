@@ -15,6 +15,7 @@ interface GopayPaymentItems {
 
 export interface CraftingStorePaymentItems {
 	name: string;
+	notes: null;
 	price: number;
 }
 
@@ -58,19 +59,15 @@ export class GopayPayment {
 	 * @param {CraftingStorePaymentItems[]} paymentItems - CraftingStorePaymentItems[]
 	 * @returns The instance of the class.
 	 */
-	public setItems(paymentItems: CraftingStorePaymentItems[]) {
+	public setItems(paymentItems: CraftingStorePaymentItems) {
 		let finalGopayItems: GopayPaymentItems[] = [];
-		let finalPaymentPrice: number = 0;
-		paymentItems.forEach((item: CraftingStorePaymentItems) => {
-			finalGopayItems.push({
-				type: "ITEM",
-				name: item.name,
-				amount: item.price,
-			});
-			finalPaymentPrice = finalPaymentPrice + item.price;
+		finalGopayItems.push({
+			type: "ITEM",
+			name: paymentItems.name,
+			amount: paymentItems.price,
 		});
 		this.paymentObject.items = finalGopayItems;
-		this.paymentObject.amount = finalPaymentPrice; // Values are in cents
+		this.paymentObject.amount = paymentItems.price;
 		return this;
 	}
 

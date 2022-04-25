@@ -1,3 +1,4 @@
+import { CraftingStorePaymentItems } from "./GopayPayment";
 
 export interface CraftingStoreRequest {
 	type: "PAID" | "PENDING" | "CHARGE-BACK";
@@ -18,11 +19,7 @@ export interface CraftingStoreRequest {
 			currency: string;
 		} | null;
 	};
-	package: {
-		name: string;
-		notes: string | null;
-		price: number;
-	};
+	package: CraftingStorePaymentItems;
 	webhook: {
 		failedUrl: string;
 		successUrl: string;
