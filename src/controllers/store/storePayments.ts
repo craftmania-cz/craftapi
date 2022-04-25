@@ -4,6 +4,9 @@ import * as crypto from "crypto";
 import { CraftingStoreRequest } from './CraftingStoreRequest';
 import axios, { AxiosRequestConfig } from "axios";
 import { GopayPayment } from "./GopayPayment";
+import { Logger } from "../../utils/Logger";
+
+const log = Logger('store:gopay');
 
 import config = require("config");
 
@@ -29,38 +32,37 @@ interface GopayPaymentCratedResponse {
 
 namespace Payments {
 
-	export async function createPayment(req: Request, res: Response) {
+	export async function createPayment(req: any, res: Response) {
 
 		// Verifikace CraftingStore requestu
 		// Zde se ověřuje, zda request body souhlasí s klíčem z CraftingStoru,
 		// aby někdo nemohl poslat svůj request.
 		const xSignature = req.headers["x-signature"];
 		if (xSignature === undefined) {
-			Res.errorWithText(res, "Missing x-signature key");
+			res.status(400).json({success: false});
 			return;
 		}
 
-		const bodyHash = await crypto.createHmac('sha256', config.get("craftingstore.paymentKey"))
-			.update(JSON.stringify(req.body)).digest('hex');
+		const bodyString = Buffer.from(req.rawBody, 'utf8');
+		const bodyHash = crypto.createHmac('sha256', config.get("craftingstore.paymentKey"))
+			.update(bodyString).digest("hex");
 
-		/* //TODO: Aktivovat na produkci
+		//TODO: Aktivovat na produkci
 		if (bodyHash !== xSignature) {
-			Res.errorWithText(res, "Hash signature is not same.");
+			res.status(400).json({success: false});
 			return;
 		}
-		*/
 
 		const requestData = req.body as unknown as CraftingStoreRequest;
+		console.log(req.body);
 		
-		// Gopay vytvoření platby
-		// 1. Je potřeba získat aktuální token s právy
-		const gopayToken: GopayTokenResponse = await getToken(false); //TODO: Try?
-		console.log("gopay token: " + gopayToken.access_token);
+		// Gopay - creating payment gateway based by craftingstore data
+		try { 
+			const gopayToken: GopayTokenResponse = await getToken(false);
+			log.debug("GoPay token: " + gopayToken.access_token);
 
-		console.log("package items: " + requestData.package);
-
-		// 2. Vytvoření gopay platby podle craftingstore requestu
-		const paymentObject = new GopayPayment()
+			// Gopay object for payment
+			const paymentObject = new GopayPayment()
 			.setPayer(requestData.user.email)
 			.setTarget(config.get("gopay.accountId")) //TODO: Odebrat
 			.setItems([{name: "CraftToken", price: 300}, {name: "Obsidian VIP - Skyblock", price: 1500}]) //TODO: čstky musí být *100
@@ -70,13 +72,15 @@ namespace Payments {
 			.setCallbackUrls()
 			.getData();
 
-		console.log(paymentObject);
-		
-		// 3. get URL na redirect
-		const paymentUrl = await createGopayPayment(false, gopayToken.access_token, paymentObject);
-		console.log("paymentUrl: " + paymentUrl.gw_url);
+			// Now get url for gateway from gopay and return it to craftingstore
+			const paymentUrl = await createGopayPayment(false, gopayToken.access_token, paymentObject);
+			log.debug("GoPay Gateway URL: " + paymentUrl.gw_url);
 
-		Res.success(res, paymentUrl.gw_url);
+			res.status(200).json({success: true, data: {url: paymentUrl.gw_url}});
+		} catch (error) {
+			log.error(error);
+			res.status(500).json({success: false});
+		}
 	}
 
 	/**

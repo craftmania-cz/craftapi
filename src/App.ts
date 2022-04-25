@@ -35,7 +35,7 @@ class App {
 
 	// Configure Express middleware.
 	private middleware(): void {
-		this.express.use(bodyParser.json());
+		this.express.use(bodyParser.json({verify: function(req: any, _res: Response, buf: Buffer) { req.rawBody = buf; }}));
 		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
 		this.express.use(helmet());
