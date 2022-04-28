@@ -4,7 +4,8 @@
         "environment": "development",
         "token": "secret-token-for-auth",
         "adminKey": "admin-key-for-secret-routes",
-        "pod-id": "random-pod-id"
+        "pod-id": "random-pod-id",
+        "domain": "https://api.craftmania.cz/"
     },
     "mysql": {
         "host": "0.0.0.0",
@@ -19,7 +20,8 @@
     "gopay": {
         "clientId": "",
         "clientSecret": "",
-        "accountId": ""
+        "accountId": "",
+        "useProduction": false
     },
     "craftingstore": {
         "paymentKey": "secret-key"

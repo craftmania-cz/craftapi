@@ -105,10 +105,12 @@ export class GopayPayment {
 	 * It sets the callback URLs for the payment
 	 * @returns The instance of the class.
 	 */
-	public setCallbackUrls() {
+	public setCallbackUrls(appUrl: string) {
 		this.paymentObject.callback = {
-			return_url: "https://store.craftmania.cz/complete", //TODO: Check
-			notification_url: "https://store.craftmania.cz/complete" //TODO: API?
+			return_url: "https://store.craftmania.cz/complete", // URL for returning from gopay
+			// Notification URL for CraftMania API
+			notification_url:
+			`${appUrl}/store/completePayment?orderNumber=${this.paymentObject.order_number}`
 		};
 		return this;
 	}

@@ -34,9 +34,9 @@ namespace Payments {
 
 	export async function createPayment(req: any, res: Response) {
 
-		// Verifikace CraftingStore requestu
-		// Zde se ověřuje, zda request body souhlasí s klíčem z CraftingStoru,
-		// aby někdo nemohl poslat svůj request.
+		const isProductionActive: boolean = config.get("gopay.useProduction");
+
+		// CraftingStore verification
 		const xSignature = req.headers["x-signature"];
 		if (xSignature === undefined) {
 			res.status(400).json({success: false});
@@ -53,11 +53,11 @@ namespace Payments {
 		}
 
 		const requestData = req.body as unknown as CraftingStoreRequest;
-		console.log(req.body);
+		log.debug(JSON.stringify(requestData));
 		
 		// Gopay - creating payment gateway based by craftingstore data
 		try { 
-			const gopayToken: GopayTokenResponse = await getToken(false);
+			const gopayToken: GopayTokenResponse = await getToken(isProductionActive);
 			log.debug("GoPay token: " + gopayToken.access_token);
 
 			// Gopay object for payment
@@ -68,11 +68,11 @@ namespace Payments {
 			.setCurrency(requestData.currency.toLocaleUpperCase())
 			.setOrderNumber(requestData.transactionId)
 			.setOrderDescription("CraftMania Store")
-			.setCallbackUrls()
+			.setCallbackUrls(config.get("app.domain"))
 			.getData();
 
 			// Now get url for gateway from gopay and return it to craftingstore
-			const paymentUrl = await createGopayPayment(false, gopayToken.access_token, paymentObject);
+			const paymentUrl = await createGopayPayment(isProductionActive, gopayToken.access_token, paymentObject);
 			log.debug("GoPay Gateway URL: " + paymentUrl.gw_url);
 
 			res.status(200).json({success: true, data: {url: paymentUrl.gw_url}});
@@ -80,6 +80,18 @@ namespace Payments {
 			log.error(error);
 			res.status(500).json({success: false});
 		}
+	}
+
+	export async function forwardPayment(req: Request, res: Response) {
+		let orderNumber: any = req.query.orderNumber;
+		if (orderNumber === undefined) {
+			res.status(400).json({success: false});
+			return;
+		}
+
+		await completePaymentOnCraftingStore(orderNumber).then(() => {
+			res.status(200).json({success: true});
+		});
 	}
 
 	/**
@@ -108,6 +120,7 @@ namespace Payments {
 			axios.post(apiUrl + "/oauth2/token", params, axiosConfig).then((data: any) => {
 				resolve(data.data);
 			}).catch((error: any) => {
+				log.error(error);
 				reject(error);
 			});
 		});
@@ -128,11 +141,39 @@ namespace Payments {
 			axios.post(apiUrl + "/payments/payment", JSON.stringify(gopayPaymentObject), axiosConfig).then((data: any) => {
 				resolve(data.data);
 			}).catch((error: any) => {
-				console.log(error);
+				log.error(error);
 				reject(error);
 			});
 		});
+	}
 
+	async function completePaymentOnCraftingStore(transactionId: String): Promise<void> {
+		const body = {
+			"type": "paid",
+			"transactionId": transactionId,
+		};
+		const rawBody = JSON.stringify(body);
+
+		const bodyString = new Buffer(rawBody, 'utf8');
+		const bodyHash = crypto.createHmac('sha256', config.get("craftingstore.paymentKey"))
+			.update(bodyString).digest("hex");
+
+		const axiosConfig: AxiosRequestConfig = {
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+				"X-Signature": bodyHash,
+			},
+		};
+
+		return new Promise(async (resolve: any, reject: any) => {
+			axios.post('https://api.craftingstore.net/callback/custom', rawBody, axiosConfig).then((data: any) => {
+				resolve(data.data);
+			}).catch((error: any) => {
+				log.error(error);
+				reject(error);
+			});
+		});
 	}
 }
 

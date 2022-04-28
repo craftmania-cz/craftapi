@@ -17,6 +17,7 @@ export class StoreRoutes {
 	public init() {
 		this.router.get('/', this.missingPropery);
 		this.router.post('/createPayment', Payments.createPayment);
+		this.router.get('/completePayment', Payments.forwardPayment);
 	}
 }
 
