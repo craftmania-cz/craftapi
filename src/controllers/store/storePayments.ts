@@ -23,11 +23,28 @@ interface GopayTokenResponse {
 interface GopayPaymentCratedResponse {
 	id: number;
 	order_number: string;
-	state: string; //TODO: hodnoty + oveření
+	state: string;
 	currency: string;
-	payer: any; //TODO:
-	target: any; //TODO:
+	payer: any;
+	target: any;
 	gw_url: string;
+}
+
+interface GopayPaymentStatus {
+	id: number;
+	order_number: string;
+	state: string;
+	payment_instrument: string;
+	amount: number;
+	currency: string;
+	payer: any; //TODO
+	target: any; //TODO
+	gw_url: string;
+	eet_code: {
+		fik: string;
+		bkp: string;
+		pkp: string;
+	};
 }
 
 namespace Payments {
@@ -75,6 +92,8 @@ namespace Payments {
 			const paymentUrl = await createGopayPayment(isProductionActive, gopayToken.access_token, paymentObject);
 			log.debug("GoPay Gateway URL: " + paymentUrl.gw_url);
 
+			await markPaymentOnCraftingStore(requestData.transactionId, "pending");
+
 			res.status(200).json({success: true, data: {url: paymentUrl.gw_url}});
 		} catch (error) {
 			log.error(error);
@@ -83,15 +102,34 @@ namespace Payments {
 	}
 
 	export async function forwardPayment(req: Request, res: Response) {
+		const isProductionActive: boolean = config.get("gopay.useProduction");
+
 		let orderNumber: any = req.query.orderNumber;
 		if (orderNumber === undefined) {
 			res.status(400).json({success: false});
 			return;
 		}
 
-		await completePaymentOnCraftingStore(orderNumber).then(() => {
-			res.status(200).json({success: true});
-		});
+		let gopayPaymentId: any = req.query.id;
+		if (gopayPaymentId === undefined) {
+			res.status(400).json({success: false});
+			return;
+		}
+
+		await wait(3e3);
+
+		const gopayToken: GopayTokenResponse = await getToken(isProductionActive);
+
+		const gopayPayment = await getGopayTransactionStatus(isProductionActive, gopayToken.access_token, gopayPaymentId);
+		if (gopayPayment.state === "PAID") {
+			await markPaymentOnCraftingStore(orderNumber, "paid").then(() => {
+				res.status(200).json({success: true});
+			});
+		} else {
+			await markPaymentOnCraftingStore(orderNumber, "pending").then(() => {
+				res.status(200).json({success: true});
+			});
+		}
 	}
 
 	/**
@@ -147,9 +185,36 @@ namespace Payments {
 		});
 	}
 
-	async function completePaymentOnCraftingStore(transactionId: String): Promise<void> {
+	async function getGopayTransactionStatus(
+		production: boolean,
+		gopayToken: string,
+		transactionId: string
+	): Promise<GopayPaymentStatus> {
+		log.info(`[GoPay] Getting transaction status for: ${transactionId}`);
+		const apiUrl: string = production ? gopayProductionApi : gopaySandboxApi;
+
+		const axiosConfig: AxiosRequestConfig = {
+			headers: {
+				"Accept": "application/json",
+				"Authorization": "Bearer " + gopayToken,
+			},
+		};
+
+		return new Promise(async (resolve: any, reject: any) => {
+			axios.get(apiUrl + "/payments/payment/" + transactionId, axiosConfig).then((data: any) => {
+				resolve(data.data);
+			}).catch((error: any) => {
+				log.error(error);
+				reject(error);
+			});
+		});
+
+	}
+
+	async function markPaymentOnCraftingStore(transactionId: String, state: string): Promise<void> {
+		log.info(`[CraftingStore] Making transaction ${transactionId} as ${state}.`);
 		const body = {
-			"type": "paid",
+			"type": state,
 			"transactionId": transactionId,
 		};
 		const rawBody = JSON.stringify(body);
@@ -175,6 +240,11 @@ namespace Payments {
 			});
 		});
 	}
+
+	async function wait(timeout: number) {
+		return new Promise<void>((resolve: () => void) => setTimeout(() => resolve(), timeout));
+	}
+	
 }
 
 export default Payments;
