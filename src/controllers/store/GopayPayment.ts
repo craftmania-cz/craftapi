@@ -37,6 +37,19 @@ export class GopayPayment {
 	public setPayer(payerEmail: string) {
 		this.paymentObject.payer = {
 			email: payerEmail,
+			allowed_payment_instruments: [
+				'PAYMENT_CARD',
+				'BANK_ACCOUNT',
+				'GPAY',
+				'APPLE_PAY',
+				'GOPAY',
+				'PAYPAL',
+				'MPAYMENT',
+				'PRSMS',
+				'PAYSAFECARD',
+				'BITCOIN',
+				'CLICK_TO_PAY'
+			],
 		};
 		return this;
 	}
