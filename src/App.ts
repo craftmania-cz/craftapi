@@ -20,6 +20,7 @@ import { debugStream, winstonStream } from "./utils/Logger";
 import AdministrativeRoutes from "./routes/AdministrativeRoutes";
 import { IConfig } from "config";
 import StoreRoutes from './routes/StoreRoutes';
+import BanlistRoutes from "./routes/BanlistRoutes";
 
 const config: IConfig = require("config");
 
@@ -68,6 +69,9 @@ class App {
 
 		// Mojang API
 		this.express.use('/mojang', MojangRoutes);
+
+		// Banlist API
+		this.express.use('/banlist', BanlistRoutes);
 
 		// Internal logins
 		this.express.use('/account', AccountRoutes);
