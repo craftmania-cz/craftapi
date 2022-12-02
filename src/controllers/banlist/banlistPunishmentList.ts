@@ -165,7 +165,7 @@ namespace Banlist {
 		// NEJVÍC BULLSHIT REQUEST EVER :D
 		// @ts-ignore
 		const data = await SQLManager.knex.select('a.*').fromRaw('(SELECT \'ban\' AS type,id,uuid,banned_by_name,banned_by_uuid,removed_by_name,removed_by_date,removed_by_uuid,reason,time,until FROM bungeecord.litebans_bans UNION SELECT \'kick\' AS type,id,uuid,banned_by_name,banned_by_uuid,reason,null,null,null,time,until FROM bungeecord.litebans_kicks UNION SELECT \'mute\' AS type,id,uuid,banned_by_name,banned_by_uuid,removed_by_name,removed_by_date,removed_by_uuid,reason,time,until FROM bungeecord.litebans_mutes UNION SELECT \'warn\' AS type,id,uuid,banned_by_name,banned_by_uuid,reason,null,null,null,time,until FROM bungeecord.litebans_warnings) AS a')
-			.join('bungeecord.litebans_history', 'bungeecord.litebans_history.banned_by_uuid', '=', 'a.uuid')
+			.join('bungeecord.litebans_history', 'bungeecord.litebans_history.uuid', '=', 'a.banned_by_uuid')
 			.where('bungeecord.litebans_history.name', '=', playerName)
 			.orderBy('a.time', 'desc')
 			.paginate({ perPage: 50, currentPage: pageNumber, isLengthAware: true })
