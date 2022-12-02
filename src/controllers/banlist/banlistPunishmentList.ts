@@ -86,7 +86,7 @@ namespace Banlist {
 			data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
 				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
 				.select(getSelectFields(type))
-				.where('id', '=', id)
+				.where('punishment.id', '=', id)
 				.on('query-error', (error: any) => {
 					log.error(error);
 					return Res.error(res, error);
