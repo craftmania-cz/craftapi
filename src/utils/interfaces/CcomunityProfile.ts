@@ -17,11 +17,11 @@ interface CcomunityProfile {
 	groups_last_check: number;
 
 	// Economy
-	craftcoins: number;
-	crafttokens: number;
-	votetokens: number;
+	craft_coins: number;
+	craft_tokens: number;
+	vote_tokens: number;
 
-	votetokens_2: number; // 1.15+ VoteTokens
+	vote_tokens_2: number; // 1.15+ VoteTokens
 
 	// Old levels (-1.12)
 	level: number;
@@ -49,11 +49,12 @@ interface CcomunityProfile {
 	hardcore_vanilla_experience: number;
 
 	// Extended economy
-	karma: number;
-	achievement_points: number;
+	karma_points: number;
+	quest_points: number;
 	event_points: number;
 	season_points: number;
 	bug_points: number;
+	parkour_points: number;
 
 	// Votes
 	total_votes: number;
@@ -65,15 +66,28 @@ interface CcomunityProfile {
 	// Discord
 	discord_user_id: string;
 	discord_voice_activity: number;
+	month_discord_voice_activity: number;
 	discord_text_activity: number;
+	discord_booster: number;
 
 	// Socials
 	status: string;
 
 	// Bonuses
-	lobby_daily_bonus: number;
-	lobby_vip_bonus: number;
-	lobby_extra_bonus: number;
+	lobby_bonus_streak: number;
+	lobby_bonus_claimed_daily: number;
+	lobby_bonus_claimed_playtime_1d: number;
+	lobby_bonus_claimed_playtime_7d: number;
+	lobby_bonus_claimed_playtime_14d: number;
+	lobby_bonus_claimed_playtime_30d: number;
+	lobby_bonus_claimed_playtime_halfyear: number;
+	lobby_bonus_claimed_monthly_vip: number;
+	lobby_bonus_claimed_extra: number;
+	lobby_bonus_claimed_discord_connect: number;
+	lobby_bonus_claimed_discord_booster: number;
+	lobby_bonus_claimed_discord_voice_activity_1h: number;
+	lobby_bonus_claimed_discord_voice_activity_10h: number;
+	lobby_bonus_claimed_discord_voice_activity_24h: number;
 
 	// Watch lobby things
 	seen_latest_news: bigint;

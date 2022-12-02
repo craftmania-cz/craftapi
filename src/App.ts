@@ -12,13 +12,14 @@ import ServerRoutes from "./routes/ServerRoutes";
 import EconomyRoutes from "./routes/EconomyRoutes";
 import LeaderboardRoutes from "./routes/economy/LeaderboardRoutes";
 import LeaderboardLevelsRoutes from "./routes/economy/LeaderboardLevelsRoutes";
-import AchievementRoutes from "./routes/QuestRoutes";
+import QuestRoutes from "./routes/QuestRoutes";
 import LeaderboardMcmmoRoutes from "./routes/economy/LeaderboardMcmmoRoutes";
 import AccountRoutes from "./routes/AccountRoutes";
 import MojangRoutes from "./routes/MojangRoutes";
 import { debugStream, winstonStream } from "./utils/Logger";
 import AdministrativeRoutes from "./routes/AdministrativeRoutes";
 import { IConfig } from "config";
+import StoreRoutes from './routes/StoreRoutes';
 import BanlistRoutes from "./routes/BanlistRoutes";
 
 const config: IConfig = require("config");
@@ -35,7 +36,7 @@ class App {
 
 	// Configure Express middleware.
 	private middleware(): void {
-		this.express.use(bodyParser.json());
+		this.express.use(bodyParser.json({verify: function(req: any, _res: Response, buf: Buffer) { req.rawBody = buf; }}));
 		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
 		this.express.use(helmet());
@@ -64,7 +65,7 @@ class App {
 		this.express.use('/economy/leaderboard/mcmmo', LeaderboardMcmmoRoutes);
 
 		// Logs routes
-		this.express.use('/quests', AchievementRoutes);
+		this.express.use('/quests', QuestRoutes);
 
 		// Mojang API
 		this.express.use('/mojang', MojangRoutes);
@@ -77,6 +78,9 @@ class App {
 
 		// Administrative routes (primárně pro CraftBox)
 		this.express.use('/admin', AdministrativeRoutes);
+
+		// Store
+		this.express.use('/store', StoreRoutes);
 
 		// Index route
 		this.express.use('/', function(_req: Request, res: Response) {

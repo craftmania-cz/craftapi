@@ -27,13 +27,14 @@ export class LeaderboardRoutes {
 		this.router.get('/week-votes', EconomyTopVotes.getTop50Week);
 
 		// Economy
-		this.router.get('/craftcoins', EconomyTopCoins.getTopCraftcoins);
-		this.router.get('/votetokens', EconomyTopCoins.getTopVoteTokens);
-		this.router.get('/crafttokens', EconomyTopCoins.getTopCraftTokens);
+		this.router.get('/craft-coins', EconomyTopCoins.getTopCraftcoins);
+		this.router.get('/vote-tokens', EconomyTopCoins.getTopVoteTokens);
+		this.router.get('/craft-tokens', EconomyTopCoins.getTopCraftTokens);
 		this.router.get('/played-time', EconomyTopCoins.getTopPlayedTime);
-		this.router.get('/achievement-points', EconomyTopCoins.getTopAchievementPoints);
+		this.router.get('/quest-points', EconomyTopCoins.getTopQuestPoints);
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
 		this.router.get('/season-points', EconomyTopCoins.getTopSeasonPoints);
+		this.router.get('/parkour-points', EconomyTopCoins.getTopParkourPoints);
 
 		// Prison Ranks
 		this.router.get('/prison-ranks', EconomyOthers.getPrisonRankLeaderboard);

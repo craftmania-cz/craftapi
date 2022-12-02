@@ -5,7 +5,7 @@ import { SQLManager } from "../../managers/SQLManager";
 import RankList from "../RankList";
 
 const config: IConfig = require("config");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 class LoginGenerator {
 

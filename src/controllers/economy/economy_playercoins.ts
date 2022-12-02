@@ -5,8 +5,8 @@ import { SQLManager } from "../../managers/SQLManager";
 namespace EconomyTopCoins {
 
 	export async function getTopCraftcoins(_req: any, res: any) {
-		const data = await SQLManager.knex.select("nick", "uuid",  "craftcoins", "groups")
-			.from("player_profile").orderBy("craftcoins", "DESC").limit(50)
+		const data = await SQLManager.knex.select("nick", "uuid",  "craft_coins", "groups")
+			.from("player_profile").orderBy("craft_coins", "DESC").limit(50)
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
@@ -21,7 +21,7 @@ namespace EconomyTopCoins {
 				"index": index,
 				"nick": player.nick,
 				"uuid": player.uuid,
-				"value": player.craftcoins,
+				"value": player.craft_coins,
 				"groups": JSON.parse(player.groups)
 			});
 			return;
@@ -31,8 +31,8 @@ namespace EconomyTopCoins {
 	}
 
 	export async function getTopVoteTokens(_req: any, res: any) {
-		const data = await SQLManager.knex.select("nick", "uuid",  "votetokens_2", "groups")
-			.from("player_profile").orderBy("votetokens_2", "DESC").limit(50)
+		const data = await SQLManager.knex.select("nick", "uuid",  "vote_tokens_2", "groups")
+			.from("player_profile").orderBy("vote_tokens_2", "DESC").limit(50)
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
@@ -47,7 +47,7 @@ namespace EconomyTopCoins {
 				"index": index,
 				"nick": player.nick,
 				"uuid": player.uuid,
-				"value": player.votetokens_2,
+				"value": player.vote_tokens_2,
 				"groups": JSON.parse(player.groups)
 			});
 			return;
@@ -57,8 +57,8 @@ namespace EconomyTopCoins {
 	}
 
 	export async function getTopCraftTokens(_req: any, res: any) {
-		const data = await SQLManager.knex.select("nick", "uuid",  "crafttokens", "groups")
-			.from("player_profile").orderBy("crafttokens", "DESC").limit(50)
+		const data = await SQLManager.knex.select("nick", "uuid",  "craft_tokens", "groups")
+			.from("player_profile").orderBy("craft_tokens", "DESC").limit(50)
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
@@ -73,7 +73,7 @@ namespace EconomyTopCoins {
 				"index": index,
 				"nick": player.nick,
 				"uuid": player.uuid,
-				"value": player.crafttokens,
+				"value": player.craft_tokens,
 				"groups": JSON.parse(player.groups)
 			});
 			return;
@@ -108,9 +108,9 @@ namespace EconomyTopCoins {
 		return;
 	}
 
-	export async function getTopAchievementPoints(_req: any, res: any) {
-		const data = await SQLManager.knex.select("nick", "uuid",  "achievement_points", "groups")
-			.from("player_profile").orderBy("achievement_points", "DESC").limit(50)
+	export async function getTopQuestPoints(_req: any, res: any) {
+		const data = await SQLManager.knex.select("nick", "uuid",  "quest_points", "groups")
+			.from("player_profile").orderBy("quest_points", "DESC").limit(50)
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
@@ -125,7 +125,7 @@ namespace EconomyTopCoins {
 				"index": index,
 				"nick": player.nick,
 				"uuid": player.uuid,
-				"value": player.achievement_points,
+				"value": player.quest_points,
 				"groups": JSON.parse(player.groups)
 			});
 			return;
@@ -178,6 +178,32 @@ namespace EconomyTopCoins {
 				"nick": player.nick,
 				"uuid": player.uuid,
 				"value": player.season_points,
+				"groups": JSON.parse(player.groups)
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
+	export async function getTopParkourPoints(_req: any, res: any) {
+		const data = await SQLManager.knex.select("nick", "uuid",  "parkour_points", "groups")
+			.from("player_profile").orderBy("parkour_points", "DESC").limit(50)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data.forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"value": player.parkour_points,
 				"groups": JSON.parse(player.groups)
 			});
 			return;
