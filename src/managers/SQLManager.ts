@@ -1,6 +1,6 @@
 import { IConfig } from "config";
+import knex, { Knex } from "knex";
 import { attachPaginate } from "knex-paginate";
-import { Knex, knex } from "knex";
 
 export class SQLManager {
 	public static knex: Knex;
