@@ -87,6 +87,7 @@ namespace Banlist {
 				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
 				.select(getSelectFields(type))
 				.where('punishment.id', '=', id)
+				.paginate({ perPage: 1, currentPage: pageNumber, isLengthAware: true })
 				.on('query-error', (error: any) => {
 					log.error(error);
 					return Res.error(res, error);
