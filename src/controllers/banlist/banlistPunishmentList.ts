@@ -3,10 +3,24 @@ import { SQLManager } from "../../managers/SQLManager";
 import * as log from "signale";
 import { convertStringToNumber, resolveBoolean } from "../../utils/VariableUtils";
 import { IBanlistLog, IPaginateObject } from "./IBanlistLog";
+import * as dayjs from 'dayjs';
+
+const customParseFormat = require('dayjs/plugin/customParseFormat');
+dayjs.extend(customParseFormat);
 
 namespace Banlist {
 
 	const punishmentType: string[] = ['bans', 'mutes', 'kicks', 'warnings'];
+
+	const parseRemovedDate = (removedDate: any) => {
+		if (removedDate === null) {
+			return null;
+		}
+		if (removedDate === "#expired") {
+			return "#expired";
+		}
+		return dayjs(removedDate, "YYYY-MM-DD HH:mm:ss"); // 2021-04-18 11:34:42
+	};
 
 	const remapBanlistObject = (sqlObject: IBanlistLog) => {
 		return {
@@ -16,8 +30,8 @@ namespace Banlist {
 			name: sqlObject.name,
 			reason: sqlObject.reason,
 			ipban: resolveBoolean(sqlObject.ipban),
-			time: sqlObject.time,
-			until: sqlObject.until,
+			time: dayjs(sqlObject.time).toISOString(),
+			until: sqlObject.until === -1 ? null : dayjs(sqlObject.until).toISOString(),
 			active: resolveBoolean(sqlObject.active),
 			punisher: {
 				name: sqlObject.banned_by_name,
@@ -25,7 +39,7 @@ namespace Banlist {
 			},
 			removed: {
 				name: sqlObject.removed_by_name,
-				date: sqlObject.removed_by_date,
+				date: parseRemovedDate(sqlObject.removed_by_date),
 			}
 		};
 	};
@@ -105,7 +119,7 @@ namespace Banlist {
 
 		// NEJVÍC BULLSHIT REQUEST EVER :D
 		// @ts-ignore
-		const data = await SQLManager.knex.select('a.*').fromRaw('(SELECT \'ban\' AS type,id,uuid,banned_by_name,removed_by_name,removed_by_date,removed_by_uuid,reason,time,until FROM bungeecord.litebans_bans UNION SELECT \'kick\' AS type,id,uuid,banned_by_name,reason,null,null,null,time,until FROM bungeecord.litebans_kicks UNION SELECT \'mute\' AS type,id,uuid,banned_by_name,reason,removed_by_name,removed_by_date,removed_by_uuid,time,until FROM bungeecord.litebans_mutes UNION SELECT \'warn\' AS type,id,uuid,banned_by_name,reason,null,null,null,time,until FROM bungeecord.litebans_warnings) AS a').join('bungeecord.litebans_history', 'bungeecord.litebans_history.uuid', '=', 'a.uuid').where('bungeecord.litebans_history.name', '=', playerName).orderBy('a.time', 'desc')
+		const data = await SQLManager.knex.select('a.*').fromRaw('(SELECT \'ban\' AS type,id,uuid,banned_by_name,banned_by_uuid,removed_by_name,removed_by_date,removed_by_uuid,reason,time,until FROM bungeecord.litebans_bans UNION SELECT \'kick\' AS type,id,uuid,banned_by_name,banned_by_uuid,reason,null,null,null,time,until FROM bungeecord.litebans_kicks UNION SELECT \'mute\' AS type,id,uuid,banned_by_name,banned_by_uuid,reason,removed_by_name,removed_by_date,removed_by_uuid,time,until FROM bungeecord.litebans_mutes UNION SELECT \'warn\' AS type,id,uuid,banned_by_name,banned_by_uuid,reason,null,null,null,time,until FROM bungeecord.litebans_warnings) AS a').join('bungeecord.litebans_history', 'bungeecord.litebans_history.uuid', '=', 'a.uuid').where('bungeecord.litebans_history.name', '=', playerName).orderBy('a.time', 'desc')
 			.paginate({perPage: 50, currentPage: pageNumber, isLengthAware: true})
 			.on('query-error', (error: any) => {
 				log.error(error);
@@ -126,7 +140,6 @@ namespace Banlist {
 			toItem: data.pagination.to,
 		};
 
-		console.log(data.data[0]);
 		Res.successPaginated(res, pageObject, returnArray);
 	}
 
