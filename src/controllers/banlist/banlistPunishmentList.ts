@@ -45,13 +45,15 @@ namespace Banlist {
 	};
 
 	/**
-	 * Path - /list/:type/:page
+	 * Path - /list/:type/?page
+	 * Path - /list/:type/:id?page
 	 * @param req
 	 * @param res
 	 */
 	export async function getGlobalList(req: any, res: any) {
 
 		const type = req.params.type;
+		const id = req.params.id;
 		if (!type) {
 			Res.property_required(res, "type");
 			return;
@@ -61,7 +63,7 @@ namespace Banlist {
 			return;
 		}
 
-		let pageNumber = req.params.page;
+		let pageNumber = req.query.page;
 		if (!pageNumber) {
 			pageNumber = 1;
 		}
@@ -69,17 +71,27 @@ namespace Banlist {
 		if (!isPageNumber(pageNumber)) {
 			pageNumber = 1;
 		}
-
-		const data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
-			.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
+		let data: any;
+		if (!id) {
+			data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
+				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
+				.select(getSelectFields(type))
+				.orderBy('punishment.id', 'desc')
+				.paginate({ perPage: 40, currentPage: pageNumber, isLengthAware: true })
+				.on('query-error', (error: any) => {
+					log.error(error);
+					return Res.error(res, error);
+				});
+		} else {
+			data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
 			.select(getSelectFields(type))
-			.orderBy('punishment.id', 'desc')
-			.paginate({ perPage: 40, currentPage: pageNumber, isLengthAware: true })
+			.where('id', '=', id)
 			.on('query-error', (error: any) => {
 				log.error(error);
 				return Res.error(res, error);
-			});
+			})
 
+		}
 		if (!data.data.length) {
 			return Res.not_found(res);
 		}
