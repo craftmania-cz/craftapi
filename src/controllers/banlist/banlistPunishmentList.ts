@@ -84,12 +84,13 @@ namespace Banlist {
 				});
 		} else {
 			data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
-			.select(getSelectFields(type))
-			.where('id', '=', id)
-			.on('query-error', (error: any) => {
-				log.error(error);
-				return Res.error(res, error);
-			})
+				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
+				.select(getSelectFields(type))
+				.where('id', '=', id)
+				.on('query-error', (error: any) => {
+					log.error(error);
+					return Res.error(res, error);
+				});
 
 		}
 		if (!data.data.length) {
