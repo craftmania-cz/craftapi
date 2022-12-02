@@ -44,7 +44,7 @@ class App {
 		this.express.use(morgan(':remote-addr -> (:method) :url :status - :response-time ms', winstonStream));
 		this.express.use(cors({origin: '*'}));
 		// @ts-ignore
-		this.express.engine('handlebars', exphbs({defaultLayout: 'main'}));
+		this.express.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
 		this.express.set('view engine', 'handlebars');
 	}
 
