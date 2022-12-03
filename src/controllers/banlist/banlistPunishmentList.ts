@@ -51,7 +51,6 @@ namespace Banlist {
 	 * @param res
 	 */
 	export async function getGlobalList(req: any, res: any) {
-
 		const type = req.params.type;
 		const id = req.params.id;
 		if (!type) {
@@ -99,9 +98,13 @@ namespace Banlist {
 		}
 
 		let returnArray = [];
+		let previousId = -1;
 		for (let i = 0; i < data.data.length; i++) {
 			const objectData = data.data[i] as unknown as IBanlistLog;
+			if (objectData.id == previousId) continue;
+			
 			returnArray.push(remapBanlistObject(objectData));
+			previousId = objectData.id;
 		}
 
 		const pageObject: IPaginateObject = {
