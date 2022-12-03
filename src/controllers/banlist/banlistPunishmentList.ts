@@ -75,6 +75,7 @@ namespace Banlist {
 			data = await SQLManager.knex.from(`bungeecord.litebans_${type} as punishment`)
 				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
 				.select(getSelectFields(type))
+				.groupBy('punishment.id')
 				.orderBy('punishment.id', 'desc')
 				.paginate({ perPage: 40, currentPage: pageNumber, isLengthAware: true })
 				.on('query-error', (error: any) => {
@@ -86,6 +87,7 @@ namespace Banlist {
 				.innerJoin('bungeecord.litebans_history as history', 'punishment.uuid', '=', 'history.uuid')
 				.select(getSelectFields(type))
 				.where('punishment.id', '=', id)
+				.groupBy('punishment.id')
 				.paginate({ perPage: 1, currentPage: pageNumber, isLengthAware: true })
 				.on('query-error', (error: any) => {
 					log.error(error);
@@ -98,15 +100,9 @@ namespace Banlist {
 		}
 
 		let returnArray = [];
-		let previousID = -1;
 		for (let i = 0; i < data.data.length; i++) {
 			const objectData = data.data[i] as unknown as IBanlistLog;
-			if (objectData.id === previousID) {
-				continue;
-			}
-
 			returnArray.push(remapBanlistObject(objectData));
-			previousID = objectData.id;
 		}
 
 		const pageObject: IPaginateObject = {
