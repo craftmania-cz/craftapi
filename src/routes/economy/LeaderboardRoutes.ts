@@ -4,7 +4,6 @@ import EconomyTopVotes from "../../controllers/economy/economy_topVotes";
 import EconomyTopCoins from "../../controllers/economy/economy_playercoins";
 import { BSkyblockTopIslands } from "../../controllers/islands/BSkyblockTops";
 import HalloweenStats from "../../controllers/player/halloween_stats";
-import EconomyOthers from "../../controllers/economy/economy_others";
 
 export class LeaderboardRoutes {
 	public router: Router;
@@ -36,9 +35,6 @@ export class LeaderboardRoutes {
 		this.router.get('/season-points', EconomyTopCoins.getTopSeasonPoints);
 		this.router.get('/parkour-points', EconomyTopCoins.getTopParkourPoints);
 
-		// Prison Ranks
-		this.router.get('/prison-ranks', EconomyOthers.getPrisonRankLeaderboard);
-
 		// Skyblocks Islands
 		this.router.get('/skyblock-islands', BSkyblockTopIslands.getSkyblockIslandLeaderboard);
 
@@ -48,7 +44,6 @@ export class LeaderboardRoutes {
 		// Balance
 		this.router.get('/balance/survival', EconomyTopCoins.getEconomyTopSurvival);
 		this.router.get('/balance/skyblock', EconomyTopCoins.getEconomyTopSkyblock);
-		this.router.get('/balance/prison', EconomyTopCoins.getEconomyTopPrison);
 
 		this.router.get('/dragon-slayer/vanilla', EconomyTopCoins.getVanillaDragonSlayerData);
 	}
