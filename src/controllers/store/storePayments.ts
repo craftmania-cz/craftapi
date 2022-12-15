@@ -84,7 +84,7 @@ namespace Payments {
 			.setItems(requestData.package)
 			.setCurrency(requestData.currency.toLocaleUpperCase())
 			.setOrderNumber(requestData.transactionId)
-			.setOrderDescription("CraftMania Store")
+			.setOrderDescription(requestData.package.name)
 			.setCallbackUrls(config.get("app.domain"))
 			.getData();
 
