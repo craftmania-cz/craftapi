@@ -34,6 +34,7 @@ export class LeaderboardRoutes {
 		this.router.get('/event-points', EconomyTopCoins.getTopEventPoints);
 		this.router.get('/season-points', EconomyTopCoins.getTopSeasonPoints);
 		this.router.get('/parkour-points', EconomyTopCoins.getTopParkourPoints);
+		this.router.get('/karma-points', EconomyTopCoins.getTopKarmaPoints);
 
 		// Skyblocks Islands
 		this.router.get('/skyblock-islands', BSkyblockTopIslands.getSkyblockIslandLeaderboard);
