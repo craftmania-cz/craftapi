@@ -16,18 +16,19 @@ namespace Ccomunity {
 			"last_server": playerObject.last_server,
 			"is_online": resolveBoolean(playerObject.is_online),
 			"played_time": playerObject.played_time,
-			"mc_version": playerObject.mc_version,
+			"mc_version": parseInt(playerObject.mc_version),
 			"gender": playerObject.gender,
 			"economy": {
 				"craft_coins": playerObject.craft_coins,
 				"craft_tokens": playerObject.craft_tokens,
-				"vote_tokens": playerObject.vote_tokens_2,
+				"vote_tokens": playerObject.vote_tokens_3,
 				"karma_points": playerObject.karma_points,
 				"quest_points": playerObject.quest_points,
 				"event_points": playerObject.event_points,
 				"season_points": playerObject.season_points,
 				"bug_points": playerObject.bug_points,
 				"parkour_points": playerObject.parkour_points,
+				"last_karma_given": playerObject.last_karma_given
 			},
 			"groups": {
 				"vip": JSON.parse(playerObject.groups),
@@ -35,20 +36,20 @@ namespace Ccomunity {
 			},
 			"ranked": {
 				"global_level": playerObject.global_level,
-				"survival_level": playerObject.survival_level,
-				"survival_experience": playerObject.survival_experience,
+				"survival_level": playerObject.survival_118_level,
+				"survival_experience": playerObject.survival_118_experience,
 				"skyblock_level": playerObject.skyblock_level,
 				"skyblock_experience": playerObject.skyblock_experience,
 				"creative_level": playerObject.creative_level,
 				"creative_experience": playerObject.creative_experience,
 				"vanilla_level": playerObject.vanilla_level,
 				"vanilla_experience": playerObject.vanilla_experience,
-				"prison_level": playerObject.prison_level,
-				"prison_experience": playerObject.prison_experience,
-				"anarchy_level": playerObject.anarchy_level,
-				"anarchy_experience": playerObject.anarchy_experience,
-				"old_servers_level": playerObject.skycloud_level + playerObject.hardcore_vanilla_level,
-				"old_servers_experience": playerObject.skycloud_experience + playerObject.hardcore_vanilla_experience
+				"old_servers_level": playerObject.skycloud_level 
+					+ playerObject.hardcore_vanilla_level + playerObject.anarchy_level
+					+ playerObject.survival_level + playerObject.prison_level,
+				"old_servers_experience": playerObject.skycloud_experience
+					+ playerObject.hardcore_vanilla_experience + playerObject.anarchy_experience
+					+ playerObject.survival_experience + playerObject.prison_experience
 			},
 			"votes": {
 				"total": playerObject.total_votes,
@@ -92,6 +93,7 @@ namespace Ccomunity {
 			},
 			"deprecated": {
 				"votetokens": playerObject.vote_tokens,
+				"vote_tokens_2": playerObject.vote_tokens_2,
 				"level": playerObject.level,
 				"experience": playerObject.experience
 			}
