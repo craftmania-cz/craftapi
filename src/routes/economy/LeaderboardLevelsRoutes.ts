@@ -30,7 +30,6 @@ export class LeaderboardLevelsRoutes {
 		this.router.get('/vanilla_116', EconomyTopLevels.getTopVanilla116Levels);
 		this.router.get('/survival_117', EconomyTopLevels.getTopSurvivalLevels117);
 		this.router.get('/skyblock_117', EconomyTopLevels.getTopSkyblockLevels117);
-		this.router.get('/vanilla_116', EconomyTopLevels.getTopVanillaLevels116);
 	}
 
 }

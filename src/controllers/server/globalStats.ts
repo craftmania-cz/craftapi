@@ -131,8 +131,8 @@ const generateGlobalStats = async () => {
 		a jiných změn, co celkově ovlivnili výsledek. Tato fake hodnota, je tedy součet všech starých registrací z
 		AuthMe + AutoLogin v období let 2013 - 2019 (listopad).
 		*/
-	let fakeAmount = 1117223;
-	let finalNumber = fakeAmount + parseInt(totalUniquePlayers[0][0].total);
+	const fakeAmount = 1117223;
+	const finalNumber = fakeAmount + parseInt(totalUniquePlayers[0][0].total);
 	globalStatsCache.totalPlayers = finalNumber;
 
 	// Fetch total quests
@@ -143,7 +143,13 @@ const generateGlobalStats = async () => {
 	if (!totalQuestsData.length) {
 		return;
 	}
-	globalStatsCache.totalCompletedQuests = parseInt(totalQuestsData[0][0].total);
+	/**
+	 * V roce 2022 byly questy vyresetovány s updatem na verzi 1.18.
+	 * Tato hodnota je tedy počet splněných questů v období 2018 - 2022 (květen)
+	 */
+	const fakeAmountQuests = 742502;
+	const finalNumberQuests = fakeAmountQuests + parseInt(totalQuestsData[0][0].total);
+	globalStatsCache.totalCompletedQuests = finalNumberQuests;
 
 	// Fetch registered player - 7 days
 	const totalregisteredPlayersData = await SQLManager.knex.raw('SELECT COUNT(*) as total FROM player_profile WHERE registred > UNIX_TIMESTAMP(NOW() - INTERVAL 7 DAY) * 1000;')
