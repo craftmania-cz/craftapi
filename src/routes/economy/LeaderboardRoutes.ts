@@ -43,8 +43,9 @@ export class LeaderboardRoutes {
 		this.router.get('/halloween', HalloweenStats.getLeaderboard);
 
 		// Balance
-		this.router.get('/balance/survival', EconomyTopCoins.getEconomyTopSurvival);
-		this.router.get('/balance/skyblock', EconomyTopCoins.getEconomyTopSkyblock);
+		this.router.get('/balance/survival_117', EconomyTopCoins.getEconomyTopSurvival117);
+		this.router.get('/balance/survival_118', EconomyTopCoins.getEconomyTopSurvival118);
+		this.router.get('/balance/skyblock_118', EconomyTopCoins.getEconomyTopSkyblock);
 
 		this.router.get('/dragon-slayer/vanilla', EconomyTopCoins.getVanillaDragonSlayerData);
 	}

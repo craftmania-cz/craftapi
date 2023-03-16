@@ -268,7 +268,7 @@ namespace EconomyTopCoins {
 	}
 
 	export async function getEconomyTopSkyblock(_req: any, res: any) {
-		const serverId = 'skyblock';
+		const serverId = 'skyblock_118';
 		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
 			.on('query-error', (error: any) => {
 				log.error(error);
@@ -294,8 +294,35 @@ namespace EconomyTopCoins {
 		return;
 	}
 
-	export async function getEconomyTopSurvival(_req: any, res: any) {
-		const serverId = 'survival';
+	export async function getEconomyTopSurvival117(_req: any, res: any) {
+		const serverId = 'survival_117';
+		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
+			.on('query-error', (error: any) => {
+				log.error(error);
+				return Res.error(res, error);
+			});
+		if (!data.length) {
+			return Res.not_found(res);
+		}
+		let finalResults: any = [];
+		data[0].forEach((player: any, index: number) => {
+			index++;
+			finalResults.push({
+				"index": index,
+				"nick": player.nick,
+				"uuid": player.uuid,
+				"balance": player.balance,
+				"groups": JSON.parse(player.groups),
+				"last_update": player.last_update
+			});
+			return;
+		});
+		Res.success(res, finalResults);
+		return;
+	}
+
+	export async function getEconomyTopSurvival118(_req: any, res: any) {
+		const serverId = 'survival_118';
 		const data = await SQLManager.knex.raw(`SELECT player_economy_${serverId}.balance, player_economy_${serverId}.last_update, player_profile.nick, player_profile.uuid, player_profile.groups FROM minigames.player_economy_${serverId}, minigames.player_profile WHERE player_profile.uuid = player_economy_${serverId}.uuid ORDER BY player_economy_${serverId}.balance DESC LIMIT 100`)
 			.on('query-error', (error: any) => {
 				log.error(error);
