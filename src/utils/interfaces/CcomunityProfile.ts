@@ -32,8 +32,8 @@ interface CcomunityProfile {
 	global_level: number;
 	survival_118_level: number;
 	survival_118_experience: number;
-	skyblock_level: number;
-	skyblock_experience: number;
+	skyblock_118_level: number;
+	skyblock_118_experience: number;
 	creative_level: number;
 	creative_experience: number;
 	vanilla_level: number;
@@ -48,8 +48,12 @@ interface CcomunityProfile {
 	anarchy_experience: number;
 	survival_level: number;
 	survival_experience: number;
+	skyblock_level: number;
+	skyblock_experience: number;
 	prison_level: number;
 	prison_experience: number;
+	vanilla_116_level: number;
+	vanilla_116_experience: number;
 
 	// Extended economy
 	karma_points: number;

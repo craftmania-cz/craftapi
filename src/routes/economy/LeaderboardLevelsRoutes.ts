@@ -19,13 +19,18 @@ export class LeaderboardLevelsRoutes {
 
 		this.router.get('/global', EconomyTopLevels.getTopGlobalLevels);
 		this.router.get('/creative', EconomyTopLevels.getTopCreativeLevels);
-		this.router.get('/survival', EconomyTopLevels.getTopSurvivalLevels);
-		this.router.get('/skyblock', EconomyTopLevels.getTopSkyblockLevels);
-		this.router.get('/vanilla', EconomyTopLevels.getTopVanillaLevels);
+		this.router.get('/survival', EconomyTopLevels.getTopSurvivalLevels118);
+		this.router.get('/skyblock', EconomyTopLevels.getTopSkyblockLevels118);
+		this.router.get('/vanilla', EconomyTopLevels.getTopVanillaLevels118);
+
+		// Legacy
 		this.router.get('/skycloud', EconomyTopLevels.getTopSkycloudLevels);
 		this.router.get('/hardcore-vanilla', EconomyTopLevels.getTopHardcoreVanillaLevels);
 		this.router.get('/prison', EconomyTopLevels.getTopPrisonLevels);
 		this.router.get('/vanilla_116', EconomyTopLevels.getTopVanilla116Levels);
+		this.router.get('/survival_117', EconomyTopLevels.getTopSurvivalLevels117);
+		this.router.get('/skyblock_117', EconomyTopLevels.getTopSkyblockLevels117);
+		this.router.get('/vanilla_116', EconomyTopLevels.getTopVanillaLevels116);
 	}
 
 }

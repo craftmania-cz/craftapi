@@ -38,18 +38,20 @@ namespace Ccomunity {
 				"global_level": playerObject.global_level,
 				"survival_level": playerObject.survival_118_level,
 				"survival_experience": playerObject.survival_118_experience,
-				"skyblock_level": playerObject.skyblock_level,
-				"skyblock_experience": playerObject.skyblock_experience,
+				"skyblock_level": playerObject.skyblock_118_level,
+				"skyblock_experience": playerObject.skyblock_118_experience,
 				"creative_level": playerObject.creative_level,
 				"creative_experience": playerObject.creative_experience,
 				"vanilla_level": playerObject.vanilla_level,
 				"vanilla_experience": playerObject.vanilla_experience,
 				"old_servers_level": playerObject.skycloud_level 
 					+ playerObject.hardcore_vanilla_level + playerObject.anarchy_level
-					+ playerObject.survival_level + playerObject.prison_level,
+					+ playerObject.survival_level + playerObject.prison_level + playerObject.skyblock_level
+					+ playerObject.vanilla_116_level,
 				"old_servers_experience": playerObject.skycloud_experience
 					+ playerObject.hardcore_vanilla_experience + playerObject.anarchy_experience
-					+ playerObject.survival_experience + playerObject.prison_experience
+					+ playerObject.survival_experience + playerObject.prison_experience + playerObject.skyblock_experience
+					+ playerObject.vanilla_116_experience
 			},
 			"votes": {
 				"total": playerObject.total_votes,
