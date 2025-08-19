@@ -1,5 +1,5 @@
-import * as Knex from 'knex';
 import { IConfig } from "config";
+import { Knex } from "knex";
 
 export class SQLManager {
 	public static knex: Knex;
@@ -16,7 +16,7 @@ export class SQLManager {
 
 	constructor() {
 		const config: IConfig = require("config");
-		SQLManager.knex = Knex({
+		SQLManager.knex = require('knex')({
 			client: 'mysql2',
 			connection: {
 				host: config.get('mysql.host'),
