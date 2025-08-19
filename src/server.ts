@@ -8,6 +8,7 @@ import { IConfig } from "config";
 import { Logger } from "./utils/Logger";
 import { SQLManager } from "./managers/SQLManager";
 import { generateGlobalStats } from "./controllers/server/globalStats";
+import { registerSentry } from "./utils/sentryManager";
 
 const config: IConfig = require("config");
 
@@ -39,13 +40,7 @@ logo();
 
 if (config.get('app.environment') === "production") {
 	log.info("Sentry will be activated!");
-	/* Sentry.init({
-		dsn: config.get('sentry.dsn'),
-		tracesSampleRate: 0.7,
-		integrations: [
-			new Sentry.Integrations.Http({ tracing: true }),
-		]
-	}); */
+	registerSentry();
 } else {
 	log.warn("Sentry is disabled due to testing version.");
 }
