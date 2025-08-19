@@ -6,11 +6,8 @@ import App from './App';
 import { callServer } from "./utils/ping";
 import { IConfig } from "config";
 import { Logger } from "./utils/Logger";
-import { generateSkyblockLeaderboard } from "./controllers/islands/BSkyblockTops";
 import { SQLManager } from "./managers/SQLManager";
 import { generateGlobalStats } from "./controllers/server/globalStats";
-import * as Sentry from "@sentry/node";
-import * as Tracing from "@sentry/tracing";
 
 const config: IConfig = require("config");
 
@@ -42,13 +39,13 @@ logo();
 
 if (config.get('app.environment') === "production") {
 	log.info("Sentry will be activated!");
-	Sentry.init({
+	/* Sentry.init({
 		dsn: config.get('sentry.dsn'),
 		tracesSampleRate: 0.7,
 		integrations: [
 			new Sentry.Integrations.Http({ tracing: true }),
 		]
-	});
+	}); */
 } else {
 	log.warn("Sentry is disabled due to testing version.");
 }
