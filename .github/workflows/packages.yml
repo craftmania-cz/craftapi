@@ -1,14 +1,16 @@
 name: Packages
 
 on:
+  push:
+    branches:
+      - master
+    tags:
+      - '**'
   workflow_dispatch:
     inputs:
       name:
         description: 'Custom name for package'
         required: false
-  push:
-    tags:
-      - '**'
 
 env:
   CUSTOM_PACKAGE_NAME: ${{ github.event.inputs.name || github.ref_name }}
