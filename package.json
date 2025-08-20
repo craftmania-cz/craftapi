@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && tsc",
-    "clean": "rm -rf dist/* && touch dist/.gitkeep",
+    "clean": "rm -rf dist/* && mkdir dist",
     "start": "node dist/server.js",
     "watch": "nodemon dist/server.js",
     "test": "mocha --reporter spec --compilers ts:ts-node/register 'test/**/*.test.ts'",
