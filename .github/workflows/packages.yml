@@ -42,5 +42,5 @@ jobs:
             COMMIT_HASH=${{ github.sha }}
             REGISTRY_TOKEN=${{ secrets.PAT_CONTAINER_TOKEN }}
           tags: |
-            ghcr.io/mrwake-dev/command-handler:latest
-            ghcr.io/mrwake-dev/command-handler:${{ env.CUSTOM_PACKAGE_NAME }}
+            ghcr.io/craftmania-cz/craftapi:latest
+            ghcr.io/craftmania-cz/craftapi:${{ env.CUSTOM_PACKAGE_NAME }}
