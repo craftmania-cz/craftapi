@@ -82,9 +82,7 @@ class App {
 			res.json({
 				"status": 200,
 				"data": {
-					"status": 'UP',
-					"pod-id": config.get('app.pod-id'),
-					"documentation": 'https://api-docs.craftmania.cz/'
+					"status": 'UP'
 				}
 			});
 		});
