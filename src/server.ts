@@ -1,4 +1,5 @@
 'use strict';
+import './instrument'; // must be first — initializes Sentry before Express app is created
 import * as http from 'http';
 import debug from 'debug';
 import * as fs from 'fs';
@@ -8,7 +9,6 @@ import { Config } from "config";
 import { Logger } from "./utils/Logger";
 import { SQLManager } from "./managers/SQLManager";
 import { generateGlobalStats } from "./controllers/server/globalStats";
-import { registerSentry } from "./utils/sentryManager";
 
 const config: Config = require("config");
 
@@ -37,13 +37,6 @@ const logo = () => {
 const server = http.createServer(App);
 server.listen(port);
 logo();
-
-if (config.get('app.environment') === "production") {
-	log.info("Sentry will be activated!");
-	registerSentry();
-} else {
-	log.warn("Sentry is disabled due to testing version.");
-}
 
 log.info('MySQL connection starting...');
 SQLManager.getInstance();

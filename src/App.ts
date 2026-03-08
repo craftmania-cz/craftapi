@@ -1,5 +1,6 @@
 
 import express from 'express';
+import * as Sentry from '@sentry/node';
 import PlayerRoutes from "./routes/PlayerRoutes";
 const exphbs = require('express-handlebars');
 import cookieParser from 'cookie-parser';
@@ -87,6 +88,9 @@ class App {
 				}
 			});
 		});
+
+		// Sentry error handler — must be after all routes and other middleware
+		Sentry.setupExpressErrorHandler(this.express);
 	}
 
 }
