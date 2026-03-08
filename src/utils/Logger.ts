@@ -1,5 +1,12 @@
 import * as winston from 'winston';
-import * as moment from "moment";
+
+/**
+ * Formats a Date as DD/MM/YYYY HH:mm:ss
+ */
+function formatDate(d: Date): string {
+	const p = (n: number) => n.toString().padStart(2, '0');
+	return `${p(d.getDate())}/${p(d.getMonth() + 1)}/${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+}
 
 /**
  * Configures the winston logger. There are also file and remote transports available
@@ -14,7 +21,7 @@ const logger = winston.createLogger({
 			maxFiles: 20,
 			format: winston.format.combine(
 				winston.format.printf((info: any) => {
-					return `[${moment().format('DD/MM/YYYY HH:mm:ss')}] [${info.level}]: ${info.message}`;
+					return `[${formatDate(new Date())}] [${info.level}]: ${info.message}`;
 				}),
 			),
 		}),
@@ -24,7 +31,7 @@ const logger = winston.createLogger({
 			format: winston.format.combine(
 				winston.format.colorize(),
 				winston.format.printf((info: any) => {
-					return `[${moment().format('DD/MM/YYYY HH:mm:ss')}] [${info.level}]: ${info.message}`;
+					return `[${formatDate(new Date())}] [${info.level}]: ${info.message}`;
 				}),
 			),
 		})
@@ -46,8 +53,8 @@ const write = (writeFunction: any) => ({
 export const winstonStream = stream(write(logger.info));
 
 // imports debug moduel
-import * as Debug from 'debug';
-import { IConfig } from "config";
+import Debug from 'debug';
+import { Config } from "config";
 const debug = Debug('app:response');
 
 /**
@@ -66,7 +73,7 @@ export const Logger = (scope: string) => {
 	const scopeDebug = Debug(scope);
 	return {
 		debug: (message: string, ...args: any[]) => {
-			const config: IConfig = require("config");
+			const config: Config = require("config");
 			if (config.get("app.environment") === "development") {
 				logger.debug(format(scope, message), parse(args));
 			}

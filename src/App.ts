@@ -1,12 +1,11 @@
 
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import express from 'express';
 import PlayerRoutes from "./routes/PlayerRoutes";
-import * as exphbs from 'express-handlebars';
-import * as cookieParser from 'cookie-parser';
-import * as cors from "cors";
-import * as helmet from "helmet";
-import * as morgan from 'morgan';
+const exphbs = require('express-handlebars');
+import cookieParser from 'cookie-parser';
+import cors from "cors";
+import helmet from "helmet";
+import morgan from 'morgan';
 import { Request, Response } from "express";
 import ServerRoutes from "./routes/ServerRoutes";
 import EconomyRoutes from "./routes/EconomyRoutes";
@@ -19,9 +18,9 @@ import MojangRoutes from "./routes/MojangRoutes";
 import { debugStream, winstonStream } from "./utils/Logger";
 import AdministrativeRoutes from "./routes/AdministrativeRoutes";
 import StoreRoutes from './routes/StoreRoutes';
-import { IConfig } from "config";
+import { Config } from "config";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 
 class App {
 
@@ -35,15 +34,14 @@ class App {
 
 	// Configure Express middleware.
 	private middleware(): void {
-		this.express.use(bodyParser.json({verify: function(req: any, _res: Response, buf: Buffer) { req.rawBody = buf; }}));
-		this.express.use(bodyParser.urlencoded({ extended: true }));
+		this.express.use(express.json({verify: function(req: any, _res: Response, buf: Buffer) { req.rawBody = buf; }}));
+		this.express.use(express.urlencoded({ extended: true }));
 		this.express.use(cookieParser());
 		this.express.use(helmet());
 		this.express.use(morgan(':remote-addr -> (:method) :url :status - :response-time ms', debugStream));
 		this.express.use(morgan(':remote-addr -> (:method) :url :status - :response-time ms', winstonStream));
 		this.express.use(cors({origin: '*'}));
-		// @ts-ignore
-		this.express.engine('handlebars', exphbs({defaultLayout: 'main'}));
+		this.express.engine('handlebars', exphbs.create({ defaultLayout: 'main' }).engine);
 		this.express.set('view engine', 'handlebars');
 	}
 

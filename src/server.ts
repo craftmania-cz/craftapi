@@ -1,16 +1,16 @@
 'use strict';
 import * as http from 'http';
-import * as debug from 'debug';
+import debug from 'debug';
 import * as fs from 'fs';
 import App from './App';
 import { callServer } from "./utils/ping";
-import { IConfig } from "config";
+import { Config } from "config";
 import { Logger } from "./utils/Logger";
 import { SQLManager } from "./managers/SQLManager";
 import { generateGlobalStats } from "./controllers/server/globalStats";
 import { registerSentry } from "./utils/sentryManager";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 
 if (!fs.existsSync('/config/default.json') && fs.existsSync('/config/default.json.example')) {
 	console.error('You forgot renaming the file .default.json.example to .default.json. Exiting now.');
@@ -79,7 +79,7 @@ let setIntervalNoDelay = function(func: any , delay: any) {
 
 function onListening(): void {
 	let addr = server.address();
-	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr.port}`;
+	let bind = (typeof addr === 'string') ? `pipe ${addr}` : `${addr?.port}`;
 	log.info(`Listening on port ${bind}`);
 	log.info(`App is running as ${stage.toString().toLocaleLowerCase()} environment`);
 	log.info(`Home url: http://localhost:${bind}`);

@@ -1,8 +1,8 @@
 import * as jwt from "jsonwebtoken";
-import { IConfig } from "config";
+import { Config } from "config";
 import { NextFunction, Request, Response } from "express";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 
 interface JWTToken {
 	username: string;

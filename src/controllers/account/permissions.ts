@@ -1,10 +1,10 @@
 import * as Res from "../../services/response";
 import * as jwt from "jsonwebtoken";
-import { IConfig } from "config";
+import { Config } from "config";
 import { AccessControl } from "accesscontrol";
 import Grants from "../../utils/authentification/Grants";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 const ac = new AccessControl(new Grants().getGrants);
 
 namespace Permissions {

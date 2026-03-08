@@ -1,5 +1,7 @@
 import * as Res from "../../services/response";
-import * as log from "signale";
+import { Logger } from "../../utils/Logger";
+
+const log = Logger('admin:ats');
 import { SQLManager } from "../../managers/SQLManager";
 import { resolveBoolean } from "../../utils/VariableUtils";
 import TokenAuth from "../../utils/authentification/tokenAuth";

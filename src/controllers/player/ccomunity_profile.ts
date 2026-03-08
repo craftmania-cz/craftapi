@@ -1,5 +1,7 @@
 import * as Res from "../../services/response";
-import * as log from 'signale';
+import { Logger } from "../../utils/Logger";
+
+const log = Logger('player:ccomunity');
 import { resolveBoolean } from "../../utils/VariableUtils";
 import { SQLManager } from "../../managers/SQLManager";
 

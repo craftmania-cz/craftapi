@@ -1,9 +1,11 @@
 import { checkExists } from "./LoginGenerator";
-import { IConfig } from "config";
-import * as log from "signale";
+import { Config } from "config";
+import { Logger } from "../Logger";
+
+const log = Logger('auth:register');
 import { SQLManager } from "../../managers/SQLManager";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 const bcrypt = require('bcryptjs');
 
 class RegisterGenerator {

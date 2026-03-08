@@ -1,4 +1,6 @@
-import * as log from "signale";
+import { Logger } from "../../utils/Logger";
+
+const log = Logger('economy:mcmmo');
 import * as Res from "../../services/response";
 import { SQLManager } from "../../managers/SQLManager";
 

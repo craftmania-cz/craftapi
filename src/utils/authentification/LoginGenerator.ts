@@ -1,10 +1,12 @@
 import * as jwt from "jsonwebtoken";
-import { IConfig } from "config";
-import * as log from "signale";
+import { Config } from "config";
+import { Logger } from "../Logger";
+
+const log = Logger('auth:login');
 import { SQLManager } from "../../managers/SQLManager";
 import RankList from "../RankList";
 
-const config: IConfig = require("config");
+const config: Config = require("config");
 const bcrypt = require('bcryptjs');
 
 class LoginGenerator {
@@ -43,7 +45,7 @@ class LoginGenerator {
 				const sqlRole = await fetchUserRole(username);
 
 				let token = jwt.sign({username: username, role: sqlRole},
-					config.get('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
+					config.get<string>('app.token'), { expiresIn: '6h', algorithm: "HS512" }); // expires in 6 hours
 
 				// return the JWT token for the future API calls
 				res.json({

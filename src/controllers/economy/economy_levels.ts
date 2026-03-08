@@ -1,5 +1,7 @@
 import * as Res from "../../services/response";
-import * as log from "signale";
+import { Logger } from "../../utils/Logger";
+
+const log = Logger('economy:levels');
 import LevelUtils from "../../utils/LevelUtils";
 import EconomyLevelPlayer from "../../utils/interfaces/EconomyLevelPlayer";
 import { SQLManager } from "../../managers/SQLManager";
